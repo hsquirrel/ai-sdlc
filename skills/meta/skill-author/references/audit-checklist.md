@@ -27,6 +27,11 @@ Evaluate every item; report pass/fail per skill with a one-line reason for each 
 12. **Placeholder conventions** — templates use `{curly}` for variables and `[square]` for prose guidance; no other placeholder styles.
 13. **No leaked placeholders** — finished example content in the skill contains no unresolved `{curly}` or `[square]` markers.
 
+## Auditability
+
+14. **Run-log section** — SKILL.md contains a "Run Log (audit)" section requiring a per-invocation log (created first, updated live, verbatim Q&A, external writes recorded) per the shared `templates/run-log.md`.
+15. **Template-first output** — every artifact the workflow produces is generated from a named template file; no workflow step emits a freeform-structured artifact.
+
 ## Catalog
 
-14. **Catalog entry** — the skill appears in `docs/skill-catalog.md` under the correct role, and the one-line definition matches the frontmatter description's spirit.
+16. **Catalog entry** — the skill appears in `docs/skill-catalog.md` under the correct role, and the one-line definition matches the frontmatter description's spirit.

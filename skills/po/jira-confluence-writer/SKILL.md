@@ -22,7 +22,7 @@ Read `references/kdp-schema.md` before planning any writes — it holds the fiel
    - New Initiative, or existing one? If existing, get its issue key (it may live outside KDP, e.g., a TR initiative) and skip Initiative creation.
    - For a new Initiative: **Business Unit** and **Strategic Program** (required fields — see schema for allowed values), plus Component if the PO wants one.
    - Team assignment for Epics/Stories, if known (optional — refinement can set it).
-3. Build the write plan: a table of every issue to create (type, summary, parent, populated fields) and every Confluence edit. Include the `ai-sdlc-generated` label on every issue for auditability.
+3. Build the write plan from `templates/write-plan.md`: every issue to create (type, summary, parent, populated fields) and every Confluence edit. Include the `ai-sdlc-generated` label on every issue for auditability.
 4. **Human approval gate** — present the full write plan to the PO. Apply changes and re-present until the PO explicitly approves. Nothing is created before approval.
 5. Execute top-down, verifying each level before the next:
    - Create the Initiative (unless using an existing one).
@@ -50,3 +50,11 @@ Read `references/kdp-schema.md` before planning any writes — it holds the fiel
 - Leave Sprint, Story Points, and Assignee empty — those belong to the team in refinement.
 - Do not invent values for required fields; if the PO can't answer (e.g., Strategic Program), stop and say what's blocking.
 - If any create fails mid-run, stop, report exactly what was and wasn't created, and rely on the duplicate check in step 5 for a safe re-run — never retry blindly.
+
+## Run Log (audit)
+
+Every invocation keeps a run log, created before the first step and updated as each step completes — it is part of the deliverable, and a run without one is incomplete.
+
+- Create `.ai-sdlc/runs/{YYYY-MM-DD}-jira-confluence-writer-{run-slug}.md` in the workspace from the library's shared `templates/run-log.md` (repo root). No workspace? Attach the log to the driving Jira/Confluence artifact instead.
+- Record as you go: context gathered (every source read, with keys/links), every question asked and its answer **verbatim**, each revision requested at the approval gate, the approval decision (who, when, exactly what was approved), and every external write with its resulting key/link.
+- Close the log with improvement notes: friction, questions the skill should have asked, template gaps — raw material for `skill-author` audits.

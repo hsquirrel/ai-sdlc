@@ -31,3 +31,12 @@ description: {what-it-does}. Use when {trigger}.
 
 - [Constraints specific to this skill — formats to follow (e.g., Gherkin for behavior AC, structured blocks for NFRs), fields that must be populated, things this skill must never do.]
 - Never write to an external system before the human approval gate passes.
+- Every output artifact is generated from a template in this skill's `templates/` folder — improve the template, not the instance.
+
+## Run Log (audit)
+
+Every invocation keeps a run log, created before the first step and updated as each step completes — it is part of the deliverable, and a run without one is incomplete.
+
+- Create `.ai-sdlc/runs/{YYYY-MM-DD}-{skill-name}-{run-slug}.md` in the workspace from the library's shared `templates/run-log.md` (repo root). No workspace? Attach the log to the driving Jira/Confluence artifact instead.
+- Record as you go: context gathered (every source read, with keys/links), every question asked and its answer **verbatim**, each revision requested at the approval gate, the approval decision (who, when, exactly what was approved), and every external write with its resulting key/link.
+- Close the log with improvement notes: friction, questions the skill should have asked, template gaps — raw material for `skill-author` audits.

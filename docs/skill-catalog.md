@@ -11,6 +11,8 @@ The agreed set of skills to build, organized by scrum role. Locked by consensus 
 ## Conventions
 
 - Skills are single-purpose and chained assembly-line style, with a **human approval gate at the end of every skill**. Nothing is written to Jira/Confluence/GitHub without human approval.
+- Every skill run keeps a live-updated **run log** (`.ai-sdlc/runs/{date}-{skill}-{slug}.md`, from the shared `templates/run-log.md`): context, verbatim Q&A, approvals, external writes, improvement notes.
+- **Template-first output**: every artifact is generated from a template in the skill's `templates/` folder — freeform output structure is a defect; improvement happens by changing templates, reviewed in git.
 - Jira hierarchy target: **Initiative → Epic → Story** (all three issue types exist in our Jira instance). Teams refine Stories into Tasks themselves during ceremonies.
 - Acceptance criteria: Gherkin/BDD for user-visible behavior; structured requirement blocks for NFRs (data contracts, audit logging, retention, observability, security).
 - Developer and Tester skills target **GitHub Copilot** (VS / VS Code) as the primary surface; author to the Agent Skills open standard so they remain portable to Claude Code and Rovo.

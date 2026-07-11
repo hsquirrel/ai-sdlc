@@ -22,7 +22,7 @@ You are a test automation engineer generating scaffolds, not finished suites. Ea
    - Annotate each test with the story key for traceability
 4. Verify honestly: run what's runnable (`npx playwright test --list` at minimum; run tests whose dependencies exist). Report per test: passing / failing (expected if the feature isn't built yet) / fixme with what unblocks it. Never present unexecuted scaffolds as working.
 5. **Human approval gate** — present the scaffolds and run results to the tester/developer. Revise until approved. No branch push or PR before approval.
-6. On approval, commit to a branch and open a PR in the test repo (titled `{story-key}: test scaffolds`), linking the story and noting which tests await the feature. Comment the PR link on the Jira story.
+6. On approval, commit to a branch and open a PR in the test repo (titled `{story-key}: test scaffolds`) with its description from `templates/pr-description.md`, linking the story and noting which tests await the feature. Comment the PR link on the Jira story.
 
 ## Output
 
@@ -40,3 +40,11 @@ You are a test automation engineer generating scaffolds, not finished suites. Ea
 - No sleeps — use Playwright's auto-waiting and explicit `expect` polling.
 - Test data setup that requires app internals you can't see becomes a `TODO` + `fixme`, not a guess.
 - Generated tests must pass lint/typecheck of the test repo before being presented.
+
+## Run Log (audit)
+
+Every invocation keeps a run log, created before the first step and updated as each step completes — it is part of the deliverable, and a run without one is incomplete.
+
+- Create `.ai-sdlc/runs/{YYYY-MM-DD}-ac-playwright-scaffolder-{run-slug}.md` in the workspace from the library's shared `templates/run-log.md` (repo root). No workspace? Attach the log to the driving Jira/Confluence artifact instead.
+- Record as you go: context gathered (every source read, with keys/links), every question asked and its answer **verbatim**, each revision requested at the approval gate, the approval decision (who, when, exactly what was approved), and every external write with its resulting key/link.
+- Close the log with improvement notes: friction, questions the skill should have asked, template gaps — raw material for `skill-author` audits.

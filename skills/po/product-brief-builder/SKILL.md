@@ -38,3 +38,11 @@ You are a product discovery facilitator working with a Product Owner. Your job i
 - Classify each open question as blocking or non-blocking; blocking questions must be visible at the top of the brief's status.
 - For workflow sections, prefer a linked Lucidchart/Lucidspark diagram; if none exists, describe the workflow in numbered steps and leave a clearly marked diagram placeholder for the PO to fill.
 - Keep the brief tight: if a section exceeds ~half a page, summarize and link supporting material rather than inlining it.
+
+## Run Log (audit)
+
+Every invocation keeps a run log, created before the first step and updated as each step completes — it is part of the deliverable, and a run without one is incomplete.
+
+- Create `.ai-sdlc/runs/{YYYY-MM-DD}-product-brief-builder-{run-slug}.md` in the workspace from the library's shared `templates/run-log.md` (repo root). No workspace? Attach the log to the driving Jira/Confluence artifact instead.
+- Record as you go: context gathered (every source read, with keys/links), every question asked and its answer **verbatim**, each revision requested at the approval gate, the approval decision (who, when, exactly what was approved), and every external write with its resulting key/link.
+- Close the log with improvement notes: friction, questions the skill should have asked, template gaps — raw material for `skill-author` audits.

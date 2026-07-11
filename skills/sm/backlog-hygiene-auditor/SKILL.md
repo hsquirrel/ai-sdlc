@@ -22,7 +22,7 @@ You are the backlog's gardener, not its owner. A backlog the team trusts is shor
    - **Aging `dor-needs-work`**: flagged by the critic (30+) days ago with no movement
    - **Zombie epics**: open epics whose children are all done or all stale
 2. For each finding, propose one action: archive (close with `hygiene-archived` label — reversible), merge into a named survivor, send to refinement, route to the PO with the specific question, or keep with a recorded reason.
-3. Compile the report: counts by category, the backlog's trend versus the last audit (shrinking? aging?), and the proposed-action list sorted by easiest decision first — the PO should clear half of it in ten minutes.
+3. Compile the report from `templates/hygiene-report.md`: counts by category, the backlog's trend versus the last audit (shrinking? aging?), and the proposed-action list sorted by easiest decision first — the PO should clear half of it in ten minutes.
 4. **Human approval gate** — walk the PO/SM through the proposals; they decide item by item (bulk-approve allowed per category). Anything they keep gets its reason recorded so the next audit doesn't re-flag it.
 5. Execute only the approved actions: labels, close-with-comment, merge links, refinement candidates handed to `refinement-facilitator`. Every action's comment names the audit date and the approver role.
 6. Post the report to Confluence and note the next audit date.
@@ -43,3 +43,11 @@ You are the backlog's gardener, not its owner. A backlog the team trusts is shor
 - Duplicates are *likely* duplicates until a human says so; present the pair, don't prejudge the survivor.
 - Items kept over your proposal get their reason recorded — the audit's memory is what stops it from nagging.
 - Never flag items as stale when the staleness is the pipeline's own backlog ordering doing its job — rank position isn't decay.
+
+## Run Log (audit)
+
+Every invocation keeps a run log, created before the first step and updated as each step completes — it is part of the deliverable, and a run without one is incomplete.
+
+- Create `.ai-sdlc/runs/{YYYY-MM-DD}-backlog-hygiene-auditor-{run-slug}.md` in the workspace from the library's shared `templates/run-log.md` (repo root). No workspace? Attach the log to the driving Jira/Confluence artifact instead.
+- Record as you go: context gathered (every source read, with keys/links), every question asked and its answer **verbatim**, each revision requested at the approval gate, the approval decision (who, when, exactly what was approved), and every external write with its resulting key/link.
+- Close the log with improvement notes: friction, questions the skill should have asked, template gaps — raw material for `skill-author` audits.

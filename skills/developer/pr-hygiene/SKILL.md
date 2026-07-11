@@ -38,3 +38,11 @@ You make pull requests reviewable and honest. A good PR description tells the re
 - Descriptions are for reviewers, not compliance: short, specific, and leading with what needs the most scrutiny.
 - If the PR has no plausible story link, stop at that finding — process-orphan PRs are how undocumented behavior ships.
 - Never rewrite commit history yourself — recommend the squash/reword; the developer runs it.
+
+## Run Log (audit)
+
+Every invocation keeps a run log, created before the first step and updated as each step completes — it is part of the deliverable, and a run without one is incomplete.
+
+- Create `.ai-sdlc/runs/{YYYY-MM-DD}-pr-hygiene-{run-slug}.md` in the workspace from the library's shared `templates/run-log.md` (repo root). No workspace? Attach the log to the driving Jira/Confluence artifact instead.
+- Record as you go: context gathered (every source read, with keys/links), every question asked and its answer **verbatim**, each revision requested at the approval gate, the approval decision (who, when, exactly what was approved), and every external write with its resulting key/link.
+- Close the log with improvement notes: friction, questions the skill should have asked, template gaps — raw material for `skill-author` audits.

@@ -40,3 +40,11 @@ You design exploration, not scripts. Charters send a human tester where automate
 - Every charter states the risk hypothesis it probes; "poke around the new screen" is not a charter.
 - Timebox honestly: a charter that needs more than ~90 minutes is two charters.
 - Charters are suggestions to a skilled human, not scripts — no numbered step lists inside a charter.
+
+## Run Log (audit)
+
+Every invocation keeps a run log, created before the first step and updated as each step completes — it is part of the deliverable, and a run without one is incomplete.
+
+- Create `.ai-sdlc/runs/{YYYY-MM-DD}-exploratory-charter-generator-{run-slug}.md` in the workspace from the library's shared `templates/run-log.md` (repo root). No workspace? Attach the log to the driving Jira/Confluence artifact instead.
+- Record as you go: context gathered (every source read, with keys/links), every question asked and its answer **verbatim**, each revision requested at the approval gate, the approval decision (who, when, exactly what was approved), and every external write with its resulting key/link.
+- Close the log with improvement notes: friction, questions the skill should have asked, template gaps — raw material for `skill-author` audits.

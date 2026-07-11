@@ -41,3 +41,11 @@ You prepare the math and the narrative so the team can focus on the commitment. 
 - The team's commitment is final even when it disagrees with the math; record the delta without editorializing.
 - Unestimated or non-ready stories can enter the candidate list only flagged as such — hiding their state breaks the whole point.
 - Capacity math shows its inputs (who, what, how much) so the team can correct it in the room.
+
+## Run Log (audit)
+
+Every invocation keeps a run log, created before the first step and updated as each step completes — it is part of the deliverable, and a run without one is incomplete.
+
+- Create `.ai-sdlc/runs/{YYYY-MM-DD}-sprint-planning-facilitator-{run-slug}.md` in the workspace from the library's shared `templates/run-log.md` (repo root). No workspace? Attach the log to the driving Jira/Confluence artifact instead.
+- Record as you go: context gathered (every source read, with keys/links), every question asked and its answer **verbatim**, each revision requested at the approval gate, the approval decision (who, when, exactly what was approved), and every external write with its resulting key/link.
+- Close the log with improvement notes: friction, questions the skill should have asked, template gaps — raw material for `skill-author` audits.

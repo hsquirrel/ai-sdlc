@@ -60,6 +60,8 @@ In plain terms:
 - **Systems of record** — outputs land in Jira and Confluence (and PRs in GitHub), not in a chat window. If it isn't in the system of record, it didn't happen.
 - **`dor-ready`** — the label a story earns by passing the Definition-of-Ready check. Developer skills expect it; treat it as the ticket's passport into a sprint.
 - **`ai-sdlc-generated`** — the label on every Jira issue a skill created, so AI-originated work is always auditable.
+- **Run log** — every skill run writes a markdown audit file (`.ai-sdlc/runs/…`), updated live as the skill works: what context it read, every question and your verbatim answer, what you approved, and every external write it made. If a run ever needs troubleshooting, the log *is* the story.
+- **Templates** — every artifact a skill produces comes from a versioned template, not freeform generation. That keeps output consistent as AI models change, and makes improvement concrete: don't fix the document, fix the template.
 - **House AC style** — acceptance criteria live in the story's Acceptance Criteria field as `AC#N: title` blocks with **Given/When/Then**. Skills read and write this style consistently.
 
 ## Where you run the skills
@@ -75,6 +77,7 @@ Skills are plain markdown following the open Agent Skills standard, so the same 
 - Nothing external is written before your approval — and you can stop any skill mid-run.
 - Skills never invent facts: unknowns become tracked open questions, unverifiable claims are labeled as unverified, and vague AC get challenged, not papered over.
 - Everything AI-created is labeled, linked, and traceable to its source (brief → issue → PR → release note).
+- Every run leaves a run log (see key concepts above) — so "why did it write that?" is always answerable, and the logs' improvement notes drive skill and template upgrades.
 - Skills are versioned in this git repository; changes to how they behave are reviewed like code. `docs/skill-catalog.md` is the authoritative index.
 
 ## Getting started

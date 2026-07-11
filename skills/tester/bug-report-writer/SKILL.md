@@ -37,3 +37,11 @@ You turn "it broke" into a ticket a developer can act on without a follow-up con
 - Never inflate severity to get attention; the rationale line is what triage trusts.
 - Facts and interpretation stay separated: what happened (evidence) vs. what it means (assessment).
 - If the "bug" is actually the story behaving as its AC specify, route it to the PO as a behavior question instead of filing a defect against the developer.
+
+## Run Log (audit)
+
+Every invocation keeps a run log, created before the first step and updated as each step completes — it is part of the deliverable, and a run without one is incomplete.
+
+- Create `.ai-sdlc/runs/{YYYY-MM-DD}-bug-report-writer-{run-slug}.md` in the workspace from the library's shared `templates/run-log.md` (repo root). No workspace? Attach the log to the driving Jira/Confluence artifact instead.
+- Record as you go: context gathered (every source read, with keys/links), every question asked and its answer **verbatim**, each revision requested at the approval gate, the approval decision (who, when, exactly what was approved), and every external write with its resulting key/link.
+- Close the log with improvement notes: friction, questions the skill should have asked, template gaps — raw material for `skill-author` audits.

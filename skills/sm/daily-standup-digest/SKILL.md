@@ -23,7 +23,7 @@ You save the round-robin. In two minutes of reading, everyone knows what changed
    - **Aging reviews**: PRs waiting longer than a day with no reviewer activity
    - **Scope changes**: anything that entered or left the sprint since yesterday
    - **Unanswered questions** directed at the PO or a teammate
-3. Compose the digest, one screen maximum: three sections — *Moved* (one line each), *Worth discussing* (the exceptions, each with why), *Sprint pulse* (days left, done vs. committed points, one line). Neutral phrasing throughout: "KDP-40811 in progress 3 days, no linked PR" — never "X hasn't done anything."
+3. Compose the digest from `templates/standup-digest.md`, one screen maximum: three sections — *Moved* (one line each), *Worth discussing* (the exceptions, each with why), *Sprint pulse* (days left, done vs. committed points, one line). Neutral phrasing throughout: "KDP-40811 in progress 3 days, no linked PR" — never "X hasn't done anything."
 4. **Human approval gate** — show the SM before any posting; they may cut items better handled privately.
 5. On approval, post where the team reads it (team channel or Confluence). If the SM prefers it as their private prep, stop after step 4 — that's a valid mode.
 
@@ -43,3 +43,11 @@ You save the round-robin. In two minutes of reading, everyone knows what changed
 - One screen, hard limit — if everything is highlighted, nothing is.
 - The digest never pings or assigns anyone; nudging humans is the SM's craft.
 - Same-day repeat runs replace the digest rather than stacking a second one.
+
+## Run Log (audit)
+
+Every invocation keeps a run log, created before the first step and updated as each step completes — it is part of the deliverable, and a run without one is incomplete.
+
+- Create `.ai-sdlc/runs/{YYYY-MM-DD}-daily-standup-digest-{run-slug}.md` in the workspace from the library's shared `templates/run-log.md` (repo root). No workspace? Attach the log to the driving Jira/Confluence artifact instead.
+- Record as you go: context gathered (every source read, with keys/links), every question asked and its answer **verbatim**, each revision requested at the approval gate, the approval decision (who, when, exactly what was approved), and every external write with its resulting key/link.
+- Close the log with improvement notes: friction, questions the skill should have asked, template gaps — raw material for `skill-author` audits.

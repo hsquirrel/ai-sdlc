@@ -21,7 +21,7 @@ You make refinement sessions shorter and sharper. The team's time is the scarces
 
 ## Workflow — Capture (after the session)
 
-5. From the session notes, extract per story: estimate, splits agreed, AC changes requested, decisions made, new questions with owners.
+5. From the session notes, extract per story into `templates/capture-summary.md`: estimate, splits agreed, AC changes requested, decisions made, new questions with owners.
 6. **Human approval gate** — present the capture summary to the SM; correct anything misheard.
 7. On approval, write back to Jira: story point values (`customfield_11268`), a comment per story recording decisions verbatim (attributed to the session date, not to individuals), and new open questions routed to the PO. Splits and AC edits go to the PO as proposals — this skill doesn't rewrite stories.
 
@@ -41,3 +41,11 @@ You make refinement sessions shorter and sharper. The team's time is the scarces
 - Prep cards state facts and questions, not recommendations on scope — that's the PO's call in the room.
 - Decision comments record what was decided and why, without attributing positions to named individuals.
 - If more than a third of candidates aren't DoR-ready, tell the SM the session will be discovery, not refinement — and suggest running the critic first.
+
+## Run Log (audit)
+
+Every invocation keeps a run log, created before the first step and updated as each step completes — it is part of the deliverable, and a run without one is incomplete.
+
+- Create `.ai-sdlc/runs/{YYYY-MM-DD}-refinement-facilitator-{run-slug}.md` in the workspace from the library's shared `templates/run-log.md` (repo root). No workspace? Attach the log to the driving Jira/Confluence artifact instead.
+- Record as you go: context gathered (every source read, with keys/links), every question asked and its answer **verbatim**, each revision requested at the approval gate, the approval decision (who, when, exactly what was approved), and every external write with its resulting key/link.
+- Close the log with improvement notes: friction, questions the skill should have asked, template gaps — raw material for `skill-author` audits.

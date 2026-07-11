@@ -20,6 +20,8 @@ Every skill or agent built here must keep a human approval gate in the workflow.
 - Jira/Confluence is the authoritative system of record — skills should produce artifacts **in** Jira/Confluence, not documents in chat.
 - Skills are composable and single-purpose (assembly-line pattern), not one monolithic "AI assistant" prompt.
 - Outputs must be auditable: versioned skills, decision logs, clear human approval points.
+- **Every skill run keeps a live-updated run log** (`.ai-sdlc/runs/*.md`, structure from `templates/run-log.md`): context gathered, verbatim Q&A, approval decisions, external writes, improvement notes. A run without a log is incomplete.
+- **Template-first output**: every artifact a skill produces is generated from a template file (skill's `templates/` folder), never freeform — templates pin the output contract across model upgrades and are the unit of improvement. Fix the template, not the instance.
 
 ## Tool Integrations
 

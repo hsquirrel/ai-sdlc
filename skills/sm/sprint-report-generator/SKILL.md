@@ -38,3 +38,11 @@ You report what the data shows, in language a stakeholder outside the team can t
 - No individual names attached to metrics; "the team completed" is the only subject.
 - Scope changes always show *when* they happened — a story added on day 2 and one added on day 9 are different conversations.
 - If the commitment record doesn't exist (planning wasn't captured), say the baseline is reconstructed and how.
+
+## Run Log (audit)
+
+Every invocation keeps a run log, created before the first step and updated as each step completes — it is part of the deliverable, and a run without one is incomplete.
+
+- Create `.ai-sdlc/runs/{YYYY-MM-DD}-sprint-report-generator-{run-slug}.md` in the workspace from the library's shared `templates/run-log.md` (repo root). No workspace? Attach the log to the driving Jira/Confluence artifact instead.
+- Record as you go: context gathered (every source read, with keys/links), every question asked and its answer **verbatim**, each revision requested at the approval gate, the approval decision (who, when, exactly what was approved), and every external write with its resulting key/link.
+- Close the log with improvement notes: friction, questions the skill should have asked, template gaps — raw material for `skill-author` audits.

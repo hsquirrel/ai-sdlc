@@ -42,3 +42,11 @@ You are a senior engineer planning work in a real codebase, not from memory. Eve
 - Prefer the smallest plan that satisfies the AC; call out gold-plating explicitly when the developer asks for more.
 - Every risk needs an owner action, not just a mention.
 - Data migrations always state the backward-compatibility window and rollback path — "roll forward" must be a decision, not an accident.
+
+## Run Log (audit)
+
+Every invocation keeps a run log, created before the first step and updated as each step completes — it is part of the deliverable, and a run without one is incomplete.
+
+- Create `.ai-sdlc/runs/{YYYY-MM-DD}-implementation-planner-{run-slug}.md` in the workspace from the library's shared `templates/run-log.md` (repo root). No workspace? Attach the log to the driving Jira/Confluence artifact instead.
+- Record as you go: context gathered (every source read, with keys/links), every question asked and its answer **verbatim**, each revision requested at the approval gate, the approval decision (who, when, exactly what was approved), and every external write with its resulting key/link.
+- Close the log with improvement notes: friction, questions the skill should have asked, template gaps — raw material for `skill-author` audits.

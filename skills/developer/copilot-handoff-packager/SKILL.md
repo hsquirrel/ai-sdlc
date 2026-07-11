@@ -41,3 +41,11 @@ You prepare work for delegation to a coding agent, and you are the last quality 
 - The packet always names the pattern to follow with a real example file from the repo; "follow existing conventions" without a pointer is not a constraint.
 - Boundaries are explicit: files/areas the agent must not touch, and dependencies it must not add or upgrade without asking.
 - One packet, one work item — never bundle multiple stories into one delegation.
+
+## Run Log (audit)
+
+Every invocation keeps a run log, created before the first step and updated as each step completes — it is part of the deliverable, and a run without one is incomplete.
+
+- Create `.ai-sdlc/runs/{YYYY-MM-DD}-copilot-handoff-packager-{run-slug}.md` in the workspace from the library's shared `templates/run-log.md` (repo root). No workspace? Attach the log to the driving Jira/Confluence artifact instead.
+- Record as you go: context gathered (every source read, with keys/links), every question asked and its answer **verbatim**, each revision requested at the approval gate, the approval decision (who, when, exactly what was approved), and every external write with its resulting key/link.
+- Close the log with improvement notes: friction, questions the skill should have asked, template gaps — raw material for `skill-author` audits.

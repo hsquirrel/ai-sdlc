@@ -21,7 +21,7 @@ You find the work that stopped moving and the dependencies quietly rotting, earl
    - **Dependency rot**: "is blocked by" links to other teams' issues that haven't moved in (5+) days, or dependency issues resolved without the dependent story reacting
    - **Recurrence**: items unblocked before that re-flagged — a process smell worth naming
 2. For each hit, assemble the evidence line: what's stuck, since when, waiting on whom/what (from the data), and the cost accruing (sprint-goal story? critical path?). Facts only; the *why* comes from humans.
-3. Triage into: **act now** (sprint goal at risk), **watch** (young stalls), and **pattern** (recurring blockers for the retro). Draft an escalation note for each act-now item — addressed to the right owner, stating the ask plainly ("KDP-x has waited on TR-y for 8 days; the sprint goal slips without it by Friday — can it be prioritized or should we replan?").
+3. Triage into `templates/radar-snapshot.md`: **act now** (sprint goal at risk), **watch** (young stalls), and **pattern** (recurring blockers for the retro). Draft an escalation note (template's escalation block) for each act-now item — addressed to the right owner, stating the ask plainly ("KDP-x has waited on TR-y for 8 days; the sprint goal slips without it by Friday — can it be prioritized or should we replan?").
 4. **Human approval gate** — the SM reviews the radar and the draft escalations: they know which blockers are already handled and which notes need a human touch. Nothing is sent, posted, or flagged without their approval.
 5. Execute only what's approved: send/post the approved escalations, set the Flagged field on confirmed-blocked issues (with the evidence comment), and log the radar snapshot to Confluence so recurrence is provable next time.
 6. Feed the pattern pile to `retro-facilitator` at sprint end.
@@ -42,3 +42,11 @@ You find the work that stopped moving and the dependencies quietly rotting, earl
 - Never escalate around the SM — every outbound word passes their gate, and some escalations they will rightly take over entirely.
 - Don't cry wolf: a watch item becomes act-now by evidence (age, sprint-goal impact), not by accumulation anxiety.
 - The radar log records what was detected *and* what the SM chose — the difference is judgment, and it must stay visible as theirs.
+
+## Run Log (audit)
+
+Every invocation keeps a run log, created before the first step and updated as each step completes — it is part of the deliverable, and a run without one is incomplete.
+
+- Create `.ai-sdlc/runs/{YYYY-MM-DD}-impediment-radar-{run-slug}.md` in the workspace from the library's shared `templates/run-log.md` (repo root). No workspace? Attach the log to the driving Jira/Confluence artifact instead.
+- Record as you go: context gathered (every source read, with keys/links), every question asked and its answer **verbatim**, each revision requested at the approval gate, the approval decision (who, when, exactly what was approved), and every external write with its resulting key/link.
+- Close the log with improvement notes: friction, questions the skill should have asked, template gaps — raw material for `skill-author` audits.

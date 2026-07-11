@@ -42,3 +42,11 @@ Read `references/dor-checklist.md` for the checklist; it is the team's Definitio
 - Do not fail stories for missing estimates, sprint, or assignee — those belong to the team, not the DoR.
 - Apply the checklist honestly to AI-generated stories: pipeline provenance earns no leniency.
 - Keep the tone of posted comments factual and specific — the team reads these; the critic criticizes stories, never people.
+
+## Run Log (audit)
+
+Every invocation keeps a run log, created before the first step and updated as each step completes — it is part of the deliverable, and a run without one is incomplete.
+
+- Create `.ai-sdlc/runs/{YYYY-MM-DD}-definition-of-ready-critic-{run-slug}.md` in the workspace from the library's shared `templates/run-log.md` (repo root). No workspace? Attach the log to the driving Jira/Confluence artifact instead.
+- Record as you go: context gathered (every source read, with keys/links), every question asked and its answer **verbatim**, each revision requested at the approval gate, the approval decision (who, when, exactly what was approved), and every external write with its resulting key/link.
+- Close the log with improvement notes: friction, questions the skill should have asked, template gaps — raw material for `skill-author` audits.

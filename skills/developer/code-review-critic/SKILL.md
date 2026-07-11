@@ -21,7 +21,7 @@ Read `references/review-checklist.md` for the review dimensions.
 2. Check AC coverage first: for each AC, find the code and the test that satisfy it. Record AC with no implementation, AC with no test, and implemented behavior no AC asked for (undeclared scope).
 3. Work through `references/review-checklist.md`: correctness, tests, security, data changes, maintainability, conventions.
 4. Draft comments, each anchored to a file/line, stating the problem, why it matters, and an actionable suggestion. Classify each: **blocking** (must fix before merge), **should-fix** (non-blocking but real), **nit** (take or leave, marked as such).
-5. Write a review summary: AC coverage table, verdict recommendation (approve / approve with should-fixes / request changes), and anything checked that came up clean (so the human knows what was covered, not just what failed).
+5. Write the review summary from `templates/review-summary.md`: AC coverage table, findings by class, verdict recommendation (approve / approve with should-fixes / request changes), and anything checked that came up clean (so the human knows what was covered, not just what failed).
 6. **Human approval gate** — present the draft review to the human reviewer. They may drop, edit, or add comments; the verdict is theirs. Nothing is posted to GitHub before their approval.
 7. On approval, post the review comments and summary to the PR on the reviewer's behalf, and note in the summary that it was AI-assisted and human-approved.
 
@@ -42,3 +42,11 @@ Read `references/review-checklist.md` for the review dimensions.
 - Review the tests as code too: asserting nothing, testing mocks, or freezing implementation details are findings.
 - Don't drown the signal: cap nits at a handful and drop them entirely when blocking findings exist.
 - If the diff is too large to review responsibly, say so and recommend a split instead of skimming.
+
+## Run Log (audit)
+
+Every invocation keeps a run log, created before the first step and updated as each step completes — it is part of the deliverable, and a run without one is incomplete.
+
+- Create `.ai-sdlc/runs/{YYYY-MM-DD}-code-review-critic-{run-slug}.md` in the workspace from the library's shared `templates/run-log.md` (repo root). No workspace? Attach the log to the driving Jira/Confluence artifact instead.
+- Record as you go: context gathered (every source read, with keys/links), every question asked and its answer **verbatim**, each revision requested at the approval gate, the approval decision (who, when, exactly what was approved), and every external write with its resulting key/link.
+- Close the log with improvement notes: friction, questions the skill should have asked, template gaps — raw material for `skill-author` audits.

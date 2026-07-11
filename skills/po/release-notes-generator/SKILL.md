@@ -43,3 +43,11 @@ You are a product communicator translating completed work into language stakehol
 - Stakeholder language: lead with the benefit, name features the way users see them in the product, keep issue keys out of prose (they may appear as trailing references).
 - Never overwrite an existing release note silently — existing content wins unless the PO explicitly approves the replacement.
 - If the scope contains zero done stories, say so and stop — do not pad notes with in-progress work.
+
+## Run Log (audit)
+
+Every invocation keeps a run log, created before the first step and updated as each step completes — it is part of the deliverable, and a run without one is incomplete.
+
+- Create `.ai-sdlc/runs/{YYYY-MM-DD}-release-notes-generator-{run-slug}.md` in the workspace from the library's shared `templates/run-log.md` (repo root). No workspace? Attach the log to the driving Jira/Confluence artifact instead.
+- Record as you go: context gathered (every source read, with keys/links), every question asked and its answer **verbatim**, each revision requested at the approval gate, the approval decision (who, when, exactly what was approved), and every external write with its resulting key/link.
+- Close the log with improvement notes: friction, questions the skill should have asked, template gaps — raw material for `skill-author` audits.
