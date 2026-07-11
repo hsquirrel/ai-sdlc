@@ -62,6 +62,7 @@ Health and reporting:
 - **backlog-hygiene-auditor** (`skills/sm/backlog-hygiene-auditor/`) — periodic decay sweep (stale, duplicates, unestimated near-term, orphans, zombie epics) with item-by-item PO/SM-approved cleanup; archives reversibly, never deletes. Built 2026-07-11.
 - **impediment-radar** (`skills/sm/impediment-radar/`) — detects flagged blocks, silent stalls, aging reviews, and dependency rot; drafts evidence-based escalations the SM approves and owns. Built 2026-07-11.
 
-## Meta (1)
+## Meta (2)
 
 - **skill-author** (`skills/meta/skill-author/`) — scaffolds, audits, and catalogs skills for this library, keeping it consistent as it grows. Built 2026-07-11; the first skill in the library and the template for all others.
+- **tabletop-shakedown** (`skills/meta/tabletop-shakedown/`) — stress-tests the library by walking a scenario through the pipeline on paper (real content, strictly read-only); findings split into content defects vs. system proposals routed to skill-author. Scenario charters tracked in `docs/shakedowns/scenario-backlog.md`. Built 2026-07-11.
