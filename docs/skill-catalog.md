@@ -23,7 +23,7 @@ The four pipeline skills run in order, each gated by PO approval:
 1. **product-brief-builder** (`skills/po/product-brief-builder/`) — interactive discovery producing a single Confluence brief: problem, users, outcomes/metrics, workflow, scope, assumptions, open questions, stakeholders. Built 2026-07-11.
 2. **backlog-decomposer** (`skills/po/backlog-decomposer/`) — turns an approved brief into a draft Initiative → Epics → Stories with AC, sliced vertically; degrades gracefully to a brief-lite intake (with visible brief-debt flag) when no approved brief exists. Built 2026-07-11.
 3. **jira-confluence-writer** (`skills/po/jira-confluence-writer/`) — writes an approved decomposition into Jira (KDP) as a real Initiative → Epic → Story hierarchy and links it back to the Confluence brief; write-plan approval gate, safe re-runs, `ai-sdlc-generated` label. Schema derived from the live instance in `references/kdp-schema.md`. Built 2026-07-11.
-4. **Definition-of-Ready Critic** — raises blocking questions, contradictions, and missing AC before a story enters team refinement.
+4. **definition-of-ready-critic** (`skills/po/definition-of-ready-critic/`) — evaluates stories against the team's Definition of Ready (12-item checklist in `references/dor-checklist.md`) before refinement; verdicts with specific fixes, PO-gated Jira comments and `dor-ready`/`dor-needs-work` labels. Built 2026-07-11.
 
 Plus:
 
