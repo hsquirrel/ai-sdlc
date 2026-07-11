@@ -4,13 +4,13 @@ The team's Definition of Ready. Items marked **[blocking]** force a "Not ready" 
 
 ## Story framing
 
-1. **[blocking] User story form** — "As a {role}, I want {capability}, so that {benefit}" with a real role (not "user" when a specific role exists) and a benefit that explains why anyone wants this.
-2. **[blocking] Single vertical slice** — the story delivers something observable to a user or stakeholder; it is not a technical layer ("build the API", "update the schema") or a grab-bag of unrelated changes.
+1. **[blocking] Framing fits the type** — `Story`: "As a {role}, I want {capability}, so that {benefit}" with a real role (not "user" when a specific role exists) and a benefit that explains why anyone wants this. `Tech Managed - Deployable/Non Deployable`: a clear objective (what changes) plus how completion is verified — user-story costume optional. `Spike Story`: the question to answer and a timebox.
+2. **[blocking] Single independently-verifiable slice** — the item delivers something observable and verifiable on its own: user-visible for product stories; an independently deployable/verifiable component for engineering work (per-repo/per-service is fine there). Never a grab-bag of unrelated changes.
 3. **Sized to a sprint** — plausibly completable within one sprint by the team; if clearly larger, recommend the split.
 
 ## Acceptance criteria
 
-4. **[blocking] AC present and behavioral** — at least one acceptance criterion in the Acceptance Criteria field, in the house style (`AC#N: title`, Given/When/Then). Each AC describes observable behavior, not implementation.
+4. **[blocking] AC present and verifiable** — at least one acceptance criterion in the Acceptance Criteria field. Behavioral AC describe observable outcomes, not implementation; Tech Managed items may instead carry objective completion checks (build passes, scan clean, deploy verified). House style (`AC#N: title`, Given/When/Then) is preferred — substantively sound AC in another recognizable format (e.g., `Scenario:` Gherkin) pass with a style *suggestion*, never a blocking failure.
 5. **[blocking] AC testable without invention** — a tester or coding agent could write test cases from the AC alone, without inventing inputs, outcomes, or edge-case behavior. Vague qualifiers ("correctly", "gracefully", "fast", "user-friendly") fail this item.
 6. **Negative and edge cases** — error paths, empty states, and boundary conditions that obviously apply are covered by AC or explicitly deferred with a reason.
 7. **NFR block where relevant** — data contracts, audit logging, security, observability, or retention needs are stated as structured requirements in the description (not as Gherkin), or explicitly not applicable.

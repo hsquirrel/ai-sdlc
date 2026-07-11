@@ -8,6 +8,7 @@ Derived from the live instance 2026-07-11 (see also `skills/po/jira-confluence-w
 | Bug | `1` | Defect in existing/shipped functionality, not tied to an in-flight story | Link related issues; no parent required |
 | Product Validation UAT Bug | `12498` | Found during the Product Validation UAT phase | Per UAT workstream conventions |
 | User Validation UAT Bug | `12499` | Found during the User Validation UAT phase | Per UAT workstream conventions |
+| Hotfix Bug | `13526` | Defect being fixed through the hotfix process | Per hotfix workflow — confirm with the team lead before using |
 
 ## Fields
 

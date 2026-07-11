@@ -17,7 +17,55 @@ Derived from the live instance on 2026-07-11. Re-derive (issue type metadata + c
 | 0 | Spike Story | `12486` | For research items out of design/refinement questions |
 | −1 | Sub-task | `7` | Team creates these in refinement — the pipeline does not |
 
-Other types exist (Bug `1`, Story Bug `10400`, Design Story `12485`, UAT types, Hotfix types) — not used by the PO pipeline.
+## Complete issue-type registry (all 24 KDP types)
+
+The full vocabulary, with how the pipeline treats each. **Type selection is a decomposition decision** — forcing engineering work into Story form (or vice versa) is a defect.
+
+### Work items (what the decomposer/writer may create)
+
+| Type | ID | Level | Use for | Pipeline role |
+|------|----|-------|---------|---------------|
+| Story | `10000` | 0 | User-visible product functionality, vertical slices with behavioral AC | Default for product work |
+| Tech Managed - Deployable | `12504` | 0 | Engineering-driven work requiring testing **and deployment** (framework upgrades, service changes, infra code) | Default for engineering-driven work that ships |
+| Tech Managed - Non Deployable | `12517` | 0 | Engineering-driven work with **no deployment** (documentation, one-off scripts, repo config) | Engineering work that doesn't ship |
+| Spike Story | `12486` | 0 | Research to settle a design/technical question; outcome is knowledge, timeboxed | Decomposer creates when AC can't be written yet |
+| Task | `3` | 0 | Generic work | Avoid — prefer a specific type above |
+| Sub-task | `7` | −1 | Team's task breakdown of a story in refinement | Team-created; pipeline never creates |
+
+All level-0 work types still require AC (behavioral where user-visible; objective completion checks — build/scan/deploy verification — for Tech Managed).
+
+### Defects (bug-report-writer's domain — see its `kdp-bug-types.md`)
+
+| Type | ID | Level | Use for |
+|------|----|-------|---------|
+| Story Bug | `10400` | −1 | QA-found defect in an in-flight story (sub-task of it) |
+| Bug | `1` | 0 | Defect in existing/shipped functionality |
+| Hotfix Bug | `13526` | 0 | Defect being fixed through the hotfix process |
+| Product Validation UAT Bug | `12498` | 0 | Found during Product Validation UAT |
+| User Validation UAT Bug | `12499` | 0 | Found during User Validation UAT |
+
+### Testing (tester skills may create with team agreement)
+
+| Type | ID | Level | Use for |
+|------|----|-------|---------|
+| Test Case | `26` | 0 | Test cases tracked as Jira issues (NFP AS tech projects) |
+| Product Validation Test Case | `12497` | 0 | PV UAT phase test cases |
+| User Validation Test Case | `12501` | 0 | UV UAT phase test cases |
+| Product Validation UAT Story | `12496` | 0 | UAT work items, PV phase |
+| User Validation UAT Story | `12500` | 0 | UAT work items, UV phase |
+
+`test-plan-generator` may persist an approved plan as Test Case issues (gated) when the team tracks tests in Jira rather than Confluence.
+
+### Process types (pipeline reads, never creates)
+
+| Type | ID | Level | Meaning |
+|------|----|-------|---------|
+| Design Story | `12485` | 0 | Design-team workflow (daily design meetings); functional requirements with target date |
+| Clarification | `19` | 0 | A question to the project team |
+| Risk | `12512` | 0 | Tracked risk |
+| Hotfix Story | `13524` | 0 | Hotfix-process work item |
+| Hotfix System Story | `13525` | 0 | Hotfix-process system work item |
+| Contractor Hours | `13865` | 0 | Time tracking — never pipeline-touched |
 
 ## Required fields at create
 

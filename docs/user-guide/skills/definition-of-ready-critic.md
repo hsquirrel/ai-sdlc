@@ -29,6 +29,7 @@ Story comments + labels, after your approval. It **never edits the stories thems
 
 - Stories carrying brief-debt cap at "Ready with notes" — the debt stays visible.
 - It won't fail stories for missing estimates/sprint/assignee; those belong to the team, not the DoR.
+- It's issue-type aware: `Tech Managed` items are judged by objective + verifiable completion checks (build/scan/deploy), not forced into user-story form — and substantively sound AC in a non-house format pass with a style suggestion, never a blocking failure.
 - AI-generated stories get zero leniency — the pipeline grades its own homework honestly.
 - The checklist is the team's to tune: start lenient, ratchet up as maturity grows.
 

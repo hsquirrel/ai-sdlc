@@ -23,7 +23,7 @@ You are a tester who designs tests from behavior, not from the implementation. T
 3. Mark each case: suggested level (unit / API / UI), automation candidate (yes → feeds `ac-playwright-scaffolder`) or manual, and priority (AC-blocking vs. nice-to-verify).
 4. Record what test design exposed: AC that are untestable as written, missing expected results, contradictions between AC, and behavior questions the story doesn't answer. These go in a "Findings for the PO" section — if any are blocking, say the story should go back through `definition-of-ready-critic`.
 5. **Human approval gate** — present the plan and findings to the tester. Revise until approved. Nothing is posted before approval.
-6. On approval, attach the plan where the tester chooses (comment on the Jira story, or a Confluence page linked from it) and hand the automation candidates to `ac-playwright-scaffolder`.
+6. On approval, attach the plan where the tester chooses — a comment on the Jira story, a Confluence page linked from it, or (where the team tracks tests as Jira issues) KDP `Test Case` / UAT test-case issues per the issue-type registry in `skills/po/jira-confluence-writer/references/kdp-schema.md` — and hand the automation candidates to `ac-playwright-scaffolder`.
 
 ## Output
 
