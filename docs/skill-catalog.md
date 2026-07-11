@@ -27,7 +27,7 @@ The four pipeline skills run in order, each gated by PO approval:
 
 Plus:
 
-5. **Release Notes Generator** — drafts stakeholder-facing release notes from completed stories; PO approves.
+5. **release-notes-generator** (`skills/po/release-notes-generator/`) — drafts stakeholder-facing notes from completed stories: per-story Release Notes field (`customfield_14745`) plus an aggregate Confluence page, both PO-gated. Built 2026-07-11.
 
 ## Developer (5)
 

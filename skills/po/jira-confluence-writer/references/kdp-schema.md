@@ -46,6 +46,7 @@ Other types exist (Bug `1`, Story Bug `10400`, Design Story `12485`, UAT types, 
 | Background | `customfield_14757` | Epic | Optional context paragraph from the brief |
 | Requirements | `customfield_14762` | Epic | Optional; prefer stories carrying the detail |
 | Labels | `labels` | All | Always add `ai-sdlc-generated` |
+| Release Notes | `customfield_14745` | Story | Not on the create screen (edit/view only). Left empty at create; populated later by `release-notes-generator` |
 | Targeted Release | `customfield_14738` | Initiative | Options are stale (2022–2023) — do not set |
 
 ## House acceptance-criteria style (observed in real KDP stories)
