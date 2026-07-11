@@ -44,10 +44,11 @@ Layered design (from `research/Perplexity research on agentic PM-PO skills.md`):
 2. **Jira/Confluence write bridge** — skills that create/update real Jira artifacts against our schema (issue types, labels, links, custom fields)
 3. **Domain pack** — deferred; a future layer for domain-specific workflows and gates
 
-The planned PO pipeline is an assembly line of single-purpose skills:
-Discovery Facilitator → Workflow Modeler → Outcome & Assumption Mapper → Epic/Story Decomposer → Jira Artifact Writer → Definition-of-Ready Critic → Copilot Handoff Packager.
+The agreed v1 skill set (23 skills across PO/Dev/Tester/SM plus a meta skill-authoring skill) is defined in **`docs/skill-catalog.md`** — that file is the source of truth for skill names, definitions, and conventions.
 
-The **Readiness Critic (Definition-of-Ready gate)** is the highest-leverage control: no ticket goes to Copilot coding agent until it passes — "if an agent can translate the ticket into tests without inventing requirements, the ticket is ready."
+The PO pipeline is: Product Brief Builder → Backlog Decomposer → Jira/Confluence Writer → Definition-of-Ready Critic. Jira hierarchy is **Initiative → Epic → Story**; teams refine Stories into Tasks themselves. Build order: PO pipeline first.
+
+The **Definition-of-Ready Critic** is the highest-leverage control: no ticket goes to Copilot coding agent until it passes — "if an agent can translate the ticket into tests without inventing requirements, the ticket is ready."
 
 For acceptance criteria format: **Gherkin/BDD for user-visible behavior; structured requirement blocks (not Gherkin) for NFRs** like data contracts, audit logging, retention, observability, and security constraints.
 
