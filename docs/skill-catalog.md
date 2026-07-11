@@ -31,11 +31,11 @@ Plus:
 
 ## Developer (5)
 
-- **Implementation Planner** — turns a Ready ticket into a step-by-step technical plan (files, migrations, risks) before any code is written.
-- **Copilot Handoff Packager** — after team refinement, packages a task/story into a bounded implementation packet and assigns it to Copilot coding agent.
-- **Code Review Critic** — reviews a PR diff against the ticket's AC and team standards; drafts review comments for human approval.
-- **Tech Design Drafter** — drafts an ADR / design doc in Confluence for larger stories or spikes.
-- **PR Hygiene** — generates PR descriptions linked to Jira, checks commit messages, verifies AC coverage claims.
+- **implementation-planner** (`skills/developer/implementation-planner/`) — turns a `dor-ready` story into a codebase-grounded technical plan (steps, data changes, AC→step map, risks) approved by the developer before any code is written. Built 2026-07-11.
+- **copilot-handoff-packager** (`skills/developer/copilot-handoff-packager/`) — assesses delegation fit, builds a bounded implementation packet (AC verbatim, pattern pointers, boundaries), and assigns it to the Copilot coding agent after developer approval. Built 2026-07-11.
+- **code-review-critic** (`skills/developer/code-review-critic/`) — reviews a PR against the story's AC and the team review checklist; drafts blocking/should-fix/nit comments the human reviewer approves before posting; verdict stays human. Built 2026-07-11.
+- **tech-design-drafter** (`skills/developer/tech-design-drafter/`) — drafts design docs/ADRs in Confluence (real options, honest consequences, failure modes, Lucid diagrams) for Epics and Spikes, gated on developer approval. Built 2026-07-11.
+- **pr-hygiene** (`skills/developer/pr-hygiene/`) — generates convention-compliant PR titles/descriptions with a diff-verified AC coverage table; flags scope honesty issues; updates the PR only after developer approval. Built 2026-07-11.
 
 ## Tester (4)
 
