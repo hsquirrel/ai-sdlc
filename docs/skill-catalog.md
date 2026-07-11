@@ -46,19 +46,19 @@ Plus:
 
 ## Scrum Master (8)
 
-Ceremony facilitation (one skill per ceremony):
+Ceremony facilitation (one skill per ceremony; every skill preps and captures — the ceremony itself belongs to the team):
 
-- **Refinement Facilitator** — preps candidate stories, surfaces DoR gaps and open questions, captures estimates/decisions back to Jira.
-- **Sprint Planning Facilitator** — drafts sprint goal, checks capacity, pulls candidate stories, records the plan in Jira/Confluence.
-- **Sprint Review/Demo Facilitator** — assembles demo script and "what shipped" narrative from completed work.
-- **Retro Facilitator** — prepares retro inputs from sprint data, captures action items back into Jira.
-- **Daily Standup Digest** — pre-standup digest of yesterday's Jira/GitHub activity, flagging items worth discussing.
+- **refinement-facilitator** (`skills/sm/refinement-facilitator/`) — prep cards and timeboxed agenda before refinement; captures the team's estimates and decisions to Jira after (never estimates itself). Built 2026-07-11.
+- **sprint-planning-facilitator** (`skills/sm/sprint-planning-facilitator/`) — honest capacity/velocity math and draft goals before planning; records the team's commitment to Jira/Confluence after. Built 2026-07-11.
+- **sprint-review-demo-facilitator** (`skills/sm/sprint-review-demo-facilitator/`) — honest "what shipped" narrative tied to the goal, plus an ordered demo script with verified click-paths and fallbacks. Built 2026-07-11.
+- **retro-facilitator** (`skills/sm/retro-facilitator/`) — blameless evidence pack (with last retro's action accountability) before; captures agreed action items to Jira with owners after. Built 2026-07-11.
+- **daily-standup-digest** (`skills/sm/daily-standup-digest/`) — one-screen pre-standup digest: what moved, exceptions worth discussing (flagged/stalled/aging reviews/scope changes), sprint pulse. Built 2026-07-11.
 
 Health and reporting:
 
-- **Sprint Report Generator** — drafts sprint review/status summaries from Jira data (velocity, scope changes, carryover).
-- **Backlog Hygiene Auditor** — flags stale, duplicate, unestimated, or DoR-violating backlog items.
-- **Impediment Radar** — scans Jira/GitHub activity for blocked or stalled work and drafts escalations.
+- **sprint-report-generator** (`skills/sm/sprint-report-generator/`) — stakeholder sprint reports: commitment vs delivery, velocity as ranges never targets, timestamped scope changes, facts separated from assessments. Built 2026-07-11.
+- **backlog-hygiene-auditor** (`skills/sm/backlog-hygiene-auditor/`) — periodic decay sweep (stale, duplicates, unestimated near-term, orphans, zombie epics) with item-by-item PO/SM-approved cleanup; archives reversibly, never deletes. Built 2026-07-11.
+- **impediment-radar** (`skills/sm/impediment-radar/`) — detects flagged blocks, silent stalls, aging reviews, and dependency rot; drafts evidence-based escalations the SM approves and owns. Built 2026-07-11.
 
 ## Meta (1)
 
