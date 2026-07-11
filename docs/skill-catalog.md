@@ -21,7 +21,7 @@ The agreed set of skills to build, organized by scrum role. Locked by consensus 
 The four pipeline skills run in order, each gated by PO approval:
 
 1. **product-brief-builder** (`skills/po/product-brief-builder/`) — interactive discovery producing a single Confluence brief: problem, users, outcomes/metrics, workflow, scope, assumptions, open questions, stakeholders. Built 2026-07-11.
-2. **Backlog Decomposer** — turns an approved brief into a draft Initiative → Epics → Stories with AC, sliced vertically.
+2. **backlog-decomposer** (`skills/po/backlog-decomposer/`) — turns an approved brief into a draft Initiative → Epics → Stories with AC, sliced vertically; degrades gracefully to a brief-lite intake (with visible brief-debt flag) when no approved brief exists. Built 2026-07-11.
 3. **Jira/Confluence Writer** — writes approved drafts as real, linked Jira issues and Confluence pages against our schema.
 4. **Definition-of-Ready Critic** — raises blocking questions, contradictions, and missing AC before a story enters team refinement.
 
