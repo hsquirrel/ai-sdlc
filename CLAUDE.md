@@ -29,6 +29,7 @@ Skills and agents target these surfaces:
 - **GitHub / GitHub Copilot** — implementation handoff; well-formed tickets get assigned to Copilot coding agent
 - **Visual Studio / VS Code** — developer environments
 - **Playwright** — test automation (Tester role)
+- **Lucidchart / Lucidspark** — diagramming and visual collaboration; skills that produce documentation should link or embed Lucid diagrams where a visual is the better artifact
 
 Atlassian MCP tools are connected in this Claude Code environment (`mcp__claude_ai_Atlassian__*`) — use them for reading/writing Jira issues and Confluence pages when developing and testing skills.
 

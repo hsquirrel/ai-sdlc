@@ -62,4 +62,4 @@ Health and reporting:
 
 ## Meta (1)
 
-- **Skill-Authoring Skill** — scaffolds new skills to this repo's conventions, keeping the library consistent as it grows.
+- **skill-author** (`skills/meta/skill-author/`) — scaffolds, audits, and catalogs skills for this library, keeping it consistent as it grows. Built 2026-07-11; the first skill in the library and the template for all others.
