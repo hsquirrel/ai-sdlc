@@ -39,10 +39,10 @@ Plus:
 
 ## Tester (4)
 
-- **Test Plan Generator** — turns a story's AC into a structured test plan (happy path, edge cases, negative tests, NFR checks).
-- **AC → Playwright Scaffolder** — translates Gherkin AC into Playwright test skeletons in TypeScript.
-- **Exploratory Charter Generator** — produces session-based exploratory testing charters from a story's risk profile.
-- **Bug Report Writer** — turns a raw observation/repro into a well-formed Jira bug with severity rationale.
+- **test-plan-generator** (`skills/tester/test-plan-generator/`) — derives AC-traced test cases (happy/edge/negative/NFR) with levels and automation flags; AC gaps found during design become findings for the PO. Built 2026-07-11.
+- **ac-playwright-scaffolder** (`skills/tester/ac-playwright-scaffolder/`) — one Playwright TS test per AC scenario mirroring Given/When/Then, repo conventions first, honest `fixme`/`TODO` over false-pass; delivers via PR. Built 2026-07-11.
+- **exploratory-charter-generator** (`skills/tester/exploratory-charter-generator/`) — risk-hypothesis charters (explore X with Y to discover Z) targeting what scripted AC tests can't see, timeboxed and prioritized. Built 2026-07-11.
+- **bug-report-writer** (`skills/tester/bug-report-writer/`) — minimal deterministic repro, expected-vs-actual cited to AC, severity with rationale, duplicate check, correct KDP bug type (Story Bug vs Bug vs UAT). Built 2026-07-11.
 
 ## Scrum Master (8)
 
