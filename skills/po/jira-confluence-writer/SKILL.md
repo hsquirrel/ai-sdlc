@@ -30,7 +30,7 @@ Read `references/kdp-schema.md` before planning any writes — it holds the fiel
    - Create Stories with `parent` set to their Epic key, acceptance criteria in the Acceptance Criteria field using the house style, and open questions in the description under an "Open Questions" heading.
    - Before creating each issue, search for an existing issue with the same summary under the same parent — if found, skip it and note it in the report (this makes re-runs after a partial failure safe).
 6. Update the Confluence brief: append a "Backlog" section linking the created Initiative/Epics (create the section if absent). If there is no brief, note that in the report instead.
-7. Report a table of everything created — key, type, summary, parent — with links, plus anything skipped and why. Suggest the next pipeline step: `definition-of-ready-critic` before the stories enter team refinement.
+7. Record the created keys back into the decomposition registry's "Created Keys" section, so the registry maps draft items to real issues for the life of the initiative. Then report a table of everything created — key, type, summary, parent — with links, plus anything skipped and why. Suggest the next pipeline step: `definition-of-ready-critic` before the stories enter team refinement.
 
 ## Output
 

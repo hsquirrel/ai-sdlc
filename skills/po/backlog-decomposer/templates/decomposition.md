@@ -46,3 +46,23 @@ Scenario: [scenario name]
 
 - [Items that don't trace to the brief (possible scope creep): keep or cut]
 - [Spikes needed where AC couldn't be written]
+
+---
+
+*The sections below make this document the initiative's living registry — maintained after the initial write, for the life of the initiative.*
+
+## Created Keys *(filled by jira-confluence-writer after each write)*
+
+| Registry item | Jira key | Created |
+|---------------|----------|---------|
+| Epic 1: {epic-title} | {key} | {date} |
+
+## Mid-Flight Additions *(epics/stories added after the initial decomposition — each checked against this registry first)*
+
+| Date | Item | Serves brief item | Checked against registry by | Jira key |
+|------|------|-------------------|------------------------------|----------|
+
+## Moved-Scope Ledger *(every epic-to-epic or version-to-version move)*
+
+| Date | What moved | From → To | Why | By |
+|------|-----------|-----------|-----|-----|

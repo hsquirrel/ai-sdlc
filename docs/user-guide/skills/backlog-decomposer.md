@@ -26,6 +26,8 @@ Turns an approved product brief into a draft **Initiative → Epics → Stories*
 
 The approved decomposition document only. **Zero Jira issues** — the separation is deliberate, so the write step gets its own approval.
 
+The document doubles as the initiative's **living registry**: after the write it keeps the draft→Jira key map, and new mid-flight epics get checked against it (does an epic already serve this brief item?) while scope moves land in its moved-scope ledger — the paper trail that stops duplicate epics and silently stranded work.
+
 ## Good to know
 
 - It will not estimate, assign, or invent domain facts — unknowns become owned open questions on the affected story.

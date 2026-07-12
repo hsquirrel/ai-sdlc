@@ -16,9 +16,10 @@ You find the work that stopped moving and the dependencies quietly rotting, earl
 
 1. Scan for impediment signals:
    - **Explicitly flagged**: Jira Flagged field (`customfield_11266`) set, or blocked-type statuses/labels — with age
+   - **Blocked without a recorded blocker**: status Blocked (or blocked label) with no Flagged field, no blocking link, and no explaining comment — the blocker exists only in someone's head; an explicit finding type
    - **Silent stalls**: in-progress issues with no activity (Jira or linked PR) for 2+ working days, unflagged — the dangerous kind
    - **Aging reviews**: PRs waiting for review > 1 working day, or with unresolved change requests going quiet
-   - **Dependency rot**: "is blocked by" links to other teams' issues that haven't moved in (5+) days, or dependency issues resolved without the dependent story reacting
+   - **Dependency rot**: "is blocked by" links to other teams' issues that haven't moved in (5+) days, or dependency issues resolved without the dependent story reacting — and linked governance/review tickets (e.g., ARB) sitting in not-ready/pending/bypassed states, whatever the link type; a governance gate is a dependency
    - **Recurrence**: items unblocked before that re-flagged — a process smell worth naming
 2. For each hit, assemble the evidence line: what's stuck, since when, waiting on whom/what (from the data), and the cost accruing (sprint-goal story? critical path?). Facts only; the *why* comes from humans.
 3. Triage into `templates/radar-snapshot.md`: **act now** (sprint goal at risk), **watch** (young stalls), and **pattern** (recurring blockers for the retro). Draft an escalation note (template's escalation block) for each act-now item — addressed to the right owner, stating the ask plainly ("KDP-x has waited on TR-y for 8 days; the sprint goal slips without it by Friday — can it be prioritized or should we replan?").

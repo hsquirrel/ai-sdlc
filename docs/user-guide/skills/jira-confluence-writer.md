@@ -22,7 +22,7 @@ Have answers ready for what the draft can't know:
 2. It builds a **write plan**: every issue it will create — type, summary, parent, fields — plus the Confluence edits.
 3. **You approve the write plan.** Nothing is created before this; review it like a deploy plan, because it is one.
 4. It executes top-down (Initiative → Epics → Stories), verifying each level: AC land in the Acceptance Criteria field in the house `AC#N` / Given-When-Then style, open questions go into descriptions, everything gets the `ai-sdlc-generated` label.
-5. It appends a "Backlog" section to your brief linking the created work, and reports every key with links.
+5. It appends a "Backlog" section to your brief linking the created work, records the created keys into the decomposition registry's Created Keys section, and reports every key with links.
 
 ## What gets written
 
