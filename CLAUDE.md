@@ -60,4 +60,5 @@ For acceptance criteria format: **Gherkin/BDD for user-visible behavior; structu
 - `research/` — background research and decision records informing skill design
 - `docs/skill-catalog.md` — authoritative index of all skills (maintained by the `skill-author` meta skill)
 - `docs/user-guide/` — three-level user documentation: `README.md` (system overview), `roles/*.md` (per-role workflow guides), `skills/*.md` (one page per skill). When a skill's behavior changes, update its user-guide page in the same commit.
+- `docs/handoffs/` — session handoff docs. **When resuming work, read the most recent handoff first** — it carries active-run state, the scenario backlog position, and hard-won instance facts.
 - Skills follow the Agent Skills open standard (SKILL.md with frontmatter) so they are portable across Claude Code, Copilot, and Rovo surfaces
