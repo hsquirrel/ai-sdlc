@@ -18,7 +18,7 @@ The agreed set of skills to build, organized by scrum role. Locked by consensus 
 - Developer and Tester skills target **GitHub Copilot** (VS / VS Code) as the primary surface; author to the Agent Skills open standard so they remain portable to Claude Code and Rovo.
 - Build order: **PO pipeline first**, since every downstream role depends on well-formed briefs and stories.
 
-## Product Owner (5)
+## Product Owner (6)
 
 The four pipeline skills run in order, each gated by PO approval:
 
@@ -30,6 +30,7 @@ The four pipeline skills run in order, each gated by PO approval:
 Plus:
 
 5. **release-notes-generator** (`skills/po/release-notes-generator/`) — drafts stakeholder-facing notes from completed stories: per-story Release Notes field (`customfield_14745`) plus an aggregate Confluence page, both PO-gated. Built 2026-07-11.
+6. **pipeline-adopter** (`skills/po/pipeline-adopter/`) — adopts in-flight/pre-pipeline work: brief reconstructed from house fields, adoption-mode readiness, tiered item-by-item gated reconciliation plan, registry seeded; the one skill permitted to edit existing issues, only within the approved plan. Built 2026-07-12 (T1-S1, fed by all four reviews).
 
 ## Developer (6)
 

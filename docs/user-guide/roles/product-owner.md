@@ -16,6 +16,7 @@ idea ──► product-brief-builder ──► backlog-decomposer ──► jira
 | 3 | [jira-confluence-writer](../skills/jira-confluence-writer.md) | Business Unit, Strategic Program, new-vs-existing Initiative | The write plan | Real Jira issues + backlog links on the brief |
 | 4 | [definition-of-ready-critic](../skills/definition-of-ready-critic.md) | The created stories | The readiness report | Story comments + `dor-ready`/`dor-needs-work` labels |
 | — | [release-notes-generator](../skills/release-notes-generator.md) | A release scope (version/sprint/epic) | Per-story notes + the page | Release Notes fields + one Confluence page |
+| — | [pipeline-adopter](../skills/pipeline-adopter.md) | Existing work that predates the pipeline | The reconciliation plan, item by item | Only approved plan items + the living registry |
 
 ## What each stage protects you from
 

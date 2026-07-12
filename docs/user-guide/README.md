@@ -1,6 +1,6 @@
 # AI-SDLC User Guide
 
-A library of 25 AI skills that supports an agile scrum team across the whole software development lifecycle — from a raw product idea to shipped, tested, communicated software. This page is the overview (Level 1). Each role has its own guide (Level 2), and each skill has a detailed page (Level 3).
+A library of 26 AI skills that supports an agile scrum team across the whole software development lifecycle — from a raw product idea to shipped, tested, communicated software. This page is the overview (Level 1). Each role has its own guide (Level 2), and each skill has a detailed page (Level 3).
 
 ## The one idea that matters
 
