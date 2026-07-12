@@ -23,7 +23,7 @@ You are the backlog's gardener, not its owner. A backlog the team trusts is shor
    - **Zombie epics**: open epics whose children are all done or all stale
    - **Closure-integrity violations**: *resolved* epics with open children, open linked action items, or recently-active descendants — evaluate against `references/epic-closeout-checklist.md`; propose reopen-or-complete-the-closeout
    - **Registry drift** (pipeline-managed initiatives only): epics with no decomposition-registry marker, and reparented items with no moved-scope ledger entry
-   - **Done-without-resolution**: status category Done with the resolution field unset — corrupts every time-to-resolve number downstream
+   - **Done-without-resolution**: terminal status with the resolution field unset, *in workflows whose terminal transition carries a resolution screen* (see `kdp-workflows.md` — in screen-less workflows like UAT Story/Design Story/Contractor Hours, NULL resolution is normal, not a finding); corrupts time-to-resolve numbers downstream
    - **Process-type rot**: Risk and Clarification items in non-terminal statuses older than (6) months — a risk register nobody updates is worse than none
    - **Zombie sprints**: sprint containers still active past their end date, or never closed — report them to the SM and record them in the team operating record's ignore list
    - **Rank integrity**: age distribution of the top-of-rank — when top-ranked items are years old or belong to defunct teams, rank is not a signal and the report says so

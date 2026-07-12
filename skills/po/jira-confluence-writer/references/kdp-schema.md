@@ -132,25 +132,19 @@ AC lives in the Acceptance Criteria field (not description), formatted as repeat
 
 Not used by the pipeline: Gantt/scheduling dependency types (FS/FF/SS/SF ×2 families), Polaris (Jira Product Discovery) types, `Child-Issue` (legacy hierarchy workaround — use the native `parent` field), `Deployment`, `Resolve`, `Action item`, `Discovery - Connected`.
 
-## Workflows (empirical — mapped via the per-issue transitions API, 2026-07-12)
+## Workflows — see `kdp-workflows.md` (full empirical map, 2026-07-12)
 
-The library cannot read workflow *definitions* (admin API, not exposed); it maps workflows by sampling `getTransitionsForJiraIssue` per (issue type, status). Confirmed so far:
+All 24 issue types are mapped in **[`kdp-workflows.md`](kdp-workflows.md)**: 12 workflow groups, per-status transition graphs, the "done-category ≠ terminal" trap registry (16 entries), resolution behavior per workflow, and reopen paths. Method: sampled per (type, status) via the transitions API — the definition API isn't exposed.
 
-**Shared work-item workflow** — identical transition sets observed on Story, Story Bug, and Tech Managed - Deployable:
+**⚠ The delivered-detection rule (every counting skill obeys this):** neither `statusCategory = Done` **nor** a populated resolution field reliably means delivered.
 
-- **Global transitions (available from any status):** → Blocked · → Open · → **Done (`10021`) — the only transition with a resolution screen.** (Anything can jump to Done from anywhere; nothing structurally prevents closing over unfinished flow — relevant to the closure-integrity checks.)
-- Open → Grooming ("Groom") or → Accepted ("Skip Grooming")
-- In Test in DEV → In Product Owner Validation ("Testing In Dev Complete") or → In Dev ("Back to Dev")
-- PO Validated → Ready to Deploy To QA (conditional) or → Done
-- Deployed to QA → In Dev ("Back to Dev") or → Done
+- Done-category includes mid-pipeline waypoints (PO Validated, Ready to Deploy To QA, Deployed to QA, Regression Passed/**Failed**, In UAT…) and even failure states.
+- Resolution is legitimately NULL on several *true* terminal states (UAT Story Closed, Design Story Closed, Contractor Hours Closed, observed Hotfix Dones) and auto-set on the *reopenable* Not Required.
+- **The reliable test: status is in that issue type's terminal set per `kdp-workflows.md`** (work-item family: Done; Task family: Closed/Not Required; Epic: Closed; Initiative: Closed; Spike/Design: Closed; Risk: Done; UAT Story: Closed; Test Cases: type-specific). Use statusCategory and resolution only as corroboration; discrepancies are hygiene findings, not delivery signals.
 
-**Tech Managed - Non Deployable** runs a *different, simpler* workflow: global → Not Required (done-category, no screen) · → Blocked · → Open; its "Done" transition lands on **Closed (`6`)** with **no resolution screen**.
+Found live during adoption run 1: the adopter proposed setting resolution on a PO Validated item; the owner corrected the premise (W4 withdrawn), and the sweep generalized it.
 
-**⚠ The trap: `statusCategory = Done` does NOT mean terminal.** Confirmed non-terminal done-category statuses: `PO Validated` and `Ready to Deploy To QA` (deploy-pipeline waypoints), plus `Not Required` as a screen-less exit. **Rule for every skill: "delivered/terminal" means the resolution field is set (or status in Done/Closed/Not Required) — never statusCategory alone.** Discovered live: the adopter proposed setting resolution on a PO Validated item; the owner corrected it (proposed-write W4 withdrawn).
-
-Not yet sampled: Epic/Initiative, Bug, UAT-type, and Spike workflows — extend the map the same way when a skill needs them.
-
-**Other observed status vocabulary** (from the 2026-07 shakedowns): UAT test cases run to **Pass** (one-shot campaigns); Risk uses Assessing / In Mitigation / Blocked (seen only in the fossilized 2023 register); SSQ System Malfunction (other project) includes Impact Mitigation states, ~10 new/day, some automated. Known data quirks: sprint-field state can lie about which sprint an item ran in — reconstruct from changelog when it matters.
+**Other notes:** SSQ System Malfunction (other project) includes Impact Mitigation states, ~10 new/day, some automated. Data quirk: sprint-field state can lie about which sprint an item ran in — reconstruct from changelog when it matters.
 
 ## House epic content conventions (observed 2026-07, consistent across authors)
 

@@ -14,7 +14,7 @@ You are a product communicator translating completed work into language stakehol
 
 ## Workflow
 
-1. Confirm the scope with the PO and fetch the stories in it that are truly delivered — **resolution field set**, not statusCategory alone (in this instance, done-category includes non-terminal waypoints like PO Validated and Ready to Deploy To QA; see the schema's workflow section). Report anything in scope that is *not* delivered so the PO can decide whether to hold the notes or trim the scope.
+1. Confirm the scope with the PO and fetch the stories in it that are truly delivered — status in the issue type's **terminal set per the workflow map** (`kdp-workflows.md`); neither statusCategory nor resolution alone is reliable in this instance. Report anything in scope that is *not* delivered so the PO can decide whether to hold the notes or trim the scope.
 2. Draft a per-story release note (1–3 sentences, stakeholder language) for each story, deriving only from the story's own content:
    - If the story's Release Notes field already has content, keep it as the draft and mark it "existing — edit only if PO asks."
    - If a story's delivered value can't be determined from its content, don't guess — list it under "needs PO input" with what's unclear.
