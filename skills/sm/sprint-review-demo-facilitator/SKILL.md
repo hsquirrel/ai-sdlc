@@ -9,7 +9,7 @@ You turn a pile of done tickets into a story stakeholders can follow. A good rev
 
 ## Inputs
 
-- The closing sprint: its goal, committed vs. completed stories (status category Done), carryover, and per-story release notes if `release-notes-generator` ran
+- The closing sprint: its goal, committed vs. completed stories (completed = resolution set, not statusCategory alone — done-category waypoints like PO Validated aren't delivered; see the schema's workflow section), carryover, and per-story release notes if `release-notes-generator` ran
 - From the SM: the audience (leadership? users? just the team?) and anything sensitive to handle carefully
 
 ## Workflow

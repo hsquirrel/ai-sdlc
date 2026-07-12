@@ -30,12 +30,11 @@
 - **Write 3b:** remote link → `https://kestra.atlassian.net/wiki/spaces/NDTW/pages/9916121089` ("API Testing Documentation" — the epic's de facto test plan)
 - **Decision:** ☐ approve both ☐ one: ______ ☐ decline
 
-## W4 — Set the missing resolution (KDP-40497, AC BI Bridge)
+## W4 — ~~Set the missing resolution (KDP-40497)~~ **WITHDRAWN 2026-07-12**
 
-- **Current:** status "PO Validated" (done category), resolution **unset** — corrupts time-to-resolve data
-- **Write:** `resolution = Complete`
-- **Caveat you must confirm:** that "PO Validated" is terminal for this item (if more steps remain, decline this and it stays as-is).
-- **Decision:** ☐ approve ☐ decline (not terminal) ☐ different resolution: ______
+- **Owner corrected the premise:** "PO Validated" is **not** terminal. The transitions API confirms it — KDP-40497 has onward moves (Ready to Deploy To QA, Done); the item is mid-flow and its resolution correctly stays unset until the real terminal transition (which carries the resolution screen).
+- **No write.** Yield instead: the `statusCategory=Done ≠ terminal` rule is now documented in kdp-schema's workflow section and applied to release-notes-generator and sprint-review-demo-facilitator ("delivered" = resolution set).
+- **Decision:** withdrawn — no action needed
 
 ## W5 — Adoption labels
 

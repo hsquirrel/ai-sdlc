@@ -132,15 +132,25 @@ AC lives in the Acceptance Criteria field (not description), formatted as repeat
 
 Not used by the pipeline: Gantt/scheduling dependency types (FS/FF/SS/SF ×2 families), Polaris (Jira Product Discovery) types, `Child-Issue` (legacy hierarchy workaround — use the native `parent` field), `Deployment`, `Resolve`, `Action item`, `Discovery - Connected`.
 
-## Observed workflow statuses (evidence-based, not a workflow export)
+## Workflows (empirical — mapped via the per-issue transitions API, 2026-07-12)
 
-Statuses seen in real KDP data during the 2026-07 shakedowns; per-issue-type workflows differ, so treat as vocabulary, not a state machine:
+The library cannot read workflow *definitions* (admin API, not exposed); it maps workflows by sampling `getTransitionsForJiraIssue` per (issue type, status). Confirmed so far:
 
-- **Work items**: Open → In Dev / In Progress → In Test in DEV → Deployed to QA (→ Deployed to Staging/Production fields) → PO Validated → Done/Closed; plus `Blocked` and `Not Required`
-- **UAT test cases**: run to **Pass** (campaign pattern: bulk-created, executed once)
-- **Risk**: Assessing, In Mitigation, Blocked (observed only in the fossilized 2023 register)
-- **SSQ System Malfunction** (different project): includes Impact Mitigation states; ~10 new/day, some automated (Azure Sev alerts)
-- Known data quirks: Done-status items with resolution unset (hygiene check exists); sprint field state can lie about which sprint an item ran in — reconstruct from changelog when it matters
+**Shared work-item workflow** — identical transition sets observed on Story, Story Bug, and Tech Managed - Deployable:
+
+- **Global transitions (available from any status):** → Blocked · → Open · → **Done (`10021`) — the only transition with a resolution screen.** (Anything can jump to Done from anywhere; nothing structurally prevents closing over unfinished flow — relevant to the closure-integrity checks.)
+- Open → Grooming ("Groom") or → Accepted ("Skip Grooming")
+- In Test in DEV → In Product Owner Validation ("Testing In Dev Complete") or → In Dev ("Back to Dev")
+- PO Validated → Ready to Deploy To QA (conditional) or → Done
+- Deployed to QA → In Dev ("Back to Dev") or → Done
+
+**Tech Managed - Non Deployable** runs a *different, simpler* workflow: global → Not Required (done-category, no screen) · → Blocked · → Open; its "Done" transition lands on **Closed (`6`)** with **no resolution screen**.
+
+**⚠ The trap: `statusCategory = Done` does NOT mean terminal.** Confirmed non-terminal done-category statuses: `PO Validated` and `Ready to Deploy To QA` (deploy-pipeline waypoints), plus `Not Required` as a screen-less exit. **Rule for every skill: "delivered/terminal" means the resolution field is set (or status in Done/Closed/Not Required) — never statusCategory alone.** Discovered live: the adopter proposed setting resolution on a PO Validated item; the owner corrected it (proposed-write W4 withdrawn).
+
+Not yet sampled: Epic/Initiative, Bug, UAT-type, and Spike workflows — extend the map the same way when a skill needs them.
+
+**Other observed status vocabulary** (from the 2026-07 shakedowns): UAT test cases run to **Pass** (one-shot campaigns); Risk uses Assessing / In Mitigation / Blocked (seen only in the fossilized 2023 register); SSQ System Malfunction (other project) includes Impact Mitigation states, ~10 new/day, some automated. Known data quirks: sprint-field state can lie about which sprint an item ran in — reconstruct from changelog when it matters.
 
 ## House epic content conventions (observed 2026-07, consistent across authors)
 

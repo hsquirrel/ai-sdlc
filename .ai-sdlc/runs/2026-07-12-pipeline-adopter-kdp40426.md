@@ -18,7 +18,8 @@
 | # | Question asked | Answer (verbatim) |
 |---|----------------|-------------------|
 | 1 | (User directive) | "go" — approving audit sweep, adopter build, and adoption run on KDP-40426 with the user at the gate |
-| 2 | Reconciliation plan tier approvals | *(pending — gate presented 2026-07-12)* |
+| 2 | Reconciliation plan tier approvals | *(pending — detailed proposed-writes doc delivered for review 2026-07-12)* |
+| 3 | (W4 caveat: is "PO Validated" terminal for KDP-40497?) | "You asked if PO Validated is a terminal status. It is not. Are you able to inspect the status workflows for the various story types?" |
 
 ## Drafts & Revisions
 
@@ -43,6 +44,8 @@
 - *(pending)*
 
 ## Improvement Notes
+
+- **W4 withdrawn — and the premise error generalized into a rule.** The adopter trusted `statusCategory=Done` as "terminal"; the owner knew better, and 7 transitions-API samples confirmed: PO Validated and Ready to Deploy To QA are done-category *waypoints*. Schema now carries the empirical workflow map + the "delivered = resolution set" rule; release-notes and demo skills corrected. The gate did exactly its job: a wrong write died in review instead of landing in Jira.
 
 - Large-result MCP handling again required file parsing for a 46-child sweep; a deterministic bulk-read script remains worth building.
 - The adopter's plan needed an "owner action (no write)" category (unassigned in-test items — assignment is the team's, not ours); the template gets a row type for it.
