@@ -35,3 +35,4 @@ Evaluate every item; report pass/fail per skill with a one-line reason for each 
 ## Catalog
 
 16. **Catalog entry** — the skill appears in `docs/skill-catalog.md` under the correct role, and the one-line definition matches the frontmatter description's spirit.
+17. **User-guide page** — `docs/user-guide/skills/<skill-name>.md` exists and the role guide's table lists the skill. (The role guides' skill counts and the L1 README's library count must match reality.)

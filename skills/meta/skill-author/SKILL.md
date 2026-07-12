@@ -23,7 +23,7 @@ Use when the builder wants to create a new skill (usually one from `docs/skill-c
    6. **Target surface(s)** — Claude Code, GitHub Copilot, Rovo, or all
 3. Generate `skills/<role>/<skill-name>/SKILL.md` from `templates/skill-template.md`, replacing every `{curly}` placeholder. Add `references/` or `templates/` subfolders only if the skill genuinely needs them — default to a single SKILL.md.
 4. Run Workflow 2 (audit) on the generated skill and fix anything that fails.
-5. Run Workflow 3 (sync catalog) so the catalog reflects the new skill.
+5. Create the skill's user-guide page (`docs/user-guide/skills/<skill-name>.md`, matching the existing pages' structure: when to use, before you start, what happens, what gets written, good to know, related) and add it to the role's guide table. Run Workflow 3 (sync catalog) so the catalog reflects the new skill.
 6. Show the builder the generated files and the audit result. Do not commit until the builder approves.
 
 ## Workflow 2: Audit a skill
