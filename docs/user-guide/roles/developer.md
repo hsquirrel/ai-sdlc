@@ -19,6 +19,7 @@ dor-ready story ──► implementation-planner ──┬──► you implemen
 | [code-review-critic](../skills/code-review-critic.md) | A PR needs review (especially Copilot-authored ones) | Every comment + the verdict is yours | The review, posted on your behalf |
 | [tech-design-drafter](../skills/tech-design-drafter.md) | An Epic/Spike needs a written design before stories make sense | The design doc | A Confluence ADR/design page |
 | [pr-hygiene](../skills/pr-hygiene.md) | A PR is about to go to review | Title + description | PR metadata only — never code |
+| [incident-hotfix-runner](../skills/incident-hotfix-runner.md) | Production is broken; the fix ships outside the release train | The hotfix packet, in one express pass | A traced Bug + fixVersion + incident/story links |
 
 ## The delegation contract
 

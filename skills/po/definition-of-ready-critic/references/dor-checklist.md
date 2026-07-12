@@ -25,3 +25,12 @@ The team's Definition of Ready. Items marked **[blocking]** force a "Not ready" 
 ## Contradiction scan (across the reviewed set)
 
 12. **[blocking] No contradictions** — the story does not contradict a sibling story's AC, its Epic's description, or the brief (e.g., two stories defining different behavior for the same action).
+
+## Hotfix express contract (replaces items 1–12 for hotfix items)
+
+For items on the hotfix express lane (label `hotfix` / hotfix fixVersion), the full checklist's ceremony is what gets skipped under pressure — so it isn't asked for. These four items are, and all are **[blocking]**; the whole check takes minutes:
+
+- **H1. Repro documented** — the failure's minimal reproduction (or triggering condition) is on the ticket.
+- **H2. Expected behavior cited** — from the regressed story's AC; if no citable AC exists, the ticket carries an explicit contract-debt note, not a blank.
+- **H3. Rollback path stated** — how the fix is backed out if it makes things worse; "fix forward" is stated as a decision with a reason.
+- **H4. Regression check named** — the test or monitor that proves this incident's scenario can't silently return.

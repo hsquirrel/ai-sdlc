@@ -32,6 +32,7 @@ Turns completed stories into stakeholder language: a short note on each story (i
 
 - Zero done stories in scope → it says so and stops; it will not pad with in-progress work.
 - Story keys appear as trailing references on the page, never in the prose.
+- **Hotfix mode**: scope by the hotfix fixVersion, one KRN-named page linking the SRE deployment page, single combined approval — sized for the hours clock. Live outage comms are explicitly not this skill's job.
 
 ## Related
 

@@ -28,6 +28,7 @@ The approved test plan (story comment or Confluence) — no test code (that's th
 
 - Expect few strong cases over combinatorial padding — each case must be able to fail for a reason a stakeholder cares about.
 - "Covered" is strict: a case exercising half an AC doesn't cover it; the case gets split.
+- **Regression-plan mode** for hotfixes: derives a compact plan from the *regressed story's* AC plus the incident repro — it doesn't refuse just because the hotfix ticket's own AC field is empty.
 
 ## Related
 

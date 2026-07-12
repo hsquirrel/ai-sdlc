@@ -14,7 +14,7 @@ A one-screen pre-standup digest of what changed since the last working day — s
 ## What happens
 
 1. It gathers the last working day's activity: Jira transitions, sprint scope changes, unanswered questions in comments, flagged items; GitHub PRs opened/merged/waiting, CI failures on main.
-2. It detects the exceptions worth speaking about: flagged/blocked items and who they wait on; **silent stalls** (in-progress, no activity 2+ working days — the dangerous kind); aging reviews; anything that entered or left the sprint overnight.
+2. It detects the exceptions worth speaking about: flagged/blocked items and who they wait on; **silent stalls** (in-progress, no activity 2+ working days — the dangerous kind); aging reviews; anything that entered or left the sprint overnight; and **hotfix/incident activity** — first-class even when the hotfix lives off-board.
 3. The digest is three sections, one screen hard limit: **Moved** (one line each) · **Worth discussing** (each exception with why) · **Sprint pulse** (days left, done vs. committed points).
 4. **You review it first** — cut anything better handled privately.
 5. Then either post it where the team reads (channel or Confluence), or keep it as your private prep — both are valid modes.

@@ -15,7 +15,7 @@ You report what the data shows, in language a stakeholder outside the team can t
 
 ## Workflow
 
-1. Pull the sprint's facts: committed vs. completed (count and points), stories added/removed mid-sprint with dates, carryover and its state, bugs opened against sprint work, and the goal's fate.
+1. Pull the sprint's facts: committed vs. completed (count and points), stories added/removed mid-sprint with dates, carryover and its state, bugs opened against sprint work, and the goal's fate. Hotfix-pattern items (hotfix fixVersion/label) worked during the sprint count as scope invasion **even when they live off-board** on unplanned-work epics — otherwise the sprint's biggest disruption is invisible in its own report.
 2. Compute trend context: velocity over recent sprints (range, not a single line going up and to the right), carryover rate, and unplanned-work share. Flag anomalies with their factual cause where Jira shows one (e.g., "two stories blocked 6 days on external dependency — KDP-x").
 3. Draft from `templates/sprint-report.md`, calibrated to the audience: leadership gets outcome and risk in plain language; the team's own copy can carry the detailed tables. The goal statement leads; the ticket tables support.
 4. Mark every judgment as such: "delivery risk: medium" is an assessment and says so; "5 of 8 stories done" is a fact. Never let the report imply causes the data doesn't show.

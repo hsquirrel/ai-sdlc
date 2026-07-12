@@ -31,13 +31,14 @@ Plus:
 
 5. **release-notes-generator** (`skills/po/release-notes-generator/`) — drafts stakeholder-facing notes from completed stories: per-story Release Notes field (`customfield_14745`) plus an aggregate Confluence page, both PO-gated. Built 2026-07-11.
 
-## Developer (5)
+## Developer (6)
 
 - **implementation-planner** (`skills/developer/implementation-planner/`) — turns a `dor-ready` story into a codebase-grounded technical plan (steps, data changes, AC→step map, risks) approved by the developer before any code is written. Built 2026-07-11.
 - **copilot-handoff-packager** (`skills/developer/copilot-handoff-packager/`) — assesses delegation fit, builds a bounded implementation packet (AC verbatim, pattern pointers, boundaries), and assigns it to the Copilot coding agent after developer approval. Built 2026-07-11.
 - **code-review-critic** (`skills/developer/code-review-critic/`) — reviews a PR against the story's AC and the team review checklist; drafts blocking/should-fix/nit comments the human reviewer approves before posting; verdict stays human. Built 2026-07-11.
 - **tech-design-drafter** (`skills/developer/tech-design-drafter/`) — drafts design docs/ADRs in Confluence (real options, honest consequences, failure modes, Lucid diagrams) for Epics and Spikes, gated on developer approval. Built 2026-07-11.
 - **pr-hygiene** (`skills/developer/pr-hygiene/`) — generates convention-compliant PR titles/descriptions with a diff-verified AC coverage table; flags scope honesty issues; updates the PR only after developer approval. Built 2026-07-11.
+- **incident-hotfix-runner** (`skills/developer/incident-hotfix-runner/`) — express-lane incident entrance: SSQ incident → traced Bug + fixVersion + hotfix packet with the regressed story's AC as the regression contract; compressed gates, never zero. Built 2026-07-12 (from the T5 shakedown).
 
 ## Tester (4)
 

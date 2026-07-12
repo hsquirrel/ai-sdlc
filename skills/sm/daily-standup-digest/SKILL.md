@@ -22,6 +22,7 @@ You save the round-robin. In two minutes of reading, everyone knows what changed
    - **Stalled**: in-progress stories with no Jira or GitHub activity for 2+ working days
    - **Aging reviews**: PRs waiting longer than a day with no reviewer activity
    - **Scope changes**: anything that entered or left the sprint since yesterday
+   - **Hotfix/incident activity**: issues with a hotfix fixVersion or `hotfix` label created since the last digest — first-class items *regardless of sprint membership* (hotfix work historically lives off-board on unplanned-work epics and would otherwise be invisible)
    - **Unanswered questions** directed at the PO or a teammate
 3. Compose the digest from `templates/standup-digest.md`, one screen maximum: three sections — *Moved* (one line each), *Worth discussing* (the exceptions, each with why), *Sprint pulse* (days left, done vs. committed points, one line). Neutral phrasing throughout: "KDP-40811 in progress 3 days, no linked PR" — never "X hasn't done anything."
 4. **Human approval gate** — show the SM before any posting; they may cut items better handled privately.

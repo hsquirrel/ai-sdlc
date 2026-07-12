@@ -14,7 +14,7 @@ Drafts sprint status/outcome reports stakeholders can trust: commitment vs. deli
 
 ## What happens
 
-1. It pulls the facts: committed vs. completed (stories and points), mid-sprint additions/removals **with the day they happened** (a story added day 2 and one added day 9 are different conversations), carryover, bugs against sprint work, the goal's fate.
+1. It pulls the facts: committed vs. completed (stories and points), mid-sprint additions/removals **with the day they happened** (a story added day 2 and one added day 9 are different conversations), carryover, bugs against sprint work, the goal's fate — and hotfix work counts as scope invasion even when it lives off-board.
 2. It adds trend context from recent sprints — velocity range (never a line going up-and-to-the-right, never a target, never a cross-team comparison), carryover rate, unplanned-work share — flagging anomalies with the factual cause where Jira shows one.
 3. The draft is audience-calibrated: leadership gets outcome and risk in plain language; the team's copy carries the tables.
 4. Every judgment is labeled as one: "5 of 8 done" is a fact; "delivery risk: medium" says it's an assessment. Your narrative corrections go in attributed as SM context.

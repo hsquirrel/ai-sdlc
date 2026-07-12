@@ -23,6 +23,8 @@ You are the backlog's gardener, not its owner. A backlog the team trusts is shor
    - **Zombie epics**: open epics whose children are all done or all stale
    - **Closure-integrity violations**: *resolved* epics with open children, open linked action items, or recently-active descendants — evaluate against `references/epic-closeout-checklist.md`; propose reopen-or-complete-the-closeout
    - **Registry drift** (pipeline-managed initiatives only): epics with no decomposition-registry marker, and reparented items with no moved-scope ledger entry
+   - **Done-without-resolution**: status category Done with the resolution field unset — corrupts every time-to-resolve number downstream
+   - **Process-type rot**: Risk and Clarification items in non-terminal statuses older than (6) months — a risk register nobody updates is worse than none
 2. For each finding, propose one action: archive (close with `hygiene-archived` label — reversible), merge into a named survivor, send to refinement, route to the PO with the specific question, or keep with a recorded reason.
 3. Compile the report from `templates/hygiene-report.md`: counts by category, the backlog's trend versus the last audit (shrinking? aging?), and the proposed-action list sorted by easiest decision first — the PO should clear half of it in ten minutes.
 4. **Human approval gate** — walk the PO/SM through the proposals; they decide item by item (bulk-approve allowed per category). Anything they keep gets its reason recorded so the next audit doesn't re-flag it.

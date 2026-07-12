@@ -11,7 +11,7 @@ The persistent, cross-session tracker for stress-testing the skills library. Eac
 | T3 | Historical replay | Pipeline artifacts would have prevented specific observed failures in a completed effort — find which, and which not | Replay | Bulk Upload 2.0 family (KDP-38143 initiative and descendants) | **actioned** (2026-07-12: S1, S2, S4, S5, S6 landed; S3 landed in lite form folded into bug-report-writer's duplicate search) | [2026-07-11-t3-bulkupload-replay.md](2026-07-11-t3-bulkupload-replay.md) |
 | T9 | Cancelled/pivoted epic | No skill handles scope death: what should happen to briefs, children, registry entries, and catalog links when an epic is killed mid-flight (T3 hit this four times) | Live read-only | The four Duplicate-closed Bulk Upload epics + any recently cancelled epic | queued | — |
 | T4 | SM ceremony sweep | The 8 SM skills' data needs (velocity, commitment record, flags, activity signals) are unavailable or dirty in the real instance | Live read-only | AP Blue's active sprint + board | **report-ready** | [2026-07-11-t4-sm-ceremony-sweep.md](2026-07-11-t4-sm-ceremony-sweep.md) |
-| T5 | Incident/hotfix + UAT flows | The pipeline has no incident entrance; hotfix and UAT issue types bypass DoR/test skills entirely | Live read-only + synthetic | Real Hotfix/UAT-type usage in KDP + synthetic mid-sprint incident | **report-ready** | [2026-07-11-t5-hotfix-uat.md](2026-07-11-t5-hotfix-uat.md) |
+| T5 | Incident/hotfix + UAT flows | The pipeline has no incident entrance; hotfix and UAT issue types bypass DoR/test skills entirely | Live read-only + synthetic | Real Hotfix/UAT-type usage in KDP + synthetic mid-sprint incident | **actioned** (2026-07-12: S1 incident-hotfix-runner built; S3 hotfix/regression modes, S2 bug-types rewrite, S4 release-notes hotfix mode, S5 incident signals, S8 hygiene checks landed. S6 UAT mode + S7 link-type registry **declined at review**) | [2026-07-11-t5-hotfix-uat.md](2026-07-11-t5-hotfix-uat.md) |
 
 ## Candidates (not yet scheduled)
 
@@ -22,6 +22,7 @@ The persistent, cross-session tracker for stress-testing the skills library. Eac
 | T8 | Design-driven work | Design Story workflow (design team) enters the pipeline nowhere; discover the correct seam | — |
 | T10 | Bug lifecycle end-to-end | bug-report-writer → triage → dev skills → release notes on a real bug's history | — |
 | T12 | Governance-artifact tracker | Nothing tracks governance artifacts (ARB reviews, design docs) to completion — T3's perma-"Proposed/Pending" ARB shipped anyway; candidate new skill or SM-skill extension | Decide owner: new skill vs impediment-radar/hygiene-auditor extension |
+| T13 | Hotfix-release replay | Replay a real hotfix week (release 1.80-MAR27→MAR31, two hotfixes in five days) to grade T5's paper verdicts on the developer steps and test whether the aftermath skills should flag cadence | Repo/PR access (pairs with T6) |
 | T11 | Greenfield live-fire (not a tabletop) | The PO pipeline end-to-end on a real new small initiative, writes enabled | A real initiative + PO time |
 
 ## Standing rules
