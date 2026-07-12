@@ -27,6 +27,7 @@ Optionally, the digest post. Nothing else — it never pings, assigns, or flags 
 
 - Phrasing is neutral by design: "KDP-40811 in progress 3 days, no linked PR" — never "X hasn't done anything." Safe to read aloud is the bar.
 - It states observable facts and leaves the *why* to the room.
+- Without a team→repo registry it runs Jira-only and says so up front — a declared half-view beats a silent one. The done-vs-committed pulse uses the commitment record (or a declared reconstruction), never an invented denominator.
 - Blockers that persist across digests are exactly what the [impediment radar](impediment-radar.md) escalates — the digest spots, the radar acts.
 
 ## Related

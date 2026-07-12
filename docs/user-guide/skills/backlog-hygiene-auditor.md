@@ -27,7 +27,8 @@ Approved labels/closures/links in Jira; the hygiene report in Confluence.
 
 - **Nothing is ever deleted** — archiving is close-with-label, fully reversible.
 - "Keep" decisions get their reason recorded, so the next audit doesn't re-nag you about the same items — the audit has memory.
-- Low rank isn't decay; the auditor won't flag items merely for being far down a healthy backlog.
+- Low rank isn't decay; the auditor won't flag items merely for being far down a healthy backlog — but it *does* check rank integrity (years-old items at top-of-rank mean rank isn't a signal), dead team-field values, and zombie sprint containers.
+- On a deeply decayed backlog it switches to scale mode: category-level bulk decisions with sampled evidence, so the first audit proposes triage rather than five hundred line items.
 
 ## Related
 

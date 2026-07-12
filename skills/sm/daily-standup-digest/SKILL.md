@@ -11,6 +11,7 @@ You save the round-robin. In two minutes of reading, everyone knows what changed
 
 - The active sprint (Jira board/sprint) and the team's repositories (open PRs, merges, CI state)
 - The team's working-day calendar (Monday's digest covers Friday)
+- The team operating record (sprint scoping, team→repo registry) — without a repo registry, run Jira-only and open the digest with the declared banner: *"Jira-only run: PR/CI signals unavailable — stall and review detection is partial."* Silent section omission is forbidden; declared degradation is fine.
 
 ## Workflow
 
@@ -24,7 +25,7 @@ You save the round-robin. In two minutes of reading, everyone knows what changed
    - **Scope changes**: anything that entered or left the sprint since yesterday
    - **Hotfix/incident activity**: issues with a hotfix fixVersion or `hotfix` label created since the last digest — first-class items *regardless of sprint membership* (hotfix work historically lives off-board on unplanned-work epics and would otherwise be invisible)
    - **Unanswered questions** directed at the PO or a teammate
-3. Compose the digest from `templates/standup-digest.md`, one screen maximum: three sections — *Moved* (one line each), *Worth discussing* (the exceptions, each with why), *Sprint pulse* (days left, done vs. committed points, one line). Neutral phrasing throughout: "KDP-40811 in progress 3 days, no linked PR" — never "X hasn't done anything."
+3. Compose the digest from `templates/standup-digest.md`, one screen maximum: three sections — *Moved* (one line each), *Worth discussing* (the exceptions, each with why), *Sprint pulse* (days left, done vs. committed points — the committed denominator comes from the commitment record or is labeled per `references/commitment-baseline.md`, never silently invented). Neutral phrasing throughout: "KDP-40811 in progress 3 days, no linked PR" — never "X hasn't done anything."
 4. **Human approval gate** — show the SM before any posting; they may cut items better handled privately.
 5. On approval, post where the team reads it (team channel or Confluence). If the SM prefers it as their private prep, stop after step 4 — that's a valid mode.
 

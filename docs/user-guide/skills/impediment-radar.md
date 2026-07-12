@@ -27,6 +27,7 @@ Approved escalations; Flagged fields with evidence comments; the radar log in Co
 
 - Escalations state facts, cost, and an ask — never fault. Evidence gets action; accusation gets defensiveness.
 - A watch item is promoted by evidence (age, goal impact), not by accumulation anxiety — it won't cry wolf.
+- The Flagged field is treated as a claim, not a fact: scans are scoped to open in-sprint items, stale flags on ancient closed items become a one-time hygiene finding, and when your team doesn't use flags at all, the snapshot says so plainly.
 - The log records what was detected *and* what you chose — the difference is your judgment, kept visible as yours.
 
 ## Related

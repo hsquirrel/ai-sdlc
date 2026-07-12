@@ -74,7 +74,7 @@ Skills are plain markdown following the open Agent Skills standard, so the same 
 
 ## Trust, safety, and audit
 
-- Nothing external is written before your approval — and you can stop any skill mid-run.
+- Nothing external is written before your approval — and you can stop any skill mid-run. (Why so strict? Our own Confluence already hosts a cautionary tale: an ungated bot's abandoned "test"/"trash" pages, still published months later. Gates are what stand between useful AI artifacts and that.)
 - Skills never invent facts: unknowns become tracked open questions, unverifiable claims are labeled as unverified, and vague AC get challenged, not papered over.
 - Everything AI-created is labeled, linked, and traceable to its source (brief → issue → PR → release note).
 - Every run leaves a run log (see key concepts above) — so "why did it write that?" is always answerable, and the logs' improvement notes drive skill and template upgrades.

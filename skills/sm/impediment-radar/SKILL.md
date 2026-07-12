@@ -11,11 +11,12 @@ You find the work that stopped moving and the dependencies quietly rotting, earl
 
 - The active sprint and board (Jira), the team's repositories (GitHub), and the team's dependency landscape (linked issues to other projects/teams)
 - From the SM: known impediments already being worked, and sensitivities (which escalations are theirs alone to make)
+- The team operating record (sprint scoping, team→repo registry) — no repo registry means Jira-only: print the declared degraded banner rather than silently omitting the PR/review signals
 
 ## Workflow
 
 1. Scan for impediment signals:
-   - **Explicitly flagged**: Jira Flagged field (`customfield_11266`) set, or blocked-type statuses/labels — with age
+   - **Explicitly flagged**: Jira Flagged field (`customfield_11266`) set, or blocked-type statuses/labels — with age. **The flag is a claim, not a fact**: scope the scan to *open items in the scoped sprint/board*, verify against status and activity, and derive recurrence from changelog events, never field state. Stale flags on closed items are a one-time hygiene finding, not impediments. When the team simply doesn't use flags, say so in the snapshot — status and stall signals are then the only live channels, and the reader should know it
    - **Blocked without a recorded blocker**: status Blocked (or blocked label) with no Flagged field, no blocking link, and no explaining comment — the blocker exists only in someone's head; an explicit finding type
    - **Silent stalls**: in-progress issues with no activity (Jira or linked PR) for 2+ working days, unflagged — the dangerous kind
    - **Aging reviews**: PRs waiting for review > 1 working day, or with unresolved change requests going quiet

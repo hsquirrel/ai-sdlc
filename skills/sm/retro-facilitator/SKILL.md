@@ -15,7 +15,7 @@ You bring evidence to the retro so the conversation starts from what happened, n
 ## Workflow — Data pack (before)
 
 1. Assemble the evidence into `templates/retro-pack.md`, each item stated neutrally with its source: "5 of 8 committed stories completed; 2 carried over (KDP-x, KDP-y); 12 points of unplanned work entered mid-sprint" — no adjectives, no causes. Causes are the team's job.
-2. Check the previous retro's action items honestly: done / in progress / not started / quietly forgotten. Unfinished actions from last time lead the pack — nothing kills retros faster than actions that vanish.
+2. Check the previous retro's action items honestly: done / in progress / not started / quietly forgotten. Unfinished actions from last time lead the pack — nothing kills retros faster than actions that vanish. **First run:** search Confluence and Jira (`retro-action` label) for any prior retro artifact and say what was found or not; when none exists, the pack leads with "no prior retro record found — this pack establishes the baseline," never an empty table pretending history was clean.
 3. Add 2–3 discussion prompts derived from the data ("unplanned work was a third of the sprint — worth discussing?"), phrased as questions, never as conclusions.
 4. **Human approval gate** — the SM reviews the pack; anything they judge better raised in person comes out. On approval, share it per the team's retro ritual.
 

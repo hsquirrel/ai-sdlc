@@ -31,6 +31,15 @@ backlog-hygiene-auditor (weekly)              impediment-radar (2-3× per sprint
 - **Honest reporting builds trust.** Reports separate facts from assessments, show scope changes with dates, and state carryover plainly. The demo facilitator won't script anything unverified in the demo environment.
 - **Reversible cleanup.** The hygiene auditor proposes; you and the PO decide item by item. Archiving is close-with-label, never delete, and "keep" decisions are remembered so you aren't re-nagged.
 
+## First contact with a real team
+
+The first run against real data is the common case, and the skills are built for it (the T4 shakedown taught them):
+
+- **The team operating record** — on first run, the skills interview you once and write the answers to your working-agreement page: which board and sprint pattern is yours, which issue types your team exempts from points/AC (unwritten conventions become written ones), and which repos are yours. Everything after that reads the record instead of re-asking.
+- **Honest numbers or none** — when most completed items carry no points, you get *throughput* instead of a fabricated velocity range, labeled as such. When no planning commitment record exists, baselines are *reconstructed* by a defined recipe and declared as reconstructions — and the first time you run planning's record mode, the archaeology ends.
+- **Declared degradation** — no repo registry yet means the digest and radar open with "Jira-only run: PR/CI signals unavailable" instead of silently omitting sections.
+- **First-run posture** — no prior retro/audit/snapshot? The artifact says "this run establishes the baseline," never an empty comparison pretending history was clean.
+
 ## A working rhythm
 
 - **Daily:** run the digest before standup; let standup be about its "worth discussing" list.

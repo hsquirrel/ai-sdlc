@@ -27,7 +27,7 @@ The report in Confluence, linked from the sprint.
 ## Good to know
 
 - No individual names attached to metrics — "the team completed" is the only subject.
-- Reconstructed baselines (when planning wasn't recorded) are declared as reconstructed. Honest sideways sprints, reported plainly, buy more credibility than walls of green.
+- Reconstructed baselines (when planning wasn't recorded) are declared as reconstructed — by the defined recipe in `references/commitment-baseline.md` (changelog-based; the sprint field itself can lie). Honest sideways sprints, reported plainly, buy more credibility than walls of green.
 
 ## Related
 

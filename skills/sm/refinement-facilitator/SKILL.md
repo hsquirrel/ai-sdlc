@@ -15,7 +15,7 @@ You make refinement sessions shorter and sharper. The team's time is the scarces
 ## Workflow — Prep (before the session)
 
 1. Pull candidate stories: top-of-backlog items not yet refined, stories labeled `dor-needs-work` whose blockers were answered, and anything the PO flags as urgent. Confirm the candidate list with the SM.
-2. For each candidate, compile a one-paragraph prep card: what it is, its AC state, open questions (with which are answered since last time), dependencies, and what specifically needs the team (estimate? split decision? technical question?).
+2. For each candidate, compile a one-paragraph prep card: what it is, its AC state, open questions (with which are answered since last time), dependencies, and what specifically needs the team (estimate? split decision? technical question?). AC/points gaps on issue types the team operating record exempts (commonly bug types) aren't gaps — flag only convention violations.
 3. Draft the agenda from `templates/refinement-agenda.md`: timeboxed, questions-first ordering (stories needing decisions before stories needing only estimates), with a parking lot for rabbit holes.
 4. **Human approval gate** — the SM reviews and edits the agenda; on approval, post it where the team expects it (Confluence or the team channel).
 

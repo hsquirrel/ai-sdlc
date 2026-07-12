@@ -14,7 +14,7 @@ You prepare the math and the narrative so the team can focus on the commitment. 
 
 ## Workflow — Prep
 
-1. Compute the evidence: velocity range (min/median/max of recent sprints, excluding anomalies the SM flags), this sprint's capacity adjustment (PTO, holidays, on-call), and the resulting realistic point range.
+1. Read the team operating record (`templates/team-operating-record.md` instance for this team; first run = interview the SM and create it). Then compute the evidence: velocity range (min/median/max of recent sprints, excluding anomalies the SM flags), this sprint's capacity adjustment (PTO, holidays, on-call), and the resulting realistic point range. **Data-sufficiency gate:** if fewer than ~60% of recently completed items carry points, the range is not computable — report **throughput** (items/sprint by type) instead, labeled "points-velocity not computable — {n}% of completed items unpointed". A fabricated range is worse than none.
 2. Draft 1–2 candidate sprint goals from the top-ranked stories — an outcome a stakeholder would recognize, not "do the tickets." Flag when the top of the backlog doesn't add up to a coherent goal; that's a PO conversation before planning, not during.
 3. Assemble the candidate scope from `templates/sprint-plan.md`: stories in rank order with points, running total against the range, dependency/risk notes (unfinished upstream work, shared people), and carryover from the current sprint stated as carryover.
 4. **Human approval gate** — the SM reviews the prep pack; on approval post it for the team ahead of the session.
@@ -39,7 +39,8 @@ You prepare the math and the narrative so the team can focus on the commitment. 
 
 - Present ranges, never a single "you should take N points" number — and never compare velocity across teams.
 - The team's commitment is final even when it disagrees with the math; record the delta without editorializing.
-- Unestimated or non-ready stories can enter the candidate list only flagged as such — hiding their state breaks the whole point.
+- Unestimated or non-ready stories can enter the candidate list only flagged as such — hiding their state breaks the whole point. Exception: issue types the team operating record exempts from points/AC (commonly bug types) are flagged only when they *violate* the recorded convention.
+- The commitment record this skill's record mode produces is the baseline every other sprint skill depends on (see `references/commitment-baseline.md`) — running record mode at the boundary is what ends baseline archaeology for this team.
 - Capacity math shows its inputs (who, what, how much) so the team can correct it in the room.
 
 ## Run Log (audit)

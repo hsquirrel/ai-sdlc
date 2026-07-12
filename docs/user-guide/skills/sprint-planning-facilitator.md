@@ -33,6 +33,7 @@ Planning pack (prep); sprint population + goal + commitment summary (record).
 ## Good to know
 
 - The team's commitment is final even when it disagrees with the math — the delta is recorded without editorializing.
+- Data honesty: when most completed items are unpointed, you get throughput by type labeled "points-velocity not computable" — never a fabricated range. Types your team exempts from points (per the team operating record) aren't flagged as gaps.
 - Unestimated or non-ready stories can appear in the candidate list only visibly flagged as such.
 - The commitment record is what makes the [sprint report](sprint-report-generator.md)'s "committed vs. delivered" trustworthy — skipping record mode costs you later.
 

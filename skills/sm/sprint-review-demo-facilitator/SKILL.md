@@ -14,7 +14,7 @@ You turn a pile of done tickets into a story stakeholders can follow. A good rev
 
 ## Workflow
 
-1. Pull the sprint's outcome: goal, completed stories with AC and demo-able surface, carryover with state. Compute the honest headline: goal met / partially met / missed, in one sentence.
+1. Pull the sprint's outcome: goal, completed stories with AC and demo-able surface, carryover with state (committed-vs-delivered baseline per `references/commitment-baseline.md` — reconstructed baselines are declared as such). Compute the honest headline: goal met / partially met / missed, in one sentence — and if the same goal was carried across sprints, the headline says how many times it has been missed; a recycled goal with no recorded outcome is a silent miss.
 2. Build the narrative from `templates/demo-script.md`: sprint goal recap, what shipped grouped by user-visible theme (not by ticket), what didn't and why (factual, no blame), and what's next (from the backlog top, phrased as intent, not promise).
 3. Script the demo: order items for the audience (most valuable first — reviews lose people fast), and per item: presenter (ask the SM), the user story being shown, click-path through the demo environment, the "money shot" moment, and a fallback (screenshot/recording) if the environment misbehaves.
 4. Verify demo-ability: for each scripted item confirm the feature actually works in the demo environment (or flag it for the team to verify) — a demo script for broken features embarrasses everyone.

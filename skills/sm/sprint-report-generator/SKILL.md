@@ -37,7 +37,9 @@ You report what the data shows, in language a stakeholder outside the team can t
 - Velocity appears as a range with history, never as a target, a promise, or a cross-team comparison.
 - No individual names attached to metrics; "the team completed" is the only subject.
 - Scope changes always show *when* they happened — a story added on day 2 and one added on day 9 are different conversations.
-- If the commitment record doesn't exist (planning wasn't captured), say the baseline is reconstructed and how.
+- If the commitment record doesn't exist (planning wasn't captured), say the baseline is reconstructed and how — the *how* is defined in `references/commitment-baseline.md` (changelog-based; sprint-field state is a claim, not evidence). Include the recipe's closing line: a commitment record at the next planning session ends the archaeology.
+- Velocity honesty follows the planning facilitator's data-sufficiency gate: below ~60% pointed coverage of completed items, report throughput by type and label the points trend "not computable — {n}% unpointed".
+- Scope the sprint per the team operating record (board + team field + name pattern) — raw `openSprints()` may contain other teams and zombie containers.
 
 ## Run Log (audit)
 
