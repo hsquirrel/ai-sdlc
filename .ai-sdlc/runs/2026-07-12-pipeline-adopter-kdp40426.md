@@ -25,6 +25,7 @@
 | Rev | What changed | Requested by |
 |-----|--------------|--------------|
 | 1 | Reconciliation plan drafted: docs/adoptions/2026-07-12-kdp40426-reconciliation.md | — |
+| 2 | Every write expanded verbatim for detailed review (W1–W12, incl. full Batch A AC text and parity scenarios): docs/adoptions/2026-07-12-kdp40426-proposed-writes.md | Jeremy: "I would like to review all of your suggested changes in a .md file. Can you write out your exact proposals for my detailed review?" |
 
 ## Approval Gate
 
