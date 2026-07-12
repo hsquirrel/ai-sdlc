@@ -20,7 +20,7 @@ The express-lane entrance for production incidents: turns an SSQ System Malfunct
 1. It captures the incident facts and the trace: if the regressed story is identified, **that story's AC become the regression contract** — the citable definition of what "fixed" observably means.
 2. It drafts the hotfix packet: regular **Bug** + hotfix fixVersion + `hotfix` label (never the legacy Hotfix issue types — those are dead in practice), repro from the incident, expected-from-original-AC (or an explicit contract-debt note — a stated unknown beats a blank), rollback path, and a named regression check.
 3. **The incident lead approves in one express pass** — minutes, not meetings, but nothing is created before it.
-4. It creates the ticket with the trace links: "Root Cause Fix" → the SSQ incident, relates/caused-by → the regressed story.
+4. It creates the ticket with the trace links, using the instance's precise link types: "Root Cause Fix" → the SSQ incident, "Problem/Incident (is caused by)" → the regressed story.
 5. It hands off the express chain: DoR critic's 4-item hotfix contract → test-plan-generator's regression-plan mode → pr-hygiene → code-review-critic (both minutes-cheap) → release-notes hotfix mode — and leaves the full trail (incident → ticket → PR → deployment page) as a comment for the retro and any RCA.
 
 ## What gets written

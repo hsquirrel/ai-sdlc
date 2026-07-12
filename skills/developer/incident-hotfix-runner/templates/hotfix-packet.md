@@ -25,8 +25,8 @@
 
 | Link | Target |
 |------|--------|
-| Root Cause Fix | {ssq-key} |
-| relates / caused-by | {regressed-story-key-or-TODO} |
+| Root Cause Fix ("is a root cause fix for") | {ssq-key} |
+| Problem/Incident ("is caused by") | {regressed-story-key-or-TODO} |
 
 ## Trail *(append as the run progresses)*
 

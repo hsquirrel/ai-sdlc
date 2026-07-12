@@ -18,7 +18,7 @@ Derives a structured test plan from a story's acceptance criteria — happy path
 2. Each case gets a suggested level (unit / API / UI), an automation flag (candidates feed the [Playwright scaffolder](ac-playwright-scaffolder.md)), and a priority.
 3. **The rule that keeps it honest:** every case cites its source AC or NFR line. Behavior no AC specifies doesn't become a test — it becomes a **finding for the PO** ("AC#3 has no expected result for an empty search"). Blocking findings mean the story should revisit the [DoR critic](definition-of-ready-critic.md).
 4. **You approve the plan and the findings.**
-5. It posts the plan where you choose: a comment on the story, a linked Confluence page, or — if your team tracks tests as Jira issues — KDP `Test Case` / UAT test-case issues (gated, like every write).
+5. It posts the plan where you choose: a comment on the story, a linked Confluence page, or — if your team tracks tests as Jira issues — KDP `Test Case` / UAT test-case issues (gated, like every write), parented to a campaign epic and linked `tests` → the stories they verify, with an agreed maintenance stance (reusable suite vs. one-shot) recorded so the suite doesn't get silently abandoned.
 
 ## What gets written
 

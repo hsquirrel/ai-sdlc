@@ -113,6 +113,35 @@ AC lives in the Acceptance Criteria field (not description), formatted as repeat
 - `AC#N: <title>` bold, then bold **Given/When/And/Then** keywords with plain-text conditions, hard line breaks between lines.
 - NFR/structured requirement blocks (data contracts, audit logging, observability, security) go in the story description under a "Requirements (NFR)" heading, keeping the AC field behavioral.
 
+## Issue link types (from the live instance, 2026-07-12)
+
+28 types exist; the pipeline-relevant ones, with their exact directional phrases (get these right — `createIssueLink` cares):
+
+| Type | Outward / inward | Pipeline usage |
+|------|------------------|----------------|
+| Blocks | `Blocks` / `Blocked By` | Dependencies between work items — decomposer/writer create them; impediment-radar watches them for rot |
+| Problem/Incident | `causes` / `is caused by` | **The regression trace**: hotfix bug *is caused by* the regressed story (incident-hotfix-runner) |
+| Root Cause Fix | `requires a root cause fix in` / `is a root cause fix for` | Fix item *is a root cause fix for* the SSQ incident (incident-hotfix-runner; observed in real use, KDP-32165) |
+| Test | `tests` / `is tested by` | Persisted test-case issues *test* the stories they verify (test-plan-generator persist mode). A near-duplicate `Tests` type (`tested by`/`tests`) also exists — prefer `Test`, note the ambiguity |
+| Defect | `created` / `created by` | Work item *created* a defect — QA-planning stories, UAT bugs back to their test case (observed: KDP-31813) |
+| Work item split | `split to` / `split from` | Refinement splits — capture-summary decisions carried into Jira |
+| Duplicate | `Duplicates` / `is duplicated by` | Duplicate closures name the survivor (hygiene auditor, bug-report-writer) |
+| Escalate | `escalates` / `escalated-by` | Radar escalations that become tracked items |
+| Post-Incident Reviews | `reviews` / `is reviewed by` | RCA artifacts to the incidents they review (future governance/RCA work) |
+| Relates / Related | symmetric | Generic association — **two** near-identical types exist (`Relates` 11615, `Related` 10604); prefer `Relates`, expect both in old data |
+
+Not used by the pipeline: Gantt/scheduling dependency types (FS/FF/SS/SF ×2 families), Polaris (Jira Product Discovery) types, `Child-Issue` (legacy hierarchy workaround — use the native `parent` field), `Deployment`, `Resolve`, `Action item`, `Discovery - Connected`.
+
+## Observed workflow statuses (evidence-based, not a workflow export)
+
+Statuses seen in real KDP data during the 2026-07 shakedowns; per-issue-type workflows differ, so treat as vocabulary, not a state machine:
+
+- **Work items**: Open → In Dev / In Progress → In Test in DEV → Deployed to QA (→ Deployed to Staging/Production fields) → PO Validated → Done/Closed; plus `Blocked` and `Not Required`
+- **UAT test cases**: run to **Pass** (campaign pattern: bulk-created, executed once)
+- **Risk**: Assessing, In Mitigation, Blocked (observed only in the fossilized 2023 register)
+- **SSQ System Malfunction** (different project): includes Impact Mitigation states; ~10 new/day, some automated (Azure Sev alerts)
+- Known data quirks: Done-status items with resolution unset (hygiene check exists); sprint field state can lie about which sprint an item ran in — reconstruct from changelog when it matters
+
 ## Confluence
 
 - Same site (`kestra.atlassian.net`); the PO chooses space and parent page at runtime — never assume a location.
