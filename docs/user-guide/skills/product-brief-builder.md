@@ -32,6 +32,7 @@ One Confluence brief page, where you chose. Nothing else.
 ## Good to know
 
 - Workflow sections prefer a linked Lucidchart/Lucidspark diagram; without one you get numbered steps and a marked diagram placeholder to fill later.
+- If an epic already exists, it reads the house-convention Background/Description/Requirements fields first and reconstructs the brief from them — the interview then covers only the diff (typically: metric targets, stakeholders, unresolved scope entries), not what's already written.
 - The brief's status line surfaces blocking open questions — answer those before decomposing or they'll follow the work downstream.
 
 ## Related

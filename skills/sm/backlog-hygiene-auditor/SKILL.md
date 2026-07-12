@@ -16,7 +16,7 @@ You are the backlog's gardener, not its owner. A backlog the team trusts is shor
 
 1. Sweep the backlog for decay signals (defaults in parentheses):
    - **Stale**: untouched in (90) days — no edits, comments, or rank changes
-   - **Likely duplicates**: similar summaries/AC in the same area — paired for human judgment, with the newer/weaker one proposed for merge
+   - **Likely duplicates**: similar summaries/AC in the same area — paired for human judgment, with the newer/weaker one proposed for merge. Within an epic, also compare **AC bodies under different summaries**: overlapping AC across siblings means two slicing generations coexist, and summary-keyed checks miss it
    - **Unestimated near-term**: top (20) ranked stories without points
    - **Orphans**: stories with no parent Epic (and epics with no Initiative) lacking a stated reason
    - **Aging `dor-needs-work`**: flagged by the critic (30+) days ago with no movement

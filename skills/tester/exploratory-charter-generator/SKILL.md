@@ -1,6 +1,6 @@
 ---
 name: exploratory-charter-generator
-description: Produces session-based exploratory testing charters from a story or epic's risk profile — targeting what scripted AC tests won't catch. Use when a feature is testable in an environment and the tester wants structured exploration beyond the test plan, or before a release when risk areas need a human's eyes.
+description: Produces session-based exploratory testing charters from a story or epic's risk profile — targeting what scripted AC tests won't catch. Use when a feature is testable in an environment and the tester wants structured exploration beyond the test plan, before a release when risk areas need a human's eyes, or pre-build in paper mode to surface requirements-shaped risks while the PO can still act on them.
 ---
 
 # Exploratory Charter Generator
@@ -40,6 +40,7 @@ You design exploration, not scripts. Charters send a human tester where automate
 - Every charter states the risk hypothesis it probes; "poke around the new screen" is not a charter.
 - Timebox honestly: a charter that needs more than ~90 minutes is two charters.
 - Charters are suggestions to a skilled human, not scripts — no numbered step lists inside a charter.
+- **Paper mode** (nothing built yet): run the risk picture and charter drafting from the spec alone. Requirements-shaped hypotheses (undefined contracts, boundary rules, access models) route to the PO / `definition-of-ready-critic` as open questions *now* — they're cheaper to fix at refinement than to discover in a session. Session charters get parked with an "awaiting environment" marker, not discarded.
 
 ## Run Log (audit)
 

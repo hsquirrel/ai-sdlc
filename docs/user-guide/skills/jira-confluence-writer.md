@@ -30,7 +30,8 @@ Real KDP Jira issues in the approved hierarchy + backlog links on the Confluence
 
 ## Good to know
 
-- **Safe re-runs:** if a run fails midway, run it again — it checks for an existing issue with the same summary under the same parent and skips rather than duplicates.
+- **Safe re-runs:** if a run fails midway, run it again — it checks for an existing issue with the same summary under the same parent and skips rather than duplicates. It also compares AC bodies against existing siblings, so it won't create a second source of truth for a behavior a story already owns.
+- Dependencies become typed "is blocked by" links in the write plan; a dependency whose target doesn't exist in Jira is a blocking question (placeholder epic, or owner + date), never silent prose.
 - It never sets Sprint, Story Points, or Assignee — those are the team's, in refinement.
 - Schema reference (field IDs, allowed values, AC house style): [kdp-schema.md](../../../skills/po/jira-confluence-writer/references/kdp-schema.md). If creates start failing validation, the schema likely drifted — re-derive it.
 

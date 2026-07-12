@@ -29,6 +29,7 @@ The approved test plan (story comment or Confluence) — no test code (that's th
 - Expect few strong cases over combinatorial padding — each case must be able to fail for a reason a stakeholder cares about.
 - "Covered" is strict: a case exercising half an AC doesn't cover it; the case gets split.
 - **Regression-plan mode** for hotfixes: derives a compact plan from the *regressed story's* AC plus the incident repro — it doesn't refuse just because the hotfix ticket's own AC field is empty.
+- When story descriptions are empty (common on adopted work), NFR checks come from the parent epic's Requirements/Background fields, cited as such. Overlapping AC across sibling stories derive one case mapped to both — and the overlap itself is reported to the PO as a story-ownership defect.
 
 ## Related
 

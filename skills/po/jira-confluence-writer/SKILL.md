@@ -28,7 +28,7 @@ Read `references/kdp-schema.md` before planning any writes — it holds the fiel
    - Create the Initiative (unless using an existing one).
    - Create Epics with `parent` set to the Initiative key.
    - Create Stories with `parent` set to their Epic key, acceptance criteria in the Acceptance Criteria field using the house style, and open questions in the description under an "Open Questions" heading.
-   - Before creating each issue, search for an existing issue with the same summary under the same parent — if found, skip it and note it in the report (this makes re-runs after a partial failure safe).
+   - Before creating each issue, search for an existing issue with the same summary under the same parent — if found, skip it and note it in the report (this makes re-runs after a partial failure safe). Also compare the new story's AC body against existing siblings' AC: substantial overlap means a story already owns that behavior — stop and ask rather than create a second source of truth.
 6. Update the Confluence brief: append a "Backlog" section linking the created Initiative/Epics (create the section if absent). If there is no brief, note that in the report instead.
 7. Record the created keys back into the decomposition registry's "Created Keys" section, so the registry maps draft items to real issues for the life of the initiative. Then report a table of everything created — key, type, summary, parent — with links, plus anything skipped and why. Suggest the next pipeline step: `definition-of-ready-critic` before the stories enter team refinement.
 
@@ -49,6 +49,7 @@ Read `references/kdp-schema.md` before planning any writes — it holds the fiel
 - Set hierarchy with the native `parent` field only; never set the legacy Epic Link field directly.
 - Leave Sprint, Story Points, and Assignee empty — those belong to the team in refinement.
 - Do not invent values for required fields; if the PO can't answer (e.g., Strategic Program), stop and say what's blocking.
+- Dependencies stated in the draft become typed `Blocks`/"is blocked by" links in the write plan — never prose. A dependency whose target has no Jira issue is a **blocking write-plan question**: create a placeholder epic for it, or record an owner and date for when it will exist; a must-be-delivered-first dependency that can't be linked can't be watched.
 - If any create fails mid-run, stop, report exactly what was and wasn't created, and rely on the duplicate check in step 5 for a safe re-run — never retry blindly.
 
 ## Run Log (audit)

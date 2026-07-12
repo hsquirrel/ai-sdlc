@@ -31,6 +31,7 @@ The document doubles as the initiative's **living registry**: after the write it
 ## Good to know
 
 - It will not estimate, assign, or invent domain facts — unknowns become owned open questions on the affected story.
+- Slices have a floor as well as a ceiling: a story completes an observable user intent — one form's fields are AC, not stories. Re-slicing supersedes the original in the same change, and stated dependencies become typed links (a dependency with no issue behind it gets flagged, not left as prose).
 - Stories whose AC can't be written yet become spikes or questions, not vague stories.
 - "The API layer" is not an epic for product work; expect re-slicing if you ask for one. For platform/engineering work, per-repo or per-service slicing *is* the right shape — the rule is "independently deliverable and verifiable," not "user-visible at all costs."
 

@@ -27,6 +27,7 @@ The approved charter set with session-notes stubs.
 ## Good to know
 
 - It never duplicates an AC case as a charter — that's the test plan's territory.
+- **Paper mode**: before anything is built, it can run the risk analysis from the spec alone — requirements-shaped risks (undefined access models, boundary rules) go to the PO at refinement while they're cheap to fix; session charters wait, parked, for an environment.
 - "Poke around the new screen" doesn't qualify; every charter must state its hypothesis.
 - Session findings route naturally: defects → [bug-report-writer](bug-report-writer.md), ambiguities → the PO.
 

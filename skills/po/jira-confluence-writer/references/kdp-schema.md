@@ -142,6 +142,16 @@ Statuses seen in real KDP data during the 2026-07 shakedowns; per-issue-type wor
 - **SSQ System Malfunction** (different project): includes Impact Mitigation states; ~10 new/day, some automated (Azure Sev alerts)
 - Known data quirks: Done-status items with resolution unset (hygiene check exists); sprint field state can lie about which sprint an item ran in — reconstruct from changelog when it matters
 
+## House epic content conventions (observed 2026-07, consistent across authors)
+
+Hand-authored KDP epics carry brief-grade content in a stable structure the pipeline should read, not treat as an anomaly:
+
+- **Background (`customfield_14757`)** — the de facto brief: Epic Intent/Objective, Business Context (often with quantified evidence), Primary Users/Beneficiaries, Registration Context (BD/RIA), Why Now, Assumptions & Open Questions, Confidence.
+- **Description** — In Scope / Out of Scope (with per-item reasons), Dependencies (per owning team), Success Measures/Criteria, sometimes trailing ARB questionnaire prompts.
+- **Requirements (`customfield_14762`)** — cross-cutting constraints, system requirements (`{EPIC-KEY}-SR-NNN` numbering), compliance flags with rationale.
+
+Pipeline use: `product-brief-builder` (and any adoption flow) **reconstructs a brief from these fields and diffs against the brief template** — the diff is the finding list (typical gaps: metric targets, stakeholder/approver table, unresolved scope questions). When the pipeline writes epics, it may populate these fields in the same structure; the house format is the contract.
+
 ## Confluence
 
 - Same site (`kestra.atlassian.net`); the PO chooses space and parent page at runtime — never assume a location.

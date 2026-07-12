@@ -32,6 +32,7 @@ Story comments + labels, after your approval. It **never edits the stories thems
 - It's issue-type aware: `Tech Managed` items are judged by objective + verifiable completion checks (build/scan/deploy), not forced into user-story form — and substantively sound AC in a non-house format pass with a style suggestion, never a blocking failure.
 - Readiness is two-altitude: epics in scope are judged against their own [epic-readiness checklist](../../../skills/po/definition-of-ready-critic/references/epic-readiness-checklist.md) (traceability, authored scope, epic AC, governance linked with status, closure criteria) — stories can be green while the epic above them is the problem.
 - Hotfix items get a 4-item express contract (repro, cited expected behavior, rollback path, regression check) instead of the full twelve — sized for the hours clock so it actually gets run.
+- It scans the *set*, not just each story: overlapping AC bodies under different summaries (two slicing generations of the same screen) are a blocking finding with a proposed survivor — summaries can all differ while the backlog still disagrees with itself.
 - AI-generated stories get zero leniency — the pipeline grades its own homework honestly.
 - The checklist is the team's to tune: start lenient, ratchet up as maturity grows.
 

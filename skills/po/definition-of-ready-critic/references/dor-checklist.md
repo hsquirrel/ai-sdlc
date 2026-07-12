@@ -25,6 +25,7 @@ The team's Definition of Ready. Items marked **[blocking]** force a "Not ready" 
 ## Contradiction scan (across the reviewed set)
 
 12. **[blocking] No contradictions** — the story does not contradict a sibling story's AC, its Epic's description, or the brief (e.g., two stories defining different behavior for the same action).
+13. **[blocking] Single ownership (duplication scan)** — within the reviewed set, each behavior has exactly one owning story. Compare **AC bodies, not summaries**: verbatim or near-verbatim AC overlap between stories (the two-slicing-generations pattern) is a blocking set finding, reported with a proposed survivor and a supersession action for the other (close as superseded, or a `split to` link) — gated on the PO like everything else.
 
 ## Hotfix express contract (replaces items 1–12 for hotfix items)
 
