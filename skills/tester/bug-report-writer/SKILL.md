@@ -16,19 +16,14 @@ You turn "it broke" into a ticket a developer can act on without a follow-up con
 
 1. Interview the reporter briefly if the material is thin: what did you do, what happened, what did you expect, can you make it happen again? Distill the repro to the *minimum* steps that trigger it — cut ritual that doesn't matter.
 2. Anchor expected behavior: find the AC, design doc, or release note that says what should happen and cite it. No source? State the expectation as an assumption — the ticket may be a behavior question for the PO, not a defect; say so when that's likelier.
-3. Classify per the KDP schema (see `references/kdp-bug-types.md`): **Story Bug** (sub-task of the in-flight story when QA finds it during story testing), **Bug** (standalone defect in existing functionality), or the UAT bug types during UAT phases. Set Severity with a one-line rationale (user impact × workaround availability); leave Priority to triage.
+3. Classify per the instance doc (`references/kdp-instance.md` §6): **Story Bug** (sub-task of the in-flight story when QA finds it during story testing), **Bug** (standalone defect in existing functionality — including hotfix cases), or the UAT bug types during UAT phases. Set Severity with a one-line rationale (user impact × workaround availability); leave Priority to triage.
 4. Draft the ticket from `templates/bug-report.md`. Search Jira for likely duplicates (same area, similar summary, open states) — if found, present them; linking or commenting on the existing bug may beat filing a new one. Extend the same search to recently *closed* bugs in the area: a high non-fix closure rate (Not An Issue, Cannot Reproduce, Duplicate, Declined) means reports here historically bounce — tighten the evidence (environment/build captured, reproduction rate stated) and lean harder on the PO behavior-question route before filing.
-5. **Human approval gate** — present the draft (and any duplicate candidates) to the reporter. Revise until approved. Nothing is created in Jira before approval.
+5. **Approval gate (per-run)** — present the draft (and any duplicate candidates) to the reporter. Revise until approved. Nothing is created in Jira before approval.
 6. On approval, create the issue (correct type, parent linkage for Story Bugs, `ai-sdlc-generated` label), attach the evidence, link the related story, and report the new key.
 
 ## Output
 
 - A created Jira bug of the correct type, with minimal repro, cited expected behavior, severity rationale, and evidence attached
-
-## Pipeline position
-
-- Upstream: manual testing, `exploratory-charter-generator` sessions, UAT
-- Downstream: team triage; fixes flow through the normal developer skills
 
 ## Rules
 
@@ -38,10 +33,5 @@ You turn "it broke" into a ticket a developer can act on without a follow-up con
 - Facts and interpretation stay separated: what happened (evidence) vs. what it means (assessment).
 - If the "bug" is actually the story behaving as its AC specify, route it to the PO as a behavior question instead of filing a defect against the developer.
 
-## Run Log (audit)
-
-Every invocation keeps a run log, created before the first step and updated as each step completes — it is part of the deliverable, and a run without one is incomplete.
-
-- Create `.ai-sdlc/runs/{YYYY-MM-DD}-bug-report-writer-{run-slug}.md` in the workspace from the library's shared `templates/run-log.md` (repo root). No workspace? Attach the log to the driving Jira/Confluence artifact instead.
-- Record as you go: context gathered (every source read, with keys/links), every question asked and its answer **verbatim**, each revision requested at the approval gate, the approval decision (who, when, exactly what was approved), and every external write with its resulting key/link.
-- Close the log with improvement notes: friction, questions the skill should have asked, template gaps — raw material for `skill-author` audits.
+---
+*Library conventions (gates, run logs, template-first): `references/conventions.md`. Instance facts: `references/kdp-instance.md`.*
