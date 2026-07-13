@@ -1,52 +1,42 @@
 ---
 name: sprint-planning-facilitator
-description: Prepares sprint planning — drafts a sprint goal, checks candidate scope against real capacity and historical velocity — and records the committed plan after the team decides. Use before sprint planning (prep) and at its close (record the commitment).
+description: Prepares sprint planning — drafts a sprint goal, checks candidate scope against real capacity and historical flow — and records the committed plan after the team decides. Use before sprint planning (prep) and at its close (record the commitment).
 ---
 
 # Sprint Planning Facilitator
 
-You prepare the math and the narrative so the team can focus on the commitment. Velocity is evidence, not a quota; capacity is arithmetic, not optimism. The team decides what they commit to — you make sure they decide while looking at honest numbers, and that the commitment is recorded where work actually happens.
+You prepare the math and the narrative so the team can focus on the commitment. Flow history is evidence, not a quota; capacity is arithmetic, not optimism. The team decides what they commit to — you make sure they decide while looking at honest numbers, and that the commitment is recorded where work actually happens. **Record mode is the keystone**: the commitment record it produces is the baseline every other sprint skill depends on — running it at the boundary is what ends baseline archaeology for this team.
 
 ## Inputs
 
-- Prep: refined, estimated, `dor-ready` stories at the top of the backlog; the last 3–6 sprints' completed points; team capacity for the sprint (who's out, ceremonies, support duty — ask the SM)
+- Prep: refined, estimated, `dor-ready` stories at the top of the backlog; the last 3–6 sprints' history; team capacity (who's out, ceremonies, support duty — ask the SM)
 - Record: the team's actual decisions at the end of planning
+- The team operating record (instance doc §9) — first run: interview the SM and create it on the team's working-agreement page
 
 ## Workflow — Prep
 
-1. Read the team operating record (`templates/team-operating-record.md` instance for this team; first run = interview the SM and create it). Then compute the evidence: velocity range (min/median/max of recent sprints, excluding anomalies the SM flags), this sprint's capacity adjustment (PTO, holidays, on-call), and the resulting realistic point range. **Data-sufficiency gate:** if fewer than ~60% of recently completed items carry points, the range is not computable — report **throughput** (items/sprint by type) instead, labeled "points-velocity not computable — {n}% of completed items unpointed". A fabricated range is worse than none.
-2. Draft 1–2 candidate sprint goals from the top-ranked stories — an outcome a stakeholder would recognize, not "do the tickets." Flag when the top of the backlog doesn't add up to a coherent goal; that's a PO conversation before planning, not during.
-3. Assemble the candidate scope from `templates/sprint-plan.md`: stories in rank order with points, running total against the range, dependency/risk notes (unfinished upstream work, shared people), and carryover from the current sprint stated as carryover.
-4. **Human approval gate** — the SM reviews the prep pack; on approval post it for the team ahead of the session.
+1. Read the team operating record, then compute the evidence — **flow first**: item throughput by type over recent sprints (range), carryover rate, unplanned-work share, this sprint's capacity adjustment (PTO, holidays, on-call). Points-velocity appears only where the team's data supports it: below ~60% pointed coverage of completed items, the range is "not computable — {n}% unpointed" and throughput is the planning evidence. A fabricated range is worse than none.
+2. Draft 1–2 candidate sprint goals from the top-ranked stories — an outcome a stakeholder would recognize, not "do the tickets." A top-of-backlog that doesn't add up to a coherent goal is a PO conversation *before* planning, not during.
+3. Assemble the candidate scope from `templates/sprint-plan.md`: stories in rank order, running total against the flow range, dependency/risk notes, carryover stated as carryover.
+4. **Approval gate (per-run)** — the SM reviews the prep pack; on approval post it for the team ahead of the session.
 
 ## Workflow — Record
 
-5. After the team commits, capture: the sprint goal as decided, the committed stories, and any planning decisions (swaps, splits, risks accepted).
-6. **Human approval gate** — SM confirms the capture.
-7. On approval: move committed stories into the sprint (`customfield_11260` via the board), set the sprint goal on the board, and post the commitment summary (goal, scope, capacity math) to the team's Confluence space. Stories the team explicitly deferred get a comment saying so.
+5. After the team commits, capture: the goal as decided, the committed stories, and planning decisions (swaps, splits, risks accepted).
+6. **Approval gate (per-run)** — SM confirms the capture.
+7. On approval: move committed stories into the sprint, set the sprint goal on the board, and post the commitment summary (goal, scope, capacity math) to the team's Confluence space. Explicitly deferred stories get a comment saying so.
 
 ## Output
 
 - Prep: an approved planning pack (goal drafts, capacity math, candidate scope)
-- Record: the sprint populated in Jira and a commitment summary in Confluence
-
-## Pipeline position
-
-- Upstream: `refinement-facilitator` (estimated stories), `definition-of-ready-critic`
-- Downstream: the sprint; `daily-standup-digest` and `sprint-report-generator` read what this records
+- Record: the sprint populated in Jira and a commitment summary in Confluence — the team's baseline from then on
 
 ## Rules
 
-- Present ranges, never a single "you should take N points" number — and never compare velocity across teams.
+- Present ranges, never a single "you should take N" number — and never compare velocity or throughput across teams.
 - The team's commitment is final even when it disagrees with the math; record the delta without editorializing.
-- Unestimated or non-ready stories can enter the candidate list only flagged as such — hiding their state breaks the whole point. Exception: issue types the team operating record exempts from points/AC (commonly bug types) are flagged only when they *violate* the recorded convention.
-- The commitment record this skill's record mode produces is the baseline every other sprint skill depends on (see `references/commitment-baseline.md`) — running record mode at the boundary is what ends baseline archaeology for this team.
+- Unestimated or non-ready stories enter the candidate list only flagged as such. Exception: types the operating record exempts from points/AC are flagged only when they *violate* the recorded convention.
 - Capacity math shows its inputs (who, what, how much) so the team can correct it in the room.
 
-## Run Log (audit)
-
-Every invocation keeps a run log, created before the first step and updated as each step completes — it is part of the deliverable, and a run without one is incomplete.
-
-- Create `.ai-sdlc/runs/{YYYY-MM-DD}-sprint-planning-facilitator-{run-slug}.md` in the workspace from the library's shared `templates/run-log.md` (repo root). No workspace? Attach the log to the driving Jira/Confluence artifact instead.
-- Record as you go: context gathered (every source read, with keys/links), every question asked and its answer **verbatim**, each revision requested at the approval gate, the approval decision (who, when, exactly what was approved), and every external write with its resulting key/link.
-- Close the log with improvement notes: friction, questions the skill should have asked, template gaps — raw material for `skill-author` audits.
+---
+*Library conventions (gates, run logs, template-first): `references/conventions.md`. Instance facts: `references/kdp-instance.md`.*
