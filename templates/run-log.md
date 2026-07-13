@@ -3,32 +3,20 @@
 **Started:** {date-time} | **Operator:** {user} | **Surface/model:** {surface-and-model} | **Skill version:** {git-sha-or-date}
 **Status:** [in progress / complete / aborted — reason]
 
-> Update this log as each step completes — not retrospectively at the end. Answers are recorded verbatim; paraphrase destroys the audit value.
+> Required for any run that writes to Jira, Confluence, or GitHub. Update as steps complete, not retrospectively.
 
-## Context Gathered
+## Context Sources
 
 | Source | Key / link | What was taken from it |
 |--------|-----------|------------------------|
-| [Jira issue / Confluence page / repo file / user-shared doc] | {key-or-link} | [the facts used] |
+| [Jira issue / Confluence page / repo file] | {key-or-link} | [the facts used] |
 
-## Questions & Answers
+## Approval
 
-| # | Question asked | Answer (verbatim) |
-|---|----------------|-------------------|
-| 1 | [question] | [exact words] |
-
-## Drafts & Revisions
-
-| Rev | What changed | Requested by |
-|-----|--------------|--------------|
-| 1 | Initial draft from {template} | — |
-| 2 | [change] | {who} |
-
-## Approval Gate
-
-- **Presented:** [exactly what was shown for approval]
-- **Decision:** [approved / approved with edits / rejected] — by {who}, {date-time}
-- **Overrules / conditions:** [anything the human overrode or attached — or "none"]
+- **Presented:** [what was shown — link the review doc if one was produced]
+- **Gate tier:** [per-item / per-run / standing (cite the standing approval's date)]
+- **Decision:** [approved / approved with N edits / rejected] — by {who}, {date-time}
+- **Overrules / conditions:** [anything overridden or attached — or "none"]
 
 ## External Writes
 
@@ -36,10 +24,6 @@
 |--------|--------|-------------------|
 | [created issue / updated page / posted comment] | {system} | {key-or-link} |
 
-## Outcome & Follow-ups
+## Follow-ups & Improvement Notes
 
-- [What the run produced, handoffs made, open items with owners]
-
-## Improvement Notes
-
-- [Friction, questions the skill should have asked, template fields that were missing or unused — raw material for `skill-author` audits and template evolution]
+- [Open items with owners; friction or template gaps worth fixing — fix the template, not the instance]
