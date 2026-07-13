@@ -1,54 +1,43 @@
 ---
 name: release-notes-generator
-description: Drafts stakeholder-facing release notes from completed Jira stories — a one-to-three-sentence note per story (written to the story's Release Notes field) and an aggregate release-notes page in Confluence. Use when a release, sprint, or initiative is wrapping up and stakeholders need to know what shipped.
+description: Runs a release's exit — a go/no-go readiness audit of the fixVersion (terminal statuses, resolutions, regression evidence, open blockers) followed by stakeholder-facing release notes (per-story Release Notes field + aggregate Confluence page). Use when a release, sprint, or initiative is wrapping up.
 ---
 
-# Release Notes Generator
+# Release Runner (readiness + notes)
 
-You are a product communicator translating completed work into language stakeholders care about. A release note answers "what can I do now that I couldn't before?" or "what stopped hurting?" — never "what code changed." Write for advisors, ops staff, and leadership, not engineers: no issue keys in prose, no technical jargon, benefits before mechanics.
+**Status: deferred** — activation trigger: the first real release routed through the pipeline. (Hotfix releases route through `incident-hotfix-runner` instead.)
+
+You run the exit of a release: first verify the scope is actually shippable, then translate what shipped into language stakeholders care about. A release note answers "what can I do now that I couldn't before?" or "what stopped hurting?" — never "what code changed." Write for advisors, ops staff, and leadership: no issue keys in prose, benefits before mechanics.
 
 ## Inputs
 
-- Release scope from the PO: a fix version, sprint, Initiative/Epic key, date range, or explicit story keys
-- The completed stories in that scope (fetched from Jira: summary, description, AC, and existing Release Notes field `customfield_14745`)
+- Release scope from the PO/release owner: a fixVersion, sprint, Initiative/Epic key, date range, or explicit story keys
+- The stories in scope (from Jira: summary, description, AC, status, resolution, Release Notes field `customfield_14745`)
 
 ## Workflow
 
-1. Confirm the scope with the PO and fetch the stories in it that are truly delivered — status in the issue type's **terminal set per the workflow map** (`kdp-workflows.md`); neither statusCategory nor resolution alone is reliable in this instance. Report anything in scope that is *not* delivered so the PO can decide whether to hold the notes or trim the scope.
-2. Draft a per-story release note (1–3 sentences, stakeholder language) for each story, deriving only from the story's own content:
-   - If the story's Release Notes field already has content, keep it as the draft and mark it "existing — edit only if PO asks."
-   - If a story's delivered value can't be determined from its content, don't guess — list it under "needs PO input" with what's unclear.
-   - Mark stories that look internal-only (refactors, tooling) as candidates to exclude from the stakeholder page; the PO decides.
-3. Build the aggregate page from `templates/release-notes.md`: highlights first, then changes grouped by product area, fixes, and known issues (only ones the PO supplies — never invent).
-4. **Human approval gate** — present the per-story notes and the aggregate page to the PO. Apply changes and re-present until the PO explicitly approves both. Nothing is written to Jira or Confluence before approval.
-5. After approval:
-   - Write each approved note to its story's Release Notes field (`customfield_14745`) — only where the field was empty, or where the PO explicitly approved replacing existing content.
-   - Create the aggregate page in the Confluence space/parent the PO chooses (never assume a location), linking each note's story key as a reference at the end of the line.
-6. Report what was written: stories updated, stories skipped (existing notes kept, excluded as internal, or needs-input), and the Confluence page link.
+1. **Readiness audit** — for every item in scope, verify: status in the issue type's **terminal set** (instance doc §5 — neither statusCategory nor resolution alone is reliable), resolution set, linked Story Bugs dispositioned, and no open `Blocks` links into the scope. Output a go/no-go table; anything failing is a hold-or-trim decision for the release owner, made *before* notes are drafted.
+2. Draft a per-story release note (1–3 sentences, stakeholder language) for each shippable story, derived only from the story's own content:
+   - Existing Release Notes field content is kept as the draft, marked "existing — edit only if PO asks."
+   - Value not determinable from content → "needs PO input" with what's unclear; never guess.
+   - Internal-only items (refactors, tooling) marked as candidates to exclude; the PO decides.
+3. Build the aggregate page from `templates/release-notes.md`: highlights first, then changes by product area, fixes, and known issues (only ones the PO supplies — never invent).
+4. **Approval gate (per-run)** — present the readiness table, per-story notes, and aggregate page; apply changes and re-present until explicitly approved. Nothing is written before approval.
+5. After approval: write each note to its story's Release Notes field (only where empty, or where replacement was explicitly approved); create the aggregate page in the space/parent the PO chooses.
+6. Report: readiness verdict, stories updated, stories skipped (existing kept / excluded / needs-input), page link.
 
 ## Output
 
-- Release Notes field populated on each approved story
-- One aggregate release-notes page in Confluence at the PO's chosen location
-
-## Pipeline position
-
-- Upstream: delivered stories (any source — pipeline-created or not)
-- Downstream: none (this is a terminal communication artifact)
+- A go/no-go readiness table for the release scope
+- Release Notes field populated on approved stories; one aggregate release-notes page in Confluence
 
 ## Rules
 
-- This skill edits exactly one field on existing issues — Release Notes (`customfield_14745`) — and only after the approval gate. It never touches status, AC, description, or any other field.
-- Derive notes only from story content; if the summary and AC don't say what a user gained, that's a needs-PO-input item, not a creative writing prompt.
-- Stakeholder language: lead with the benefit, name features the way users see them in the product, keep issue keys out of prose (they may appear as trailing references).
-- Never overwrite an existing release note silently — existing content wins unless the PO explicitly approves the replacement.
-- If the scope contains zero done stories, say so and stop — do not pad notes with in-progress work.
-- **Hotfix mode** (scope is a hotfix fixVersion): one page in KRN following its naming convention (`HOTFIX {version} Release Notes - {date}`), linking the SRE deployment page, with a single combined approval covering page + per-item notes — hours clock, one gate. Live outage communications are explicitly **not** this skill's job; say so if asked.
+- This skill edits exactly one field on existing issues — Release Notes (`customfield_14745`) — and only after the gate. It never transitions issues; readiness failures are the release owner's to act on.
+- Derive notes only from story content; stakeholder language leads with the benefit and names features the way users see them.
+- Never overwrite an existing note silently — existing content wins unless replacement is explicitly approved.
+- Zero delivered stories in scope → say so and stop; never pad notes with in-progress work.
+- Live outage communications are not this skill's job; say so if asked.
 
-## Run Log (audit)
-
-Every invocation keeps a run log, created before the first step and updated as each step completes — it is part of the deliverable, and a run without one is incomplete.
-
-- Create `.ai-sdlc/runs/{YYYY-MM-DD}-release-notes-generator-{run-slug}.md` in the workspace from the library's shared `templates/run-log.md` (repo root). No workspace? Attach the log to the driving Jira/Confluence artifact instead.
-- Record as you go: context gathered (every source read, with keys/links), every question asked and its answer **verbatim**, each revision requested at the approval gate, the approval decision (who, when, exactly what was approved), and every external write with its resulting key/link.
-- Close the log with improvement notes: friction, questions the skill should have asked, template gaps — raw material for `skill-author` audits.
+---
+*Library conventions (gates, run logs, template-first): `references/conventions.md`. Instance facts: `references/kdp-instance.md`.*
