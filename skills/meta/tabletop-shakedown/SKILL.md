@@ -29,17 +29,12 @@ Every tabletop is a hypothesis in charter form: **explore** {work shape} **with*
    - **Content findings** — real defects in the scenario's Jira/Confluence, attributed to the skill that surfaced each
    - **System findings** — proposals to change skills/templates/conventions, each naming the skill and the exact rule or assumption that misfired
 6. **Human approval gate** — present the report. The librarian (user) decides which system proposals become skill changes and whether content findings get routed to the content's owners.
-7. On approval: save the report to `docs/shakedowns/{YYYY-MM-DD}-{slug}.md`, update the scenario's status in the backlog, and hand approved system proposals to `skill-author` work.
+7. On approval: save the report to `docs/shakedowns/{YYYY-MM-DD}-{slug}.md`, update the scenario's status in the backlog, and apply approved system proposals as skill/template changes (per `references/conventions.md` — each addition names what it displaces).
 
 ## Output
 
 - A shakedown report in `docs/shakedowns/` (content findings + system proposals + verdict on the hypothesis)
 - An updated scenario backlog row
-
-## Pipeline position
-
-- Upstream: `docs/shakedowns/scenario-backlog.md` (the charter list)
-- Downstream: `skill-author` (approved system proposals become skill/template changes)
 
 ## Rules
 
@@ -49,11 +44,7 @@ Every tabletop is a hypothesis in charter form: **explore** {work shape} **with*
 - Content findings get severity (blocking-grade vs. significant) and note what the content gets *right* — credibility requires both.
 - Be honest about coverage: skills that couldn't be exercised (e.g., developer skills without repo access) are listed as not-exercised, never silently skipped.
 - One scenario per tabletop; a scenario that turns out to be two hypotheses becomes two backlog rows.
+- **Sunset plan**: after T14 and the team's dry-run tabletops, validation moves to live use — new tabletops require the demand-signal rule like everything else.
 
-## Run Log (audit)
-
-Every invocation keeps a run log, created before the first step and updated as each step completes — it is part of the deliverable, and a run without one is incomplete.
-
-- Create `.ai-sdlc/runs/{YYYY-MM-DD}-tabletop-shakedown-{run-slug}.md` in the workspace from the library's shared `templates/run-log.md` (repo root). No workspace? Attach the log to the driving Jira/Confluence artifact instead.
-- Record as you go: context gathered (every source read, with keys/links), every question asked and its answer **verbatim**, each revision requested at the approval gate, the approval decision (who, when, exactly what was approved), and every external write with its resulting key/link.
-- Close the log with improvement notes: friction, questions the skill should have asked, template gaps — raw material for `skill-author` audits.
+---
+*Library conventions (gates, run logs, template-first): `references/conventions.md`. Instance facts: `references/kdp-instance.md`.*

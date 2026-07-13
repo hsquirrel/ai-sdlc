@@ -1,52 +1,41 @@
 # Scrum Master Guide
 
-Eight skills in two families: **ceremony facilitators** that prep every scrum event and capture its outcomes, and **health monitors** that watch the sprint and backlog so you act on evidence, not vibes. Two principles run through all of them: the ceremony belongs to the team (skills prep and capture, never run the room), and monitors detect and draft — *you* escalate.
+Four skills around the sprint: a **planning facilitator** at both ends of planning, a **radar** watching the sprint's flow, a **close** skill that turns the finished sprint into honest artifacts, and a **hygiene auditor** keeping the backlog alive. Two principles run through all of them: the ceremony belongs to the team (skills prep and capture, never run the room), and monitors detect and draft — *you* decide and escalate.
 
 ## Around the sprint
 
 ```
-        ┌────────── daily-standup-digest (every morning) ──────────┐
-        │                                                          │
-refinement-facilitator ──► sprint-planning-facilitator ──► [SPRINT] ──► sprint-review-demo-facilitator ──► retro-facilitator
-        ▲                                                     │
-backlog-hygiene-auditor (weekly)              impediment-radar (2-3× per sprint) ──► sprint-report-generator
+sprint-planning-facilitator ──► [SPRINT] ──► sprint-close (report + retro pack + actions)
+   (prep, then record)              │
+                        sprint-radar: daily digest (every morning)
+                        sprint-radar: escalation mode (2–3× per sprint)
+
+backlog-hygiene-auditor: sweep on cadence · epic-closeout mode at the moment an epic closes
 ```
 
-| Skill | Cadence | You approve | It writes |
-|-------|---------|-------------|-----------|
-| [refinement-facilitator](../skills/refinement-facilitator.md) | Before + after each refinement | Agenda; capture summary | Agenda post; estimates + decision comments |
-| [sprint-planning-facilitator](../skills/sprint-planning-facilitator.md) | Before + at close of planning | Prep pack; commitment record | Planning pack; sprint population + summary |
-| [daily-standup-digest](../skills/daily-standup-digest.md) | Each morning | The digest (or keep it private) | Optional channel/Confluence post |
-| [impediment-radar](../skills/impediment-radar.md) | 2–3× per sprint | Every escalation, individually | Approved escalations; Flagged fields; radar log |
-| [sprint-review-demo-facilitator](../skills/sprint-review-demo-facilitator.md) | Last days of sprint | Narrative + demo script | Review pack in Confluence |
-| [sprint-report-generator](../skills/sprint-report-generator.md) | Sprint close / on demand | The report | Report in Confluence |
-| [retro-facilitator](../skills/retro-facilitator.md) | Before + after retro | Data pack; action list | Retro pack; action tasks in Jira |
-| [backlog-hygiene-auditor](../skills/backlog-hygiene-auditor.md) | Weekly / pre-refinement | Each cleanup action | Approved labels/closures; hygiene report |
+| Skill | Cadence | Gate tier | It writes |
+|-------|---------|-----------|-----------|
+| [sprint-planning-facilitator](../skills/sprint-planning-facilitator.md) | Before planning (prep) and at its close (record) | per-run | Planning pack; sprint populated + commitment summary in Confluence |
+| [sprint-radar](../skills/sprint-radar.md) — daily | Each morning before standup | **standing** (re-confirmed each sprint) | One-screen digest where the team reads it (or your private prep) |
+| [sprint-radar](../skills/sprint-radar.md) — escalation | 2–3× per sprint, or when you sense drag | **per-item** | Approved escalations, Flagged fields with evidence, snapshot to Confluence |
+| [sprint-close](../skills/sprint-close.md) | Sprint close (report mode also serves mid-sprint status asks) | per-run | Report + retro pack in Confluence; retro actions as Jira tasks |
+| [backlog-hygiene-auditor](../skills/backlog-hygiene-auditor.md) | On cadence; **closeout mode the moment an epic is being closed** | **per-item** | Approved labels/closures/merge links; hygiene report in Confluence |
+
+## What you decide at each gate
+
+- **Planning prep**: you review the capacity math (it shows its inputs so the room can correct it) and the draft goals. **Record mode is the keystone** — the commitment record it captures is the baseline every other sprint skill depends on; running it at the boundary ends baseline archaeology.
+- **Radar daily**: you approve format, destination, and thresholds once per sprint; digests then post automatically under the standing approval. The first hotfix swarm of a sprint, a never-seen finding type, or anything you marked sensitive re-triggers the per-run gate. Private-prep mode (no posting) is always valid.
+- **Radar escalation**: you review every draft escalation individually — you know which blockers are already being handled and which notes need a human touch. Nothing is sent, posted, or flagged without you.
+- **Sprint close**: you review the report (your narrative corrections go in *attributed as SM context*), the retro pack (anything better raised in person comes out), and the action list. The retro conversation itself is never recorded — only the actions the team chose to make public.
+- **Hygiene**: you and the PO decide item by item (bulk-approve per category is yours to grant). "Keep" decisions are recorded so the next audit doesn't re-nag. Closeout mode is a minutes-long go/no-go on one epic — run it *when* you're about to close it, not weeks later.
 
 ## The guardrails that protect your team
 
-- **Blameless by construction.** No metric is ever attached to a person's name. Digests describe work ("in progress 3 days, no linked PR"), never people. Retro data states *what* happened; the room owns *why*. If a skill's output wouldn't be safe to read aloud to the whole team, that's a bug.
-- **Estimates and commitments are the team's.** The refinement facilitator captures estimates, never suggests them. The planning facilitator shows velocity as an evidence range — never a quota — and records the team's commitment even when it disagrees with the math.
-- **Escalations pass through you.** The radar drafts evidence-based asks ("blocked 8 days on TR-y; goal slips Friday — prioritize or replan?"), but nothing is sent without your item-by-item approval, and some escalations you'll rightly take over entirely.
-- **Honest reporting builds trust.** Reports separate facts from assessments, show scope changes with dates, and state carryover plainly. The demo facilitator won't script anything unverified in the demo environment.
-- **Reversible cleanup.** The hygiene auditor proposes; you and the PO decide item by item. Archiving is close-with-label, never delete, and "keep" decisions are remembered so you aren't re-nagged.
-
-## First contact with a real team
-
-The first run against real data is the common case, and the skills are built for it (the T4 shakedown taught them):
-
-- **The team operating record** — on first run, the skills interview you once and write the answers to your working-agreement page: which board and sprint pattern is yours, which issue types your team exempts from points/AC (unwritten conventions become written ones), and which repos are yours. Everything after that reads the record instead of re-asking.
-- **Honest numbers or none** — when most completed items carry no points, you get *throughput* instead of a fabricated velocity range, labeled as such. When no planning commitment record exists, baselines are *reconstructed* by a defined recipe and declared as reconstructions — and the first time you run planning's record mode, the archaeology ends.
-- **Declared degradation** — no repo registry yet means the digest and radar open with "Jira-only run: PR/CI signals unavailable" instead of silently omitting sections.
-- **First-run posture** — no prior retro/audit/snapshot? The artifact says "this run establishes the baseline," never an empty comparison pretending history was clean.
+- **Blameless by construction.** No metric is ever attached to a person. Digests describe work ("in progress 3 days, no linked PR"), never people; the radar never infers *why* something stalled and never pings anyone. If output wouldn't be safe to read aloud to the whole team, that's a bug.
+- **Honest numbers or none.** Flow metrics (throughput, cycle time, carryover) lead; points appear only where the team's data supports them — below ~60% pointed coverage you get "not computable," never a fabricated velocity. Velocity is always a range, never a quota, never compared across teams. The team's commitment is final even when it disagrees with the math.
+- **Declared degradation.** No repo registry means the digest opens with "Jira-only run: PR/CI signals unavailable" instead of silently omitting sections. Reconstructed baselines say so, with their method.
+- **Reversible cleanup.** Archiving is close-with-label, never delete.
 
 ## A working rhythm
 
-- **Daily:** run the digest before standup; let standup be about its "worth discussing" list.
-- **Weekly:** hygiene audit before refinement; refinement facilitator prep the day before the session.
-- **Per sprint:** planning facilitator both ends of planning; radar mid-sprint and late-sprint; review pack + report + retro pack in the closing days. The three feed each other — the report's evidence becomes the retro's data pack.
-
-## Handoffs
-
-- The [PO pipeline](product-owner.md) produces the labeled, Ready backlog your prep reads; keep the PO honest about running the DoR critic.
-- Radar patterns (recurring blockers) land in the retro pack automatically — the accountability loop from retro action → next retro's first agenda item is what makes retros compound.
+Daily: digest before standup — let standup be about its "worth discussing" list. Mid-sprint and late-sprint: escalation mode. On cadence: hygiene sweep. Sprint boundary: close the loop (report → retro pack → action capture), then planning prep and record. The radar's pattern pile feeds the retro pack automatically — recurring blockers become retro evidence without you re-collecting them.

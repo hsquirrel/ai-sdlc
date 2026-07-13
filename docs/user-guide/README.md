@@ -1,88 +1,80 @@
 # AI-SDLC User Guide
 
-A library of 26 AI skills that supports an agile scrum team across the whole software development lifecycle — from a raw product idea to shipped, tested, communicated software. This page is the overview (Level 1). Each role has its own guide (Level 2), and each skill has a detailed page (Level 3).
+A library of AI skills that supports an agile scrum team from a raw product idea to a closed, honestly-reported sprint. **12 skills are active today** (11 role skills + 1 meta skill); 6 more are built but deferred until their real-world trigger occurs. This page is the overview (Level 1). Each role has a workflow guide (Level 2), and each active skill has its own page (Level 3).
 
 ## The one idea that matters
 
 **AI drafts, decomposes, critiques, and packages — humans decide.**
 
-Every skill in this library ends in a *human approval gate*: nothing is written to Jira, Confluence, or GitHub until the responsible person has reviewed and approved it. The skills make your work faster and more rigorous; they never take a decision away from you. If a skill ever seems to be writing something you didn't approve, that's a bug — report it.
+Every skill ends in a human approval gate: nothing is written to Jira, Confluence, or GitHub until the responsible person has reviewed and approved it. Gates come in three declared tiers (see `references/conventions.md`):
 
-## What the system does, end to end
+- **Per-item** — for edits to existing human-authored content and anything person-adjacent (escalations, record-notes on someone's work). You decide each item individually.
+- **Per-run** — the default, for new-artifact creation. You approve the run's complete output set before anything is written.
+- **Standing** — for recurring, read-only-analysis, template-pinned artifacts only (the daily digest). You approve format and destination once per sprint; runs then post automatically, and any unusual signal re-triggers the per-run gate.
 
-The skills form an assembly line along the value stream. Each stage produces an artifact the next stage consumes, with a human gate between every pair:
+Every run that writes externally keeps a live run log (`.ai-sdlc/runs/`), every artifact comes from a versioned template, and everything AI-created carries the `ai-sdlc-generated` label (`ai-sdlc-adopted` for adoption edits) — so "why did it write that?" is always answerable.
+
+## Where things stand today
+
+Honesty is a design value here, so, plainly:
+
+- **Claude Code is the only proven surface.** The skills follow the open Agent Skills standard and are written surface-neutral, so GitHub Copilot and Atlassian Rovo distribution is planned — but neither is set up or validated yet. Until then, run skills in Claude Code or pair with someone who has it.
+- **One live production run exists**: `pipeline-adopter` adopted an in-flight epic (KDP-40426) with item-by-item approved edits. Everything else has been validated by tabletop shakedowns — walking skills against real Jira/Confluence content, strictly read-only — not yet by live team use.
+- **Developer skills are all deferred** pending repository access and the first real delegation/incident. What each will do when activated is in the [Developer guide](roles/developer.md).
+
+## The PO pipeline
+
+The core assembly line: each stage produces an artifact the next consumes, with a gate between every pair. The product brief lives **in the epic's own fields** (Background / Description / Requirements) — not in a separate document.
 
 ```mermaid
 flowchart LR
-    subgraph PO["Product Owner"]
-      A[Idea] --> B[Product Brief]
-      B --> C[Initiative / Epics / Stories]
-      C --> D[Ready check]
-    end
-    subgraph Team["Team ceremonies"]
-      D --> E[Refinement & Planning]
-    end
-    subgraph Dev["Developer"]
-      E --> F[Implementation plan]
-      F --> G[Code: human or Copilot agent]
-      G --> H[PR hygiene & review]
-    end
-    subgraph Test["Tester"]
-      E --> I[Test plan & Playwright scaffolds]
-      I --> J[Exploratory sessions & bugs]
-    end
-    H --> K[Shipped]
-    J --> K
-    K --> L[Release notes]
-    K --> M[Sprint report & retro]
+    A[Idea] --> B[product-brief-builder]
+    B -->|approved brief| C[backlog-decomposer]
+    C -->|approved draft hierarchy| D[jira-confluence-writer]
+    D -->|real Jira issues| E[definition-of-ready-critic]
+    E -->|dor-ready stories| F[Team refinement & sprint]
+    F -->|story at completion| E2[DoR critic: acceptance mode]
+    G[Existing / in-flight work] --> H[pipeline-adopter] --> E
 ```
 
-In plain terms:
+## Active skills by role
 
-1. A PO turns an idea into an approved **product brief**, decomposes it into an **Initiative → Epic → Story** backlog, writes it into Jira, and gates it with a **Definition-of-Ready check**.
-2. The team refines and plans as usual — the Scrum Master skills prep every ceremony and capture its outcomes, so the humans spend the meeting deciding, not typing.
-3. A developer turns a Ready story into an **implementation plan**, either builds it or **delegates it to the GitHub Copilot coding agent** with a bounded packet, and every PR gets **hygiene and a critical review** before a human merges.
-4. A tester turns the same AC into a **test plan**, **Playwright scaffolds**, and **exploratory charters**; findings become well-formed **bug reports**.
-5. What ships becomes **release notes** for stakeholders and **sprint reports/retro evidence** for the team.
+**Product Owner** ([role guide](roles/product-owner.md))
+- [product-brief-builder](skills/product-brief-builder.md) — discovery interview → one rigorous brief in the epic's own fields
+- [backlog-decomposer](skills/backlog-decomposer.md) — approved brief → draft Initiative → Epics → Stories with AC, sliced vertically; owns the living decomposition registry
+- [jira-confluence-writer](skills/jira-confluence-writer.md) — approved decomposition → real Jira hierarchy; create-only, safe re-runs
+- [definition-of-ready-critic](skills/definition-of-ready-critic.md) — entry and exit critic: readiness verdicts before refinement, per-AC evidence tables at acceptance
+- [pipeline-adopter](skills/pipeline-adopter.md) — brings existing work into the pipeline; the one skill permitted to edit existing issues
 
-## The three levels of this documentation
+**Tester** ([role guide](roles/tester.md))
+- [test-plan-generator](skills/test-plan-generator.md) — AC-traced test cases with levels and automation flags; optional exploratory-charter section; AC gaps become PO findings
+- [bug-report-writer](skills/bug-report-writer.md) — minimal deterministic repro, expected-vs-actual cited to AC, severity with rationale, correct KDP bug type
 
-| Level | What | Where |
-|-------|------|-------|
-| 1 | This overview — the system as a whole | `docs/user-guide/README.md` |
-| 2 | Your role's skills as a workflow | [Product Owner](roles/product-owner.md) · [Developer](roles/developer.md) · [Tester](roles/tester.md) · [Scrum Master](roles/scrum-master.md) |
-| 3 | One page per skill — inputs, what you approve, what gets written | `docs/user-guide/skills/` (linked from every role guide) |
+**Scrum Master** ([role guide](roles/scrum-master.md))
+- [sprint-planning-facilitator](skills/sprint-planning-facilitator.md) — flow-first capacity math and draft goals; record mode captures the commitment baseline every other sprint skill depends on
+- [sprint-radar](skills/sprint-radar.md) — one signal engine, two views: daily digest (standing gate) and escalation triage with evidence-backed drafts (per-item gate)
+- [sprint-close](skills/sprint-close.md) — stakeholder report with flow metrics and the system scoreboard, blameless retro pack, action capture
+- [backlog-hygiene-auditor](skills/backlog-hygiene-auditor.md) — cadence decay sweep with item-by-item approved cleanup; epic-closeout mode is the blocking gate at epic closure
 
-## Key concepts
+**Meta**
+- [tabletop-shakedown](skills/tabletop-shakedown.md) — stress-tests the library itself against real content, strictly read-only
 
-- **Skill** — a versioned instruction module (a `SKILL.md` file) you invoke inside an AI surface to run one workflow. Single-purpose by design: one skill, one job, one approval.
-- **Human approval gate** — the step in every skill where work stops until you approve. You'll always see *exactly* what will be written and where, before it is.
-- **Systems of record** — outputs land in Jira and Confluence (and PRs in GitHub), not in a chat window. If it isn't in the system of record, it didn't happen.
-- **`dor-ready`** — the label a story earns by passing the Definition-of-Ready check. Developer skills expect it; treat it as the ticket's passport into a sprint.
-- **`ai-sdlc-generated`** — the label on every Jira issue a skill created, so AI-originated work is always auditable.
-- **Run log** — every skill run writes a markdown audit file (`.ai-sdlc/runs/…`), updated live as the skill works: what context it read, every question and your verbatim answer, what you approved, and every external write it made. If a run ever needs troubleshooting, the log *is* the story.
-- **Templates** — every artifact a skill produces comes from a versioned template, not freeform generation. That keeps output consistent as AI models change, and makes improvement concrete: don't fix the document, fix the template.
-- **House AC style** — acceptance criteria live in the story's Acceptance Criteria field as `AC#N: title` blocks with **Given/When/Then**. Skills read and write this style consistently.
+## Deferred skills
 
-## Where you run the skills
+Built, in the repo, and marked deferred in their own text. No individual guide pages until they activate — each has a named trigger, and un-deferring requires the trigger to have actually occurred:
 
-- **GitHub Copilot (VS Code / Visual Studio)** — the primary surface today. Everyone has access; with the Atlassian MCP server configured, Copilot can read and write Jira/Confluence. Ask your team lead for the setup guide.
-- **Claude Code** — works identically for those who have it.
-- **Atlassian Rovo** — planned: PO/SM skills will be exposed as Rovo agents inside Jira/Confluence so no IDE is needed. Until then, POs can pair with anyone who has an IDE surface set up.
-
-Skills are plain markdown following the open Agent Skills standard, so the same skill file works on all three surfaces.
-
-## Trust, safety, and audit
-
-- Nothing external is written before your approval — and you can stop any skill mid-run. (Why so strict? Our own Confluence already hosts a cautionary tale: an ungated bot's abandoned "test"/"trash" pages, still published months later. Gates are what stand between useful AI artifacts and that.)
-- Skills never invent facts: unknowns become tracked open questions, unverifiable claims are labeled as unverified, and vague AC get challenged, not papered over.
-- Everything AI-created is labeled, linked, and traceable to its source (brief → issue → PR → release note).
-- Every run leaves a run log (see key concepts above) — so "why did it write that?" is always answerable, and the logs' improvement notes drive skill and template upgrades.
-- Skills are versioned in this git repository; changes to how they behave are reviewed like code. `docs/skill-catalog.md` is the authoritative index.
+| Skill | Activates when |
+|-------|----------------|
+| release-notes-generator (release runner: readiness go/no-go + notes) | The first real release routed through the pipeline |
+| code-review-critic (single PR skill: hygiene pass + review pass) | Read access to a real `ap-*` repository |
+| copilot-handoff-packager | The org's first real Copilot coding-agent delegation |
+| tech-design-drafter (its template is usable standalone today) | A named request for a design doc |
+| incident-hotfix-runner (owns the whole hotfix express path) | The first real production incident routed through the express lane |
+| ac-playwright-scaffolder (generalizes to xUnit/Jest/Playwright at activation) | Test-repo access |
 
 ## Getting started
 
-1. Read your role's guide (Level 2, links above) — ten minutes.
-2. Pick the entry-point skill for your role: PO → `product-brief-builder`, Developer → `implementation-planner`, Tester → `test-plan-generator`, SM → `daily-standup-digest`.
-3. Run it on something real but small. The skills ask for what they need; you approve what they produce.
-4. Something wrong or missing? The library has a librarian: the `skill-author` meta skill scaffolds, audits, and catalogs skills — see [its page](skills/skill-author.md) or file an issue in this repo.
+1. Read your role's guide — ten minutes: [Product Owner](roles/product-owner.md) · [Developer](roles/developer.md) · [Tester](roles/tester.md) · [Scrum Master](roles/scrum-master.md).
+2. Pick your entry point: PO → `product-brief-builder` (new work) or `pipeline-adopter` (existing work); Tester → `test-plan-generator`; SM → `sprint-planning-facilitator`.
+3. Run it in Claude Code on something real but small. The skill asks for what it needs; you approve what it produces.
+4. Something wrong or missing? File an issue in this repo. `docs/skill-catalog.md` is the authoritative index; new skills, modes, and rules require a named requester after a live run — the library grows on demand signals, not speculation.

@@ -1,35 +1,35 @@
 # tabletop-shakedown (Meta)
 
-Stress-tests the library itself: walks a scenario's real Jira/Confluence content through the pipeline *on paper* — strictly read-only — to find where skill assumptions break before real runs do. The five shakedowns of July 2026 (T1–T5) drove ~30 skill changes and two new skills; this skill is how that keeps happening.
+A test pilot for the skills library itself. A tabletop takes a real scenario — an in-flight epic, an incident, a completed effort to replay — and walks each relevant skill against its actual Jira/Confluence content, asking: what would it ask, produce, gate, and write here — and where do its assumptions break? **Strictly read-only against external systems.** The scenario's content is the diagnostic instrument, never the patient.
 
-## When to use
+## When to run it
 
-- Validating the system against a work shape it hasn't handled (a new team, an unusual flow, a completed effort worth replaying)
-- Before trusting a skill family on new terrain — the SM sweep before the first live ceremony run, for example
+- Validating the system against a new work shape before trusting it there
+- Note the sunset plan: after scenario T14 and the team's dry runs, live use becomes the validation — new tabletops need the same demand signal as everything else
 
-**Not for:** fixing the content it examines (findings route to owners) or replacing real gated runs.
+## What it asks of you
 
-## Before you start
+- A scenario from `docs/shakedowns/scenario-backlog.md` (new scenarios join the backlog first, with the hypothesis stated in charter form: *explore {work shape} with {real content} to discover {which assumptions break}*)
+- Your decisions at the gate: which system proposals become skill changes, and whether content findings get routed to the content's owners
 
-- A scenario from [the backlog](../../shakedowns/scenario-backlog.md) — or a new one, added there first with its hypothesis in charter form: *explore {work shape} with {real content} to discover {which assumptions break}*
+## What happens at the gate
 
-## What happens
+You (the librarian) review the report before anything moves. The two finding classes stay strictly separate: **content findings** — real defects in the scenario's Jira/Confluence, each attributed to the skill that surfaced it, with severity and a note of what the content gets *right* — and **system findings** — proposals to change skills/templates/conventions, each naming the exact rule or assumption that misfired.
 
-1. It gathers the scenario's real content read-only — Jira items with full context, Confluence pages both linked and *unlinked-but-related* (orphaned docs are themselves findings).
-2. It walks each in-scope skill against the content **by its written SKILL.md text, not from memory** — what would it ask, produce, gate, write, and where does it break?
-3. Replay scenarios compare pipeline-would-have against what history records — including honest "the pipeline would have watched this happen" rows.
-4. The report keeps two finding classes strictly separate: **content findings** (defects in the scenario's Jira/Confluence, skill-attributed, with credit for what's right) and **system findings** (numbered proposals to change the library, each citing the rule that misfired).
-5. **You review the report** and approve/decline each system proposal; approved ones become skill changes via `skill-author`, and the backlog row tracks the disposition to *actioned*.
+## What it writes and where
 
-## What gets written
+Nothing external, ever — no Jira writes, no comments, no labels; a tabletop that touched the patient is invalid. On approval it saves the report to `docs/shakedowns/{date}-{slug}.md` in this repo, updates the scenario backlog, and applies approved system proposals as skill/template changes (each addition naming what it displaces).
 
-Nothing external, ever — a tabletop that touched the patient is invalid. Locally: the report in `docs/shakedowns/` and the run log.
+## What it will never do
+
+- Write to any external system
+- Walk skills from memory — each is exercised by its written SKILL.md text; the gap between the two is often the finding
+- Hide coverage gaps — skills that couldn't be exercised are listed as not-exercised, never silently skipped
+- Accept "the pipeline struggled" as a finding — every system finding cites the specific rule that misfired
 
 ## Good to know
 
-- Skills that can't be exercised (no repo access, no live ceremony) are listed as *not exercised*, never silently skipped.
+- Replay scenarios grade the homework against reality: what the pipeline *would have produced* vs. what history shows happened, naming which real failures it would (and would not) have prevented.
 - A tabletop that merely confirms the pipeline works was aimed at the wrong scenario.
-
-## Related
-
-- [skill-author](skill-author.md) — consumes the approved proposals · `docs/shakedowns/scenario-backlog.md` — the charter list and cross-session tracker
+- One scenario per tabletop; a scenario hiding two hypotheses becomes two backlog rows.
+- Shakedown gap lists feed [pipeline-adopter](pipeline-adopter.md) when you want the findings fixed for real.

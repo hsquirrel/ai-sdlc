@@ -1,35 +1,38 @@
 # Tester Guide
 
-Four skills covering the two halves of good testing: verifying what the story promised (test plans, Playwright automation) and hunting what nobody promised to check (exploratory charters), with findings landing as bug reports a developer can act on immediately.
+Two active skills covering both halves of good testing: verifying what the story promised (test plans, with exploratory charters for what scripts can't see) and turning what you find into bug reports a developer can act on without a follow-up conversation.
 
 ## Your flow
 
 ```
-dor-ready story ──► test-plan-generator ──► ac-playwright-scaffolder ──► automated suite in CI
-                            │
-                            └──► exploratory-charter-generator ──► sessions ──► bug-report-writer ──► triage
+story (ideally dor-ready) ──► test-plan-generator ──► you execute / explore ──► bug-report-writer ──► triage
+                                      │
+                                      └──► "Findings for the PO" ──► definition-of-ready-critic
 ```
 
-| Skill | Use when | You approve | It writes |
-|-------|----------|-------------|-----------|
-| [test-plan-generator](../skills/test-plan-generator.md) | A story enters the sprint (or you want to stress-test its AC) | The plan + PO findings | Plan to the story or Confluence |
-| [ac-playwright-scaffolder](../skills/ac-playwright-scaffolder.md) | The plan marked automation candidates | The scaffolds + run results | A PR in the test repo |
-| [exploratory-charter-generator](../skills/exploratory-charter-generator.md) | A feature is testable and you want structured exploration | The charter set | Charters to Confluence/the Epic |
-| [bug-report-writer](../skills/bug-report-writer.md) | You found a defect | The draft ticket (+ duplicate check) | A Jira bug of the correct type |
+| Skill | Use when | Gate tier | It writes |
+|-------|----------|-----------|-----------|
+| [test-plan-generator](../skills/test-plan-generator.md) | A story enters the sprint, or before refinement to stress-test its AC | per-run | The plan to the story, Confluence, or KDP Test Case issues — your choice |
+| [bug-report-writer](../skills/bug-report-writer.md) | You found a defect | per-run | A Jira bug of the correct KDP type, evidence attached |
+
+A third skill, **ac-playwright-scaffolder**, is deferred until test-repo access exists. When it activates it will turn the plan's automation candidates into honest test skeletons at their assigned level — xUnit (C#/.NET), Jest (Node/TS), or Playwright (UI) — mirroring Given/When/Then, with `fixme`/`TODO` markers where the AC don't say enough. Until then, automation candidates in your plans are flags for you, not inputs to a generator.
+
+## What you decide at each gate
+
+- **Test plan**: you approve the case set, the levels and priorities, where the plan lands, and — when persisting cases as Jira issues — the **maintenance stance** (reusable regression suite vs. one-shot campaign; an undeclared stance historically defaults to abandonment). You also decide whether the plan's charter section is warranted for this story's risk picture.
+- **Bug report**: you approve the draft before anything is created, including the call the skill can't make: file it, link it to the duplicate it found instead, or route it to the PO as a behavior question because the implementation actually matches the AC.
 
 ## The stances built into these skills
 
-- **Derive, never invent.** Every test case cites the AC or NFR line it verifies. When the AC don't say what should happen, that's a *finding for the PO* — arguably the most valuable thing test design produces — not a gap to quietly fill with your best guess.
-- **Honest scaffolds.** Generated Playwright tests mirror Given/When/Then one-to-one, follow the test repo's own conventions, and anything not truly assertable becomes `test.fixme()` with a `TODO(reason)`. The suite can't false-pass on day one, and run results are reported, not presumed.
-- **Charters hunt where scripts are blind.** Cross-feature interactions, interrupted workflows, degraded conditions, boundary abuse — each charter is a risk hypothesis (*explore X with Y to discover Z*), timeboxed 45–90 minutes. The sessions themselves are yours; the skill just aims them.
-- **Bugs that don't bounce.** Minimal deterministic repro, expected-vs-actual *cited to a source* (AC, design doc — or explicitly marked as your assumption), severity with a rationale, evidence attached, duplicates checked before filing.
+- **Derive, never invent.** Every test case cites the AC or NFR line it verifies. When the AC don't say what should happen, that becomes a *finding for the PO* — often the most valuable thing test design produces — never a gap quietly filled with a best guess. Blocking findings send the story back through the [DoR critic](../skills/definition-of-ready-critic.md).
+- **Charters hunt where scripts are blind.** Cross-feature interaction, interrupted workflows, degraded conditions, boundary abuse — each charter is a risk hypothesis (*explore X with Y to discover Z*), timeboxed 45–90 minutes, prioritized by likelihood × blast radius. The sessions themselves are yours; the skill aims them.
+- **Bugs that don't bounce.** Minimal deterministic repro, expected-vs-actual cited to a source (or explicitly marked as your assumption), severity with a rationale, duplicates checked — including recently *closed* bugs in the area, because a high non-fix closure rate means evidence standards here need to be higher.
 
-## Which bug type? (KDP specifics)
+## What these skills will never do
 
-The bug writer knows the schema, but it helps to know the rule: a **Story Bug** (sub-task of the story) says "this in-flight story doesn't meet its AC yet." A standalone **Bug** is a defect in existing functionality. And if the implementation *matches* the AC but the behavior still seems wrong — that's a behavior question for the PO, and the skill will route it there instead of filing against the developer.
+Mark an AC "covered" by a case that only exercises part of it; pad plans with combinatorial noise; inflate severity to get attention; file a defect against a developer when the story behaved exactly as its AC specify.
 
 ## Handoffs
 
-- You consume the same `dor-ready` stories and house-style AC the developers do — one source of truth, two verifications.
-- Your PO findings feed back through the [DoR critic](../skills/definition-of-ready-critic.md); your charters' defects go to triage and then the [Developer flow](developer.md).
-- Escaped-bug counts and testing bottlenecks surface in the SM's [sprint reports](../skills/sprint-report-generator.md) and retros — honest bug data makes those work.
+- You consume the same AC the developers build against — one source of truth, two verifications.
+- Your PO findings feed refinement through the DoR critic; your bug data feeds the SM's [sprint-close](../skills/sprint-close.md) scoreboard (bug non-fix closure rate is one of its four standing numbers — honest reports keep it meaningful).

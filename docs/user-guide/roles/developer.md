@@ -1,41 +1,26 @@
 # Developer Guide
 
-Five skills that run from "I picked up a story" to "this PR is ready to merge" — including safe delegation to the GitHub Copilot coding agent. You approve every artifact; you own every merge.
+Plainly: **every developer skill is currently deferred.** They are built, in the repo, and tabletop-tested — but none has been run against a real repository, a real delegation, or a real incident, and each waits for exactly that trigger. This page tells you what's coming so you recognize the moment the trigger occurs; there are no individual skill pages until then.
 
-## Your flow
+## Why deferred?
 
-```
-dor-ready story ──► implementation-planner ──┬──► you implement ──────────────┐
-                                             └──► copilot-handoff-packager ───┤ (Copilot agent implements)
-                                                                              ▼
-                                    tech-design-drafter (when the work        pr-hygiene ──► code-review-critic ──► human merge
-                                    is bigger than one story)
-```
+The library's growth rule is demand signals, not speculation: a skill activates when its named trigger actually happens, not before. The developer skills all depend on access or events that haven't occurred yet — pretending otherwise would mean documentation for workflows nobody can run.
 
-| Skill | Use when | You approve | It writes |
-|-------|----------|-------------|-----------|
-| [implementation-planner](../skills/implementation-planner.md) | You pick up a story and want a reviewed plan first | The plan | Plan to repo docs or a Jira comment |
-| [copilot-handoff-packager](../skills/copilot-handoff-packager.md) | A story is a good fit for the Copilot coding agent | The packet + fit assessment | The Copilot assignment + a Jira handoff comment |
-| [code-review-critic](../skills/code-review-critic.md) | A PR needs review (especially Copilot-authored ones) | Every comment + the verdict is yours | The review, posted on your behalf |
-| [tech-design-drafter](../skills/tech-design-drafter.md) | An Epic/Spike needs a written design before stories make sense | The design doc | A Confluence ADR/design page |
-| [pr-hygiene](../skills/pr-hygiene.md) | A PR is about to go to review | Title + description | PR metadata only — never code |
-| [incident-hotfix-runner](../skills/incident-hotfix-runner.md) | Production is broken; the fix ships outside the release train | The hotfix packet, in one express pass | A traced Bug + fixVersion + incident/story links |
+## What activates, and when
 
-## The delegation contract
+| Skill | Trigger | What it will do for you |
+|-------|---------|-------------------------|
+| **code-review-critic** | Read access to a real `ap-*` repository | The single PR skill, two passes: a cheap hygiene pass (honest description, story linkage, convention-compliant title, scope honesty) and a rigorous review of the diff against the linked story's AC and the team checklist. It drafts anchored comments classified blocking/should-fix/nit; **you own every comment and the verdict** — it never approves or blocks a PR by itself, and never touches code. Per-item gate. |
+| **copilot-handoff-packager** | The org's first real Copilot coding-agent delegation | Packages a Ready story into a bounded implementation packet — AC verbatim, patterns to follow with real example files, explicit do-not-touch boundaries — and runs the **invention test**: every decision the agent would face must be answered by the packet. It will also tell you honestly when work is a poor delegation fit (migrations, auth logic, ambiguous UX). Per-run gate; you own the resulting PR's review and merge. |
+| **incident-hotfix-runner** | The first real production incident routed through the express lane | The incident scribe: while responders fix production, it creates the traced hotfix ticket the way the team actually ships (Bug + fixVersion + `hotfix` label), applies the express readiness contract (H1–H4), links incident ↔ fix ↔ regressed story, and drafts the release note at ship time. Express means compressed gates — the incident lead approves in minutes — never zero gates. |
+| **tech-design-drafter** | A named request for a design doc | Drafts a design doc/ADR built to be challenged: at least two genuinely considered options, honest consequences including the negative ones, failure modes, under ~3 pages. Its template (`skills/developer/tech-design-drafter/templates/design-doc.md`) is usable standalone today. Per-run gate. |
 
-Delegating to the Copilot coding agent is safe when — and only when — the packet passes the **invention test**: the agent can implement and test the work without inventing a single requirement. The packager enforces this, and it will also tell you honestly when work is a *poor* fit for delegation (migrations with production risk, auth logic, ambiguous UX). Respect that assessment — "Copilot assisting you" and "Copilot working alone" are different tools.
+## What you can use today
 
-Your side of the contract: every delegated PR gets a real human review (the critic drafts it; you own it), and you own the merge.
+- The PO pipeline already affects you: stories arriving in refinement carry `dor-ready`/`dor-needs-work` labels and AC in the house style. The DoR contract — "could you translate this story into tests without inventing requirements?" — is your protection too; bounce stories that fail it.
+- The design-doc template is real and usable now, even though the drafter skill is dormant.
+- If you get read access to a repo, hit the first delegation, or catch the first incident: say so. That's the trigger, and it's a named person's request that activates the skill.
 
-## What the skills will and won't do
+## What these skills will never do
 
-- **Planner** reads the actual codebase — it names real files and follows your repo's conventions, and if the story can't be built as written it routes the conflict back to the PO instead of planning around it. It writes no production code.
-- **Review critic** checks AC coverage first, then correctness/tests/security/data via the [team checklist](../../../skills/developer/code-review-critic/references/review-checklist.md). Every blocking comment must state a failure scenario. It never approves or blocks on its own.
-- **PR hygiene** verifies description claims against the diff — an AC it can't verify gets marked "not verified," never asserted. It fixes metadata, not code.
-- **Design drafter** demands two real options and honest costs. A design doc without negative consequences is a sales doc, and it won't write one.
-
-## Handoffs
-
-- You receive `dor-ready` stories from the [PO pipeline](product-owner.md) via team refinement.
-- Your AC-covered, hygiene-checked PRs are what the [Tester](tester.md) skills' plans and scaffolds assert against.
-- Persistent blockers you hit belong in the SM's [impediment radar](../skills/impediment-radar.md) — flag them in Jira so the radar sees them.
+Write production code, merge a PR, approve or block a review on their own, or ship anything without a human gate. The developer skills draft and package; you build, review, and merge.

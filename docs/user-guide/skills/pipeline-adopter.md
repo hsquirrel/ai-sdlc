@@ -1,37 +1,33 @@
 # pipeline-adopter (Product Owner)
 
-Brings existing work into the pipeline without restarting it: reconstructs the brief from your epic's own fields, assesses readiness the fair way (closed items are history, not homework), and produces a tiered reconciliation plan you approve item by item.
+Brings existing work into the pipeline without asking anyone to start over. Adoption is reconciliation, not judgment: the work is real, partially done, and owned by people who made reasonable choices without the pipeline — the plan meets it where it is. This is the **one skill permitted to edit existing issues**, which is exactly why its discipline is the strictest. It carried the library's first live production run (KDP-40426).
 
-## When to use
+## When to run it
 
-- An epic or initiative predates the pipeline (or bypassed it) and you want its protections — traceability, readiness gates, honest signals — from here forward
-- A tabletop shakedown produced a gap list for in-flight work and you want it fixed for real
+- An epic or initiative predates the pipeline (or bypassed it) and you want its protections — traceability, readiness gates, the living registry — from here forward
+- A [tabletop-shakedown](tabletop-shakedown.md) produced a gap list for in-flight work and you want it fixed for real
 
-**Not for:** greenfield work (use the normal pipeline) or auditing without intent to fix (that's a tabletop).
+Not for greenfield work (use the normal pipeline) or auditing without intent to fix (that's a tabletop).
 
-## Before you start
+## What it asks of you
 
-- The epic/initiative key, and you (or the work's owner) available at the gate
-- If a shakedown report exists for this work, it becomes the pre-verified gap list
+- The epic/initiative key, and the owner — the human who approves, usually you
+- Item-by-item decisions at the gate, and your wordsmithing on content items — it drafts, you edit
 
-## What happens
+## What happens at the gate (per-item)
 
-1. It gathers everything read-only — including a Confluence sweep for *unlinked* related docs, which in-flight work always has.
-2. It reconstructs the brief from the house fields (Background/Description/Requirements) and diffs against the brief template — the diff is your gap list, not a lecture.
-3. Readiness runs in **adoption mode**: fix-before-further-work vs. note-for-the-record. Nothing blocks a done item; in-test items with no AC get flagged loudly.
-4. You get a **reconciliation plan in three tiers** — metadata (mechanical: parents, labels, flags, typed links, doc links), content (it drafts, you wordsmith: success measures, epic AC), campaigns (batched AC backfill, each batch gated) — every item showing the exact write.
-5. **You approve item by item** (bulk per tier if you like); declined items are recorded as declined.
-6. It applies exactly what you approved, labels touched items `ai-sdlc-adopted`, and seeds the initiative's living registry from current reality.
+You decide item by item from a **verbatim proposed-writes review document** (tier-level bulk approval is yours to grant). The plan comes in three tiers: **metadata** (mechanical, low-risk: parenting, labels, Flagged fields with evidence, typed links, doc links), **content** (you wordsmith: success measures, epic AC, open-questions table), **campaigns** (batched work like AC backfill across N children, each batch separately gated). Nothing is written before approval; declined items are recorded as declined.
 
-## What gets written
+## What it writes and where
 
-Only approved plan items — to Jira and Confluence — plus the seeded registry. This is the one skill allowed to *edit* existing issues, and that permission exists only inside the approved plan.
+Only approved plan items, exactly as approved, to Jira/Confluence — every touched item labeled `ai-sdlc-adopted`. It also seeds the initiative's **living registry** from current reality (created-keys map, moved-scope ledger, mid-flight additions section) and hands ongoing care to the [DoR critic](definition-of-ready-critic.md) and [hygiene auditor](backlog-hygiene-auditor.md).
+
+## What it will never do
+
+- Overwrite human prose silently — replacements show before/after in the plan; additive (comments, links, labels, empty-field fills) is always preferred
+- Retroactively edit closed items — they get record-notes for the audit trail; closed items without AC are history, not homework
+- Manufacture work — if gathering shows the work is healthier than reported, it says so and shrinks the plan
 
 ## Good to know
 
-- Additive over destructive: it prefers comments, links, labels, and empty-field fills; any replacement shows before/after at the gate.
-- If the work turns out healthier than reported, the plan shrinks — adoption adds protection, not process.
-
-## Related
-
-- Upstream: [tabletop-shakedown](tabletop-shakedown.md) (gap lists) · Downstream: [definition-of-ready-critic](definition-of-ready-critic.md), [backlog-hygiene-auditor](backlog-hygiene-auditor.md) for ongoing care
+Its readiness assessment runs in adoption mode: findings split honestly into *fix before further work* vs. *note for the record*, and status-ahead-of-readiness (in test with no AC) is flagged explicitly. The brief is reconstructed from the epic's own fields and diffed against the template — the diff is your gap list, not a lecture.

@@ -1,42 +1,34 @@
 # sprint-planning-facilitator (Scrum Master)
 
-Prepares the math and the narrative for sprint planning — velocity as evidence, capacity as arithmetic — then records what the team actually committed to. The team decides; this makes sure they decide looking at honest numbers.
+Prepares sprint planning with honest math — flow-first capacity evidence and draft sprint goals — and, after the team decides, records the commitment where work actually happens. **Record mode is the keystone**: the commitment record is the baseline [sprint-radar](sprint-radar.md) and [sprint-close](sprint-close.md) depend on; running it at every boundary is what ends baseline archaeology.
 
-## When to use
+## When to run it
 
-- **Prep:** a day before sprint planning
-- **Record:** at the close of planning, while decisions are fresh
+- **Prep**: before sprint planning
+- **Record**: at planning's close, once the team has committed
 
-## Before you start
+## What it asks of you
 
-- Prep: refined `dor-ready` stories at the top of the backlog; the capacity facts (who's out, on-call, ceremonies)
-- Record: the team's decisions — goal, scope, swaps, accepted risks
+- Prep: this sprint's capacity picture (who's out, ceremonies, support duty) and the last 3–6 sprints' history; it needs refined, estimated, `dor-ready` stories at the top of the backlog to work from
+- First run: a one-time interview to create the **team operating record** on your working-agreement page — board, sprint pattern, type exemptions, repos — so later runs read instead of re-ask
+- Record: the team's actual decisions — the goal as decided, committed stories, swaps/splits/risks accepted
 
-## What happens
+## What happens at the gate (per-run, both modes)
 
-**Prep:**
+Prep: you review the planning pack — goal drafts, capacity math with its inputs shown so the room can correct it, candidate scope in rank order against the flow range — before it's posted for the team. Record: you confirm the capture before anything moves.
 
-1. It computes the evidence: velocity range from recent sprints (min/median/max, anomalies excluded with your sign-off), capacity adjustments with the math shown, and the resulting realistic point range — always a range, never "you should take N."
-2. It drafts 1–2 candidate sprint goals as stakeholder-recognizable outcomes. If the top of the backlog doesn't cohere into any goal, it says so — that's a PO conversation *before* planning.
-3. The candidate scope lists stories in rank order with a running total against the range, dependency/risk notes, and carryover labeled as carryover.
-4. **You approve the pack**, then it's posted for the team.
+## What it writes and where
 
-**Record:**
+- Prep: the approved planning pack, posted ahead of the session
+- Record: committed stories moved into the sprint, the sprint goal set on the board, and a commitment summary (goal, scope, capacity math) posted to the team's Confluence space; explicitly deferred stories get a comment saying so
 
-5. It captures the goal as decided, committed stories, and planning decisions. **You confirm.**
-6. It moves committed stories into the sprint, sets the goal on the board, posts the commitment summary to Confluence, and comments deferrals on the deferred stories.
+## What it will never do
 
-## What gets written
-
-Planning pack (prep); sprint population + goal + commitment summary (record).
+- Tell the team what to commit to — ranges, never a single "you should take N," and never cross-team comparisons
+- Override the room — the team's commitment is final even when it disagrees with the math; the delta is recorded without editorializing
+- Fabricate velocity — below ~60% pointed coverage the range reads "not computable — {n}% unpointed" and item throughput is the planning evidence
 
 ## Good to know
 
-- The team's commitment is final even when it disagrees with the math — the delta is recorded without editorializing.
-- Data honesty: when most completed items are unpointed, you get throughput by type labeled "points-velocity not computable" — never a fabricated range. Types your team exempts from points (per the team operating record) aren't flagged as gaps.
-- Unestimated or non-ready stories can appear in the candidate list only visibly flagged as such.
-- The commitment record is what makes the [sprint report](sprint-report-generator.md)'s "committed vs. delivered" trustworthy — skipping record mode costs you later.
-
-## Related
-
-- Previous: [refinement-facilitator](refinement-facilitator.md) · The sprint it opens is watched by [daily-standup-digest](daily-standup-digest.md) and [impediment-radar](impediment-radar.md)
+- A top-of-backlog that doesn't add up to a coherent goal is flagged as a PO conversation *before* planning, not during.
+- Unestimated or non-ready stories enter the candidate list only flagged as such — except types your operating record exempts, which are flagged only when they violate the recorded convention.

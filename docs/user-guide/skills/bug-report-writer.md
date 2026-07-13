@@ -1,34 +1,34 @@
 # bug-report-writer (Tester)
 
-Turns "it broke" into a Jira bug a developer can act on without a follow-up conversation: minimal repro, expected-vs-actual with a cited source, severity with a rationale, correct KDP bug type — and a duplicate check before anything is filed.
+Turns "it broke" into a ticket a developer can act on without a follow-up conversation: minimal deterministic repro, expected-vs-actual anchored to a cited source, environment and evidence, severity with a rationale, and the correct KDP bug type.
 
-## When to use
+## When to run it
 
-- Manual testing, an exploratory session, or UAT found a defect
+- Testing or an exploratory session found a defect and it needs to become an actionable ticket
 
-## Before you start
+## What it asks of you
 
-- What you've got: your description, screenshots, console/network output, session notes
-- Roughly: what you did, what happened, what you expected, whether it reproduces
+- The raw material: your description, screenshots, console/network output, session notes
+- A short interview if the material is thin: what did you do, what happened, what did you expect, can you make it happen again?
+- Your decision on duplicates it finds — link or comment on the existing bug instead of filing, when that's better
 
-## What happens
+## What happens at the gate (per-run)
 
-1. It interviews you briefly if the material is thin, then distills the repro to the **minimum** steps that trigger the defect — ritual that doesn't matter gets cut. Intermittent? It records the observed rate instead of pretending certainty.
-2. It anchors "expected": citing the AC, design doc, or release note that says what should happen. No source? Your expectation is recorded *as an assumption* — and if the implementation actually matches its AC, it routes a **behavior question to the PO** instead of filing a defect against the developer.
-3. It picks the correct type per the [KDP bug-type guide](../../../skills/tester/bug-report-writer/references/kdp-bug-types.md): **Story Bug** (sub-task, QA found it in an in-flight story), **Bug** (existing functionality — also the hotfix vehicle, as Bug + hotfix fixVersion; the legacy Hotfix types are dead in practice), or the UAT types during UAT. For production incidents, [incident-hotfix-runner](incident-hotfix-runner.md) builds the fully traced ticket.
-4. Severity gets a one-line rationale (user impact × workaround); Priority stays with triage.
-5. It searches for likely duplicates and shows you candidates — linking an existing bug may beat filing. It also checks the area's recent *closed* bugs: where reports historically bounce (high Not-An-Issue / Cannot-Reproduce rates), it tightens the evidence bar and leans harder on the PO behavior-question route.
-6. **You approve the draft**, then it creates the issue (correct parent linkage, `ai-sdlc-generated` label, evidence attached) and reports the key.
+It presents the draft ticket and any duplicate candidates; you revise until you approve. Nothing is created in Jira before that.
 
-## What gets written
+## What it writes and where
 
-One Jira bug (or a comment on an existing duplicate, if you choose that path).
+One Jira bug of the correct type — **Story Bug** (sub-task of the in-flight story when QA finds it during story testing), standalone **Bug** (defect in existing functionality), or the UAT bug types during UAT — with parent linkage, the related story linked, evidence attached, and the `ai-sdlc-generated` label.
+
+## What it will never do
+
+- Pretend certainty about an intermittent repro — it states the observed rate instead
+- Inflate severity to get attention — the severity rationale (user impact × workaround availability) is what triage trusts; Priority is left to triage
+- Bundle findings — one defect per ticket; a session that found three things files three tickets
+- File a defect when the story behaves exactly as its AC specify — that routes to the PO as a behavior question instead
 
 ## Good to know
 
-- One defect per ticket — a session that found three things files three tickets.
-- Facts and interpretation stay separated in the ticket; triage trusts the rationale line precisely because it's never inflated.
-
-## Related
-
-- Upstream: [exploratory-charter-generator](exploratory-charter-generator.md) sessions, test plan execution, UAT
+- Expected behavior gets a citation — an AC, design doc, or stated convention. When it's only your reasonable assumption, the ticket says so.
+- The duplicate check extends to recently *closed* bugs in the area: a high non-fix closure rate (Not An Issue / Cannot Reproduce / Duplicate / Declined) means reports there historically bounce, so it tightens the evidence and leans harder on the behavior-question route before filing.
+- Facts and interpretation stay separated: what happened (evidence) vs. what it means (assessment).

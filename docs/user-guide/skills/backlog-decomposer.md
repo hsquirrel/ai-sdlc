@@ -1,40 +1,34 @@
 # backlog-decomposer (Product Owner)
 
-Turns an approved product brief into a draft **Initiative → Epics → Stories** hierarchy with acceptance criteria — a document you approve, not tickets in Jira (that's the next stage's job).
+Turns an approved product brief into a draft backlog: one Initiative named for the outcome, Epics as vertical slices of user value, and sprint-sized Stories with acceptance criteria — Gherkin for user-visible behavior, structured requirement blocks for NFRs. **Drafts only**: nothing is written to Jira by this skill. Its output document becomes the initiative's **living decomposition registry** — authoritative even after the write, where mid-flight epics and scope moves are recorded.
 
-## When to use
+## When to run it
 
-- A brief is approved and it's time to shape the backlog
-- You need to decompose an idea that has **no brief yet** — it handles this gracefully rather than blocking you
+- A brief has been approved and it's time to shape the backlog
+- You need to decompose something with no brief yet — it degrades gracefully rather than refusing (see below)
 
-**Not for:** creating Jira issues (it will decline and point to [jira-confluence-writer](jira-confluence-writer.md)) or task-level breakdown (that's the team's, in refinement).
+## What it asks of you
 
-## Before you start
+- The approved brief (epic fields or document). No brief? It offers the choice: pause for [product-brief-builder](product-brief-builder.md) (recommended for anything large or fuzzy), or a five-question brief-lite intake — with everything produced that way visibly flagged `⚠ Derived without approved brief`.
+- Keep-or-cut decisions on anything that doesn't trace back to a brief item — it flags possible scope creep; you rule on it.
 
-- Ideally: the approved brief's Confluence link
-- Without a brief: 10 minutes for the five-question "brief-lite" intake (problem, users, top outcome + metric, scope in/out, constraints)
+## What happens at the gate (per-run)
 
-## What happens
+It presents the full draft hierarchy — Initiative, Epics with their drafted brief-field content, Stories with AC — and revises until you explicitly approve. Nothing is persisted externally before that.
 
-1. It reads the brief and confirms it's approved (no blocking open questions).
-2. **No approved brief?** You choose: pause and run [product-brief-builder](product-brief-builder.md) (recommended for anything big or fuzzy), or continue with brief-lite — in which case every draft carries a visible `⚠ Derived without approved brief` flag until you backfill.
-3. It decomposes: one Initiative named for the outcome; Epics as independently deliverable slices (each naming the brief item it serves); children typed to fit the work — `Story` ("As a / I want / so that", Gherkin AC) for user-visible product work, `Tech Managed - Deployable`/`Non Deployable` (objective + verifiable completion checks) for engineering-driven work, `Spike Story` for research. Engineering-driven epics get one shared requirements block inherited by every child instead of 40 restatements.
-4. It sanity-checks traceability and flags anything that doesn't map to the brief as possible scope creep — keep or cut is your call.
-5. **You approve the full hierarchy**, then choose where the draft lives (local file or draft Confluence page).
+## What it writes and where
 
-## What gets written
+One approved decomposition document, saved where you choose — not yet in Jira. Next stop: [jira-confluence-writer](jira-confluence-writer.md).
 
-The approved decomposition document only. **Zero Jira issues** — the separation is deliberate, so the write step gets its own approval.
+## What it will never do
 
-The document doubles as the initiative's **living registry**: after the write it keeps the draft→Jira key map, and new mid-flight epics get checked against it (does an epic already serve this brief item?) while scope moves land in its moved-scope ledger — the paper trail that stops duplicate epics and silently stranded work.
+- Slice by technical layer — an epic delivering "the database layer" gets re-sliced (per-repo/per-service slicing is correct for platform work, though)
+- Invent domain facts, metrics, or edge cases — unknowns become open questions with owners
+- Estimate or assign — sizing and task breakdown belong to the team in refinement
+- Write to Jira, even if asked — it declines and points to the writer; the separation keeps the gates meaningful
 
 ## Good to know
 
-- It will not estimate, assign, or invent domain facts — unknowns become owned open questions on the affected story.
-- Slices have a floor as well as a ceiling: a story completes an observable user intent — one form's fields are AC, not stories. Re-slicing supersedes the original in the same change, and stated dependencies become typed links (a dependency with no issue behind it gets flagged, not left as prose).
-- Stories whose AC can't be written yet become spikes or questions, not vague stories.
-- "The API layer" is not an epic for product work; expect re-slicing if you ask for one. For platform/engineering work, per-repo or per-service slicing *is* the right shape — the rule is "independently deliverable and verifiable," not "user-visible at all costs."
-
-## Related
-
-- Previous: [product-brief-builder](product-brief-builder.md) · Next: [jira-confluence-writer](jira-confluence-writer.md)
+- Every story needs at least one AC; a story whose AC can't be written yet becomes a Spike, not a story.
+- It picks the right KDP work-item type per child: `Story` for user-visible work, `Tech Managed` types for engineering-driven work (objective + completion checks, not a forced user-story costume), `Spike Story` for unknowns.
+- Re-slicing an existing story supersedes it in the same change, recorded in the registry's moved-scope ledger — two slicing generations are never open in parallel.

@@ -1,70 +1,71 @@
-# Skill Catalog (v1)
+# Skill Catalog
 
-The agreed set of skills to build, organized by scrum role. Locked by consensus on 2026-07-11.
+The authoritative index of the ai-sdlc library. Restructured 2026-07-12 per the [system review](reviews/2026-07-12-system-review.md): **11 active skills + 1 meta**, with 6 deferred behind named activation triggers. Library rules live in `references/conventions.md`; instance facts in `references/kdp-instance.md`.
 
 ## Definitions
 
 - **Skill** — a versioned instruction module (SKILL.md) a human invokes inside an agent surface (Claude Code, Copilot, Rovo) to run one workflow.
-- **Agent** — a persona with autonomy that may chain skills (e.g., a Rovo agent).
-- **Script** — deterministic code with no LLM judgment (e.g., a Jira API sync script).
+- **Deferred skill** — built and in the repo, marked `Status: deferred` in its body; it activates only when its named trigger actually occurs (conventions: demand-signal rule).
 
-## Conventions
+## Conventions (summary — `references/conventions.md` is normative)
 
-- Skills are single-purpose and chained assembly-line style, with a **human approval gate at the end of every skill**. Nothing is written to Jira/Confluence/GitHub without human approval.
-- Every skill run keeps a live-updated **run log** (`.ai-sdlc/runs/{date}-{skill}-{slug}.md`, from the shared `templates/run-log.md`): context, verbatim Q&A, approvals, external writes, improvement notes.
-- **Template-first output**: every artifact is generated from a template in the skill's `templates/` folder — freeform output structure is a defect; improvement happens by changing templates, reviewed in git.
-- Jira hierarchy target: **Initiative → Epic → Story** (all three issue types exist in our Jira instance). Teams refine Stories into Tasks themselves during ceremonies.
-- Acceptance criteria: Gherkin/BDD for user-visible behavior; structured requirement blocks for NFRs (data contracts, audit logging, retention, observability, security).
-- Developer and Tester skills target **GitHub Copilot** (VS / VS Code) as the primary surface; author to the Agent Skills open standard so they remain portable to Claude Code and Rovo.
-- Build order: **PO pipeline first**, since every downstream role depends on well-formed briefs and stories.
+- Human approval gates on every external write, in three declared tiers: **per-item**, **per-run**, **standing** (recurring read-only artifacts only, re-confirmed each sprint).
+- **Run logs required for runs that write externally** (`.ai-sdlc/runs/`, from `templates/run-log.md`).
+- **Template-first** for every artifact that lands in a system of record.
+- Jira hierarchy **Initiative → Epic → Story**; teams refine Stories into Tasks. AC: Gherkin for behavior, structured blocks for NFRs. **Briefs live in the epic's own fields** (Background/Description/Requirements); Confluence is the optional multi-epic umbrella.
+- Growth discipline: no new skill/mode/rule without a named requester after a live run; every addition names what it displaces.
 
-## Product Owner (6)
+## The PO pipeline (runs in order, each gated)
 
-The four pipeline skills run in order, each gated by PO approval:
+| # | Skill | One line |
+|---|-------|----------|
+| 1 | **product-brief-builder** (`skills/po/product-brief-builder/`) | Discovery interview → one rigorous brief in the house structure, written to the epic's fields (or carried to the writer for new epics) |
+| 2 | **backlog-decomposer** (`skills/po/backlog-decomposer/`) | Approved brief → draft Initiative → Epics → Stories with AC, sliced vertically; brief-lite fallback with a visible debt flag; owns the living decomposition registry |
+| 3 | **jira-confluence-writer** (`skills/po/jira-confluence-writer/`) | Approved decomposition → real Jira hierarchy, epic brief fields populated, safe re-runs, `ai-sdlc-generated` labels; create-only |
+| 4 | **definition-of-ready-critic** (`skills/po/definition-of-ready-critic/`) | Entry **and exit** critic: DoR verdicts with specific fixes before refinement (`dor-ready`/`dor-needs-work`); acceptance mode builds the per-AC evidence table at PO Validation (DoD D1–D6) |
 
-1. **product-brief-builder** (`skills/po/product-brief-builder/`) — interactive discovery producing a single Confluence brief: problem, users, outcomes/metrics, workflow, scope, assumptions, open questions, stakeholders. Built 2026-07-11.
-2. **backlog-decomposer** (`skills/po/backlog-decomposer/`) — turns an approved brief into a draft Initiative → Epics → Stories with AC, sliced vertically; degrades gracefully to a brief-lite intake (with visible brief-debt flag) when no approved brief exists. Built 2026-07-11.
-3. **jira-confluence-writer** (`skills/po/jira-confluence-writer/`) — writes an approved decomposition into Jira (KDP) as a real Initiative → Epic → Story hierarchy and links it back to the Confluence brief; write-plan approval gate, safe re-runs, `ai-sdlc-generated` label. Schema derived from the live instance in `references/kdp-schema.md`. Built 2026-07-11.
-4. **definition-of-ready-critic** (`skills/po/definition-of-ready-critic/`) — evaluates stories against the team's Definition of Ready (12-item checklist in `references/dor-checklist.md`) before refinement; verdicts with specific fixes, PO-gated Jira comments and `dor-ready`/`dor-needs-work` labels. Built 2026-07-11.
+## Active skills by role
 
-Plus:
+### Product Owner
 
-5. **release-notes-generator** (`skills/po/release-notes-generator/`) — drafts stakeholder-facing notes from completed stories: per-story Release Notes field (`customfield_14745`) plus an aggregate Confluence page, both PO-gated. Built 2026-07-11.
-6. **pipeline-adopter** (`skills/po/pipeline-adopter/`) — adopts in-flight/pre-pipeline work: brief reconstructed from house fields, adoption-mode readiness, tiered item-by-item gated reconciliation plan, registry seeded; the one skill permitted to edit existing issues, only within the approved plan. Built 2026-07-12 (T1-S1, fed by all four reviews).
+- **pipeline-adopter** (`skills/po/pipeline-adopter/`) — brings existing work into the pipeline: brief reconstruction from house fields, tiered item-by-item gated reconciliation; the one skill permitted to edit existing issues. *The library's first live-run skill (KDP-40426).*
 
-## Developer (6)
+### Tester
 
-- **implementation-planner** (`skills/developer/implementation-planner/`) — turns a `dor-ready` story into a codebase-grounded technical plan (steps, data changes, AC→step map, risks) approved by the developer before any code is written. Built 2026-07-11.
-- **copilot-handoff-packager** (`skills/developer/copilot-handoff-packager/`) — assesses delegation fit, builds a bounded implementation packet (AC verbatim, pattern pointers, boundaries), and assigns it to the Copilot coding agent after developer approval. Built 2026-07-11.
-- **code-review-critic** (`skills/developer/code-review-critic/`) — reviews a PR against the story's AC and the team review checklist; drafts blocking/should-fix/nit comments the human reviewer approves before posting; verdict stays human. Built 2026-07-11.
-- **tech-design-drafter** (`skills/developer/tech-design-drafter/`) — drafts design docs/ADRs in Confluence (real options, honest consequences, failure modes, Lucid diagrams) for Epics and Spikes, gated on developer approval. Built 2026-07-11.
-- **pr-hygiene** (`skills/developer/pr-hygiene/`) — generates convention-compliant PR titles/descriptions with a diff-verified AC coverage table; flags scope honesty issues; updates the PR only after developer approval. Built 2026-07-11.
-- **incident-hotfix-runner** (`skills/developer/incident-hotfix-runner/`) — express-lane incident entrance: SSQ incident → traced Bug + fixVersion + hotfix packet with the regressed story's AC as the regression contract; compressed gates, never zero. Built 2026-07-12 (from the T5 shakedown).
+- **test-plan-generator** (`skills/tester/test-plan-generator/`) — AC-traced test cases (happy/edge/negative/NFR) with levels and automation flags; optional exploratory-charter section; AC gaps become PO findings.
+- **bug-report-writer** (`skills/tester/bug-report-writer/`) — minimal deterministic repro, expected-vs-actual cited to AC, severity with rationale, duplicate check, correct KDP bug type.
 
-## Tester (4)
+### Scrum Master
 
-- **test-plan-generator** (`skills/tester/test-plan-generator/`) — derives AC-traced test cases (happy/edge/negative/NFR) with levels and automation flags; AC gaps found during design become findings for the PO. Built 2026-07-11.
-- **ac-playwright-scaffolder** (`skills/tester/ac-playwright-scaffolder/`) — one Playwright TS test per AC scenario mirroring Given/When/Then, repo conventions first, honest `fixme`/`TODO` over false-pass; delivers via PR. Built 2026-07-11.
-- **exploratory-charter-generator** (`skills/tester/exploratory-charter-generator/`) — risk-hypothesis charters (explore X with Y to discover Z) targeting what scripted AC tests can't see, timeboxed and prioritized. Built 2026-07-11.
-- **bug-report-writer** (`skills/tester/bug-report-writer/`) — minimal deterministic repro, expected-vs-actual cited to AC, severity with rationale, duplicate check, correct KDP bug type (Story Bug vs Bug vs UAT). Built 2026-07-11.
+- **sprint-planning-facilitator** (`skills/sm/sprint-planning-facilitator/`) — flow-first capacity math and draft goals before planning; **record mode captures the commitment baseline every other sprint skill depends on**.
+- **sprint-radar** (`skills/sm/sprint-radar/`) — one signal engine, two views: daily one-screen digest (standing gate) and 2–3×/sprint escalation triage with evidence-backed drafts (per-item gate). Merged from daily-standup-digest + impediment-radar.
+- **sprint-close** (`skills/sm/sprint-close/`) — stakeholder report (flow metrics first + 4-metric system scoreboard), blameless retro pack, action capture, optional demo agenda. Merged from sprint-report-generator + retro-facilitator.
+- **backlog-hygiene-auditor** (`skills/sm/backlog-hygiene-auditor/`) — cadence decay sweep (stale/duplicates/orphans/zombies/closure integrity/dependency & governance rollup) with item-by-item approved cleanup; **epic-closeout mode is the blocking gate at the moment of epic closure**.
 
-## Scrum Master (8)
+### Meta
 
-Ceremony facilitation (one skill per ceremony; every skill preps and captures — the ceremony itself belongs to the team):
+- **tabletop-shakedown** (`skills/meta/tabletop-shakedown/`) — stress-tests the library against real content, strictly read-only; content findings vs. system proposals. Sunset after T14 + the team dry runs; live use is the validation from then on.
 
-- **refinement-facilitator** (`skills/sm/refinement-facilitator/`) — prep cards and timeboxed agenda before refinement; captures the team's estimates and decisions to Jira after (never estimates itself). Built 2026-07-11.
-- **sprint-planning-facilitator** (`skills/sm/sprint-planning-facilitator/`) — honest capacity/velocity math and draft goals before planning; records the team's commitment to Jira/Confluence after. Built 2026-07-11.
-- **sprint-review-demo-facilitator** (`skills/sm/sprint-review-demo-facilitator/`) — honest "what shipped" narrative tied to the goal, plus an ordered demo script with verified click-paths and fallbacks. Built 2026-07-11.
-- **retro-facilitator** (`skills/sm/retro-facilitator/`) — blameless evidence pack (with last retro's action accountability) before; captures agreed action items to Jira with owners after. Built 2026-07-11.
-- **daily-standup-digest** (`skills/sm/daily-standup-digest/`) — one-screen pre-standup digest: what moved, exceptions worth discussing (flagged/stalled/aging reviews/scope changes), sprint pulse. Built 2026-07-11.
+## Deferred skills (activation triggers named)
 
-Health and reporting:
+| Skill | Location | Activates when |
+|-------|----------|----------------|
+| **release-notes-generator** (release runner: readiness go/no-go + notes) | `skills/po/release-notes-generator/` | The first real release routed through the pipeline |
+| **code-review-critic** (single PR skill: hygiene pass + review pass) | `skills/developer/code-review-critic/` | Read access to a real `ap-*` repository |
+| **copilot-handoff-packager** | `skills/developer/copilot-handoff-packager/` | The org's first real Copilot coding-agent delegation |
+| **tech-design-drafter** (template usable standalone) | `skills/developer/tech-design-drafter/` | A named request for a design doc |
+| **incident-hotfix-runner** (owns the whole hotfix express path) | `skills/developer/incident-hotfix-runner/` | The first real production incident routed through the express lane |
+| **ac-playwright-scaffolder** (generalizes to xUnit/Jest/Playwright at activation) | `skills/tester/ac-playwright-scaffolder/` | Test-repo access |
 
-- **sprint-report-generator** (`skills/sm/sprint-report-generator/`) — stakeholder sprint reports: commitment vs delivery, velocity as ranges never targets, timestamped scope changes, facts separated from assessments. Built 2026-07-11.
-- **backlog-hygiene-auditor** (`skills/sm/backlog-hygiene-auditor/`) — periodic decay sweep (stale, duplicates, unestimated near-term, orphans, zombie epics) with item-by-item PO/SM-approved cleanup; archives reversibly, never deletes. Built 2026-07-11.
-- **impediment-radar** (`skills/sm/impediment-radar/`) — detects flagged blocks, silent stalls, aging reviews, and dependency rot; drafts evidence-based escalations the SM approves and owns. Built 2026-07-11.
+## Retired (2026-07-12 restructure — git history preserves all content)
 
-## Meta (2)
-
-- **skill-author** (`skills/meta/skill-author/`) — scaffolds, audits, and catalogs skills for this library, keeping it consistent as it grows. Built 2026-07-11; the first skill in the library and the template for all others.
-- **tabletop-shakedown** (`skills/meta/tabletop-shakedown/`) — stress-tests the library by walking a scenario through the pipeline on paper (real content, strictly read-only); findings split into content defects vs. system proposals routed to skill-author. Scenario charters tracked in `docs/shakedowns/scenario-backlog.md`. Built 2026-07-11.
+| Skill | Disposition |
+|-------|-------------|
+| implementation-planner | Cut — native agent plan modes cover it; plan-before-code requirement lives in copilot-handoff-packager |
+| pr-hygiene | Merged into code-review-critic |
+| exploratory-charter-generator | Merged into test-plan-generator (charter section) |
+| refinement-facilitator | Cut — DoR report + rank is the prep; overrule sunlight moved into the readiness report |
+| sprint-review-demo-facilitator | Cut — demo agenda survives as an optional sprint-close template |
+| daily-standup-digest / impediment-radar | Merged into sprint-radar |
+| sprint-report-generator / retro-facilitator | Merged into sprint-close |
+| skill-author | Cut as a skill — `references/conventions.md` + `templates/skill-template.md` remain as files |

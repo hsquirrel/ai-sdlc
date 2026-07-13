@@ -1,40 +1,33 @@
 # jira-confluence-writer (Product Owner)
 
-The write bridge: turns your approved decomposition into real Jira issues (Initiative → Epics → Stories in KDP) and links the backlog from the Confluence brief. The most conservative skill in the pipeline — by design.
+The write bridge between approved drafts and the systems of record. It creates the real Jira hierarchy — Initiative → Epics → Stories — from your approved decomposition, populating each epic's brief fields (Background / Description / Requirements) in the house structure. Because it creates real issues, it is the most conservative skill in the pipeline: explicit write plan, safe ordering, and it never touches an issue it didn't create.
 
-## When to use
+## When to run it
 
-- A decomposition document is approved and it's time to create the actual issues
+- A decomposition draft has been approved and it's time to create the actual Jira issues
 
-**Not for:** editing existing issues (it refuses — create-only), drafting content (upstream stages own that).
+## What it asks of you
 
-## Before you start
+- Confirmation that the decomposition document is the approved version (a `⚠ Derived without approved brief` flag prompts a reminder that the debt will be visible in Jira)
+- What the draft can't contain: new Initiative or an existing key? For a new Initiative, **Business Unit** and **Strategic Program** (required); optionally a Component and team assignment. If you can't answer a required field, it stops and says what's blocking — it never invents values.
 
-Have answers ready for what the draft can't know:
+## What happens at the gate (per-run)
 
-- **New Initiative or existing?** If existing, its key (it may live outside KDP — e.g., a TR initiative)
-- For a new Initiative: **Business Unit** and **Strategic Program** (required Jira fields — it shows you the allowed values)
-- Optionally: Component and Team assignments
+It builds a complete write plan — every issue to create with type, summary, parent, and populated fields, plus any Confluence edits — and presents it in full. You approve the plan before a single issue is created.
 
-## What happens
+## What it writes and where
 
-1. It reads the decomposition and confirms it's the approved version (brief-debt flags trigger an extra "are you sure" — the debt will be visible in Jira).
-2. It builds a **write plan**: every issue it will create — type, summary, parent, fields — plus the Confluence edits.
-3. **You approve the write plan.** Nothing is created before this; review it like a deploy plan, because it is one.
-4. It executes top-down (Initiative → Epics → Stories), verifying each level: AC land in the Acceptance Criteria field in the house `AC#N` / Given-When-Then style, open questions go into descriptions, everything gets the `ai-sdlc-generated` label.
-5. It appends a "Backlog" section to your brief linking the created work, records the created keys into the decomposition registry's Created Keys section, and reports every key with links.
+- The Initiative (or reuse of an existing one), Epics parented to it with brief fields populated, Stories parented to Epics with AC in the Acceptance Criteria field — all labeled `ai-sdlc-generated`
+- Draft dependencies as typed `Blocks` links (a dependency with no target issue is a blocking write-plan question — placeholder epic or named owner and date)
+- A "Backlog" section on the Confluence umbrella page, if one exists
+- Created keys back into the decomposition registry, plus a report table of everything created and anything skipped
 
-## What gets written
+## What it will never do
 
-Real KDP Jira issues in the approved hierarchy + backlog links on the Confluence brief.
-
-## Good to know
-
-- **Safe re-runs:** if a run fails midway, run it again — it checks for an existing issue with the same summary under the same parent and skips rather than duplicates. It also compares AC bodies against existing siblings, so it won't create a second source of truth for a behavior a story already owns.
-- Dependencies become typed "is blocked by" links in the write plan; a dependency whose target doesn't exist in Jira is a blocking question (placeholder epic, or owner + date), never silent prose.
-- It never sets Sprint, Story Points, or Assignee — those are the team's, in refinement.
-- Schema reference (field IDs, allowed values, AC house style): [kdp-schema.md](../../../skills/po/jira-confluence-writer/references/kdp-schema.md). If creates start failing validation, the schema likely drifted — re-derive it.
+- Edit or delete issues it didn't create this run — changes to existing issues belong to [pipeline-adopter](pipeline-adopter.md) or a human
+- Set Sprint, Story Points, or Assignee — those belong to the team in refinement
+- Retry blindly after a mid-run failure — it stops, reports exactly what was and wasn't created, and its duplicate check (same summary under the same parent is skipped) makes the re-run safe
 
 ## Related
 
-- Previous: [backlog-decomposer](backlog-decomposer.md) · Next: [definition-of-ready-critic](definition-of-ready-critic.md)
+Next: [definition-of-ready-critic](definition-of-ready-critic.md) before the stories enter team refinement.

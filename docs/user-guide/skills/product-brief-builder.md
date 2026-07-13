@@ -1,40 +1,32 @@
 # product-brief-builder (Product Owner)
 
-Turns a raw idea into one rigorous, readable product brief in Confluence — through an interview that will (politely) refuse to transcribe weak answers.
+Turns a raw idea into one rigorous product brief through a short discovery interview — problem, users, measurable outcomes, workflow, scope with explicit non-goals, assumptions, open questions, stakeholders. The brief lives where the work lives: **in the epic's own fields** (Background / Description / Requirements), not in a separate document. A Confluence page appears only as the optional umbrella for a multi-epic initiative.
 
-## When to use
+## When to run it
 
-- A new initiative or feature idea needs framing, **before** anyone decomposes it into tickets
-- An inherited/fuzzy request needs its problem, outcomes, and scope pinned down
+- A new initiative or feature idea needs framing before any decomposition
+- An epic already exists but its brief is thin — the skill reconstructs from its fields and interviews you only against the gaps, not re-asking what's already written
 
-**Not for:** writing epics/stories (that's [backlog-decomposer](backlog-decomposer.md)) or technical design (that's [tech-design-drafter](tech-design-drafter.md)).
+## What it asks of you
 
-## Before you start
+- The working title and any existing material (meeting notes, tickets, Confluence pages, Lucid diagrams) — it reads what you share before asking questions it already answers
+- At most three short interview rounds. Expect pushback, not transcription: state a solution and it asks what hurts today and for whom; an outcome without a baseline → target metric gets challenged; an empty "Out of scope" list means the interview isn't done.
 
-- 20–30 minutes for the interview (max three short rounds)
-- Anything that already exists: notes, support tickets, related Confluence pages, Lucid diagrams — share them first so you aren't asked what they already answer
+## What happens at the gate (per-run)
 
-## What happens
+It presents the full draft brief and revises until you explicitly approve. Nothing is written externally before that. When the target is an existing epic, the gate shows the exact before/after of the field edits.
 
-1. It reads what you share, then interviews you: problem and evidence, target roles, outcomes with metrics, current vs. future workflow, scope in/out/later, assumptions, open questions, stakeholders.
-2. Expect pushback — that's the design:
-   - State a solution and it will ask what hurts, for whom, with what evidence (your solution gets recorded, just not as the problem)
-   - Every outcome needs a baseline → target metric; unknown baselines become early scope or open questions
-   - An empty "Out of scope" list means the interview isn't done
-3. It drafts the brief from the 8-section template, marking every unknown as a tracked open question (blocking vs. non-blocking) — never inventing evidence.
-4. **You approve the draft** — iterate as much as you like; nothing exists outside the conversation yet.
-5. You pick the Confluence space/parent; it creates the page and gives you the link.
+## What it writes and where
 
-## What gets written
+- Existing epic → the approved brief into its Background/Description/Requirements fields
+- No epic yet → the brief travels as a document with the decomposition; [jira-confluence-writer](jira-confluence-writer.md) populates the epic's fields at create time
+- Multi-epic initiative → optionally a Confluence umbrella page, in a space and parent you pick — never assumed
 
-One Confluence brief page, where you chose. Nothing else.
+## What it will never do
 
-## Good to know
-
-- Workflow sections prefer a linked Lucidchart/Lucidspark diagram; without one you get numbered steps and a marked diagram placeholder to fill later.
-- If an epic already exists, it reads the house-convention Background/Description/Requirements fields first and reconstructs the brief from them — the interview then covers only the diff (typically: metric targets, stakeholders, unresolved scope entries), not what's already written.
-- The brief's status line surfaces blocking open questions — answer those before decomposing or they'll follow the work downstream.
+- Invent evidence, metrics, or stakeholders — anything unknown lands in Open Questions, each classified blocking or non-blocking
+- Write a PRD novel — any section past ~half a page gets summarized with supporting material linked, not inlined
 
 ## Related
 
-- Next: [backlog-decomposer](backlog-decomposer.md) consumes the approved brief
+Next: [backlog-decomposer](backlog-decomposer.md) against the approved brief.

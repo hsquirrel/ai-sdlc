@@ -1,41 +1,36 @@
 # definition-of-ready-critic (Product Owner)
 
-A constructively adversarial reviewer that checks stories against the team's Definition of Ready **before** they cost the team refinement time — or get handed to a coding agent that would invent the gaps.
+The pipeline's critic at both ends of a story's life. **Readiness mode** (the default) catches under-specified stories before they waste refinement time, against one contract: *could a tester or coding agent translate this story into test cases without inventing requirements?* **Acceptance mode** serves you at the other end — a per-AC evidence table for stories at "In Product Owner Validation," so you accept on evidence, not assertion.
 
-## When to use
+## When to run it
 
-- Stories were just created by the writer and refinement is coming
-- Any time you want to know which stories are actually ready ("review KDP-1234", "review everything under this Epic")
-- On a draft decomposition that hasn't hit Jira yet
+- After the writer creates stories, before team refinement (readiness mode)
+- Against a decomposition document not yet in Jira (findings route back to the decomposer)
+- When a story reaches PO Validation and you want the Definition-of-Done evidence laid out (acceptance mode)
 
-## Before you start
+## What it asks of you
 
-- The scope: story keys, an Epic/Initiative key, or the draft document
-- Ten minutes to engage with findings — this one talks back
+- The scope: story keys, an Epic/Initiative key (it reviews the children — and evaluates the epic itself against the epic-readiness checklist, since stories can be green while the epic above them isn't), or the draft document
+- Your ruling on disputed findings — you can overrule any of them
 
-## What happens
+## What happens at the gate (per-run)
 
-1. It evaluates every story against the [12-item DoR checklist](../../../skills/po/definition-of-ready-critic/references/dor-checklist.md): blocking items (story form, vertical slice, behavioral AC, testable-without-invention, no blocking open questions, no contradictions) and non-blocking ones (sizing, edge cases, NFRs, traceability, dependencies, design links).
-2. The core judgment is one contract: *could a tester or coding agent write test cases from this story without inventing requirements?* Vague AC ("works correctly", "gracefully") always fail.
-3. You get a report — verdict per story (Ready / Ready with notes / Not ready), specific gaps with the exact question to answer, and suggested rewrites where possible.
-4. **You approve the report** — and you can overrule any finding; the overrule is recorded, not hidden.
-5. On approval (Jira stories only): a comment per story with its verdict and gaps, plus a `dor-ready` or `dor-needs-work` label.
+It presents the full report — verdict summary first, then per-story findings, worst first. Every failure names the checklist item and comes with the concrete question or fix, often a suggested rewrite marked as a suggestion. **Overrules are recorded, and the posted version names them in their own line** — the team sees them in refinement; sunlight is the backstop. Nothing is posted to Jira before your approval.
 
-## What gets written
+## What it writes and where
 
-Story comments + labels, after your approval. It **never edits the stories themselves** — suggested rewrites stay suggestions until a human applies them.
+- Readiness: one comment per story (verdict + gaps) and the label `dor-ready` or `dor-needs-work`
+- Acceptance: the per-AC table — met / not met / unverifiable, with evidence from AC, linked PRs, child Story Bugs, and the Release Notes field — for you to accept or bounce on
+
+## What it will never do
+
+- Edit a story's fields, AC, or status — it critiques and suggests; humans change the story, and you transition it
+- Fail stories for missing estimates, sprint, or assignee — those aren't DoR concerns
+- Accept an AC on assertion alone in acceptance mode — evidence or "unverifiable"; and when the implementation matches the AC but behavior still seems wrong, that's an AC conversation, not a bounce
+- Go easy on AI-generated stories — pipeline provenance earns no leniency
 
 ## Good to know
 
-- Stories carrying brief-debt cap at "Ready with notes" — the debt stays visible.
-- It won't fail stories for missing estimates/sprint/assignee; those belong to the team, not the DoR.
-- It's issue-type aware: `Tech Managed` items are judged by objective + verifiable completion checks (build/scan/deploy), not forced into user-story form — and substantively sound AC in a non-house format pass with a style suggestion, never a blocking failure.
-- Readiness is two-altitude: epics in scope are judged against their own [epic-readiness checklist](../../../skills/po/definition-of-ready-critic/references/epic-readiness-checklist.md) (traceability, authored scope, epic AC, governance linked with status, closure criteria) — stories can be green while the epic above them is the problem.
-- Hotfix items get a 4-item express contract (repro, cited expected behavior, rollback path, regression check) instead of the full twelve — sized for the hours clock so it actually gets run.
-- It scans the *set*, not just each story: overlapping AC bodies under different summaries (two slicing generations of the same screen) are a blocking finding with a proposed survivor — summaries can all differ while the backlog still disagrees with itself.
-- AI-generated stories get zero leniency — the pipeline grades its own homework honestly.
-- The checklist is the team's to tune: start lenient, ratchet up as maturity grows.
-
-## Related
-
-- Previous: [jira-confluence-writer](jira-confluence-writer.md) · Downstream: team refinement, then [implementation-planner](implementation-planner.md) / [test-plan-generator](test-plan-generator.md)
+- Vague AC ("works correctly", "handles errors gracefully") always fails — it demands the observable behavior.
+- Verdicts: **Ready** / **Ready with notes** / **Not ready**; a story derived without an approved brief caps at Ready with notes.
+- Comments criticize stories, never people.
