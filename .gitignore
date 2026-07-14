@@ -1,0 +1,8 @@
+# Secrets — never committed. Site/email defaults live in tools/atl/.env (committed).
+.env.local
+*.env.local
+
+# Node
+node_modules/
+coverage/
+tools/atl/dist/
