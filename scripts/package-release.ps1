@@ -151,14 +151,34 @@ Deferred skills $deferredNote.
     $zipPath = Join-Path $releases "ai-sdlc-copilot-$Version.zip"
     if (Test-Path $zipPath) { Remove-Item $zipPath -Force }
     Add-Type -AssemblyName System.IO.Compression.FileSystem
+    # Directory.GetFiles returns paths prefixed with the base string exactly as passed,
+    # so the Substring below is safe even when $env:TEMP uses 8.3 short names or a
+    # per-session Temp\N path whose canonical form differs from the string we built.
+    # (Get-ChildItem FullName vs the $staging string diverged on such machines and
+    # sliced mid-name, producing a bogus single-character root folder in the zip.)
+    $stagingFull = [System.IO.Path]::GetFullPath($staging).TrimEnd('\')
     $archive = [System.IO.Compression.ZipFile]::Open($zipPath, 'Create')
     try {
-        Get-ChildItem $staging -Recurse -File -Force | ForEach-Object {
-            $rel = $_.FullName.Substring($staging.Length + 1) -replace '\\', '/'
-            [void][System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile($archive, $_.FullName, $rel)
+        foreach ($file in [System.IO.Directory]::GetFiles($stagingFull, '*', [System.IO.SearchOption]::AllDirectories)) {
+            $rel = $file.Substring($stagingFull.Length + 1) -replace '\\', '/'
+            [void][System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile($archive, $file, $rel)
         }
     }
     finally { $archive.Dispose() }
+
+    # sanity: every entry must sit under an expected root — fail loudly on layout bugs
+    $expectedRoots = @('.github/', '.ai-sdlc/', 'references/', 'templates/', 'tools/', 'RELEASE.md')
+    $check = [System.IO.Compression.ZipFile]::OpenRead($zipPath)
+    try {
+        $bad = @($check.Entries.FullName | Where-Object {
+                $entry = $_
+                -not ($expectedRoots | Where-Object { $entry -eq $_ -or $entry.StartsWith($_) })
+            })
+        if ($bad.Count -gt 0) {
+            throw "Zip layout check failed - entries outside expected roots: $(($bad | Select-Object -First 5) -join ', ')"
+        }
+    }
+    finally { $check.Dispose() }
 
     [pscustomobject]@{
         zip             = $zipPath
