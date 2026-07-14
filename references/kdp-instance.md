@@ -12,10 +12,12 @@ Everything the library knows about the live Atlassian instance, in one place. De
 - Confluence spaces seen: **NDTW** (engineering), **KRN** (release notes), NAO, QA2, PMO
 - Confluence: the PO chooses space and parent page at runtime — never assume a location
 
-### Working with this instance via MCP
+### Working with this instance
 
-- Large Jira results save to a file path instead of returning inline — parse with python (`json.load`), keep requested `fields` minimal, never re-fetch what you already saved.
-- Jira's workflow-definition API is **unavailable**; workflows are mapped by sampling `getTransitionsForJiraIssue` per (type, status) — see §5.
+Access goes through the swappable layer in `references/atlassian-access.md` — MCP tools where connected, the `atl` CLI (`tools/atl/`) everywhere else. Quirks that hold on either surface:
+
+- Keep requested `fields` minimal; route large results to files (MCP does this automatically; with `atl` pass `--out <file>`) and never re-fetch what you already saved.
+- Jira's workflow-definition API is **unavailable**; workflows are mapped by sampling available transitions per (type, status) — `atl issue transitions KEY` / `getTransitionsForJiraIssue` — see §5.
 
 ## 2. Hierarchy and issue types
 

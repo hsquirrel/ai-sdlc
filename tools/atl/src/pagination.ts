@@ -39,6 +39,34 @@ export async function fetchAllChangelogs(
   return { issue: issueIdOrKey, total: all.length, changelogs: all };
 }
 
+/** Generic startAt/maxResults paginator for Agile endpoints ({values} or {issues} pages). */
+export interface StartAtPage {
+  values?: unknown[];
+  issues?: unknown[];
+  isLast?: boolean;
+  total?: number;
+}
+
+export async function fetchAllStartAt(
+  fetchPage: (startAt: number) => Promise<StartAtPage>,
+  retry: RetryOptions = {}
+): Promise<{ total: number; items: unknown[] }> {
+  const items: unknown[] = [];
+  for (;;) {
+    const page = await withRetry(() => fetchPage(items.length), retry);
+    const vals = page.values ?? page.issues ?? [];
+    items.push(...vals);
+    if (
+      page.isLast === true ||
+      vals.length === 0 ||
+      (page.total !== undefined && items.length >= page.total)
+    ) {
+      break;
+    }
+  }
+  return { total: items.length, items };
+}
+
 export interface SearchPage {
   issues?: unknown[];
   nextPageToken?: string;

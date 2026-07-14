@@ -9,10 +9,14 @@ export interface AtlConfig {
   token: string;
 }
 
-/** Directory containing .env / .env.local — the package root, resolved from the compiled file. */
-export function packageRoot(): string {
-  // compiled file lives in dist/, bundle lives in dist/ too — root is one level up
-  return path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+/**
+ * Directories searched for .env / .env.local: beside the executable file and one level up.
+ * Covers both layouts — dist/index.js under the package root, and a standalone atl.mjs bundle
+ * dropped in a directory with its env files next to it.
+ */
+export function envDirs(): string[] {
+  const self = path.dirname(fileURLToPath(import.meta.url));
+  return [path.resolve(self, '..'), self];
 }
 
 function readEnvFile(file: string): Record<string, string> {
@@ -27,11 +31,16 @@ function readEnvFile(file: string): Record<string, string> {
  * Precedence: real environment variables > .env.local > .env
  * (dotenv's own load order is not used so that a user-set env var always wins).
  */
-export function loadConfig(dir: string = packageRoot()): AtlConfig {
-  const fileVals = {
-    ...readEnvFile(path.join(dir, '.env')),
-    ...readEnvFile(path.join(dir, '.env.local'))
-  };
+export function loadConfig(dir?: string): AtlConfig {
+  const dirs = dir !== undefined ? [dir] : envDirs();
+  let fileVals: Record<string, string> = {};
+  for (const d of dirs) {
+    fileVals = {
+      ...fileVals,
+      ...readEnvFile(path.join(d, '.env')),
+      ...readEnvFile(path.join(d, '.env.local'))
+    };
+  }
   const get = (key: string): string | undefined => {
     const v = process.env[key] ?? fileVals[key];
     return v && v.trim() !== '' ? v.trim() : undefined;

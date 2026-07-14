@@ -2,16 +2,24 @@
 import { Command } from 'commander';
 import { loadConfig } from './config.js';
 import { jiraClient, agileClient } from './clients.js';
-import { emit, emitError } from './output.js';
+import { emit, emitError, setGlobalOut } from './output.js';
 import { withRetry, type RetryOptions } from './retry.js';
 import { fetchAllChangelogs, searchAllIssues } from './pagination.js';
+import { registerWriteCommands } from './commands-write.js';
+import { registerAgileCommands } from './commands-agile.js';
+import { registerConfluenceCommands } from './commands-confluence.js';
 
 const program = new Command();
 program
   .name('atl')
   .description('Thin Atlassian CLI for the ai-sdlc skill library. JSON output only.')
   .version('0.1.0')
-  .option('--verbose', 'log retries and diagnostics to stderr');
+  .option('--verbose', 'log retries and diagnostics to stderr')
+  .option('--out <file>', 'write result JSON to a file; stdout gets a {savedTo, count} summary');
+
+program.hook('preAction', () => {
+  setGlobalOut(program.opts().out);
+});
 
 function retryOpts(): RetryOptions {
   return { verbose: program.opts().verbose === true };
@@ -236,4 +244,12 @@ board
     })
   );
 
-await program.parseAsync(process.argv);
+registerWriteCommands(program, retryOpts);
+registerAgileCommands(program, retryOpts);
+registerConfluenceCommands(program, retryOpts);
+
+try {
+  await program.parseAsync(process.argv);
+} catch (err) {
+  emitError(err);
+}

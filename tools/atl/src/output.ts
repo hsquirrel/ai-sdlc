@@ -11,10 +11,16 @@ export interface EmitOptions {
   out?: string;
 }
 
+/** Global --out fallback, set from the root command before any action runs. */
+let globalOut: string | undefined;
+export function setGlobalOut(file: string | undefined): void {
+  globalOut = file;
+}
+
 function countOf(data: unknown): number | undefined {
   if (Array.isArray(data)) return data.length;
   if (data && typeof data === 'object') {
-    for (const key of ['issues', 'values', 'results', 'pages']) {
+    for (const key of ['issues', 'values', 'results', 'pages', 'changelogs', 'sprints', 'transitions']) {
       const v = (data as Record<string, unknown>)[key];
       if (Array.isArray(v)) return v.length;
     }
@@ -23,9 +29,10 @@ function countOf(data: unknown): number | undefined {
 }
 
 export function emit(data: unknown, opts: EmitOptions = {}): void {
-  if (opts.out) {
-    fs.writeFileSync(opts.out, JSON.stringify(data, null, 2), 'utf8');
-    const summary: Record<string, unknown> = { savedTo: opts.out };
+  const out = opts.out ?? globalOut;
+  if (out) {
+    fs.writeFileSync(out, JSON.stringify(data, null, 2), 'utf8');
+    const summary: Record<string, unknown> = { savedTo: out };
     const count = countOf(data);
     if (count !== undefined) summary.count = count;
     process.stdout.write(JSON.stringify(summary, null, 2) + '\n');

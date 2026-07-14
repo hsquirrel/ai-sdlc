@@ -1,6 +1,6 @@
 # Build Plan: `atl` — a thin Atlassian CLI for the skill library
 
-**Status:** Approved (Jeremy, 2026-07-14 — decisions in §6) · **Date:** 2026-07-14
+**Status:** Built — phases 0–4 and 6 complete 2026-07-14 under Jeremy's autonomy grant; phase 5 docs landed same day (run log: `.ai-sdlc/runs/2026-07-14-atl-phase2-write-test.md`; adapter contract: `references/atlassian-access.md`). Acceptance test outstanding: first real skill run at work. · **Date:** 2026-07-14
 **Decision basis:** `research/2026-07-13-atlassian-access-without-mcp.md` (option 2 chosen 2026-07-14 — one consistent tool over the acli+REST hybrid; the two-mechanism seam was the deciding objection)
 **Constraint confirmed:** API tokens and OAuth both work at Jeremy's workplace; MCP does not.
 

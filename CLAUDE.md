@@ -40,7 +40,7 @@ Skills and agents target these surfaces:
 - **Playwright / xUnit / Jest** — test automation (Tester role; scaffolder deferred until test-repo access)
 - **Lucidchart / Lucidspark** — diagramming; link or embed Lucid diagrams where a visual is the better artifact
 
-Atlassian MCP tools are connected in this Claude Code environment (`mcp__claude_ai_Atlassian__*`). Instance quirks (large-result file handling, unavailable workflow API) are documented in `references/kdp-instance.md` §1.
+Atlassian access is environment-dependent — **skills name capabilities, not tool names** (`references/atlassian-access.md` is the adapter contract). Where Atlassian MCP tools are connected (`mcp__claude_ai_Atlassian__*`) they may be used; everywhere else (including work environments where MCP is blocked) use the `atl` CLI in `tools/atl/`. Instance quirks are documented in `references/kdp-instance.md` §1.
 
 ## Target Tech Stack (of the teams being served)
 
