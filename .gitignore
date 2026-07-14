@@ -6,3 +6,6 @@
 node_modules/
 coverage/
 tools/atl/dist/
+
+# Release artifacts (scripts/package-release.ps1)
+releases/
