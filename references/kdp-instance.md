@@ -284,9 +284,13 @@ Partially probed: Hotfix types (only Done occupied), UAT Stories (only In UAT/Cl
 
 Hand-authored KDP epics carry brief-grade content in a stable structure, consistent across authors. **This is the pipeline's primary brief surface — skills write it, not just read it.** A Confluence page is the optional umbrella for multi-epic initiatives only.
 
-- **Background (`customfield_14757`)** — the de facto brief: Epic Intent/Objective, Business Context (with quantified evidence), Primary Users/Beneficiaries, Registration Context (BD/RIA), Why Now, Assumptions & Open Questions, Confidence.
-- **Description** — In Scope / Out of Scope (with per-item reasons), Dependencies (per owning team), Success Measures/Criteria.
-- **Requirements (`customfield_14762`)** — cross-cutting constraints, system requirements (`{EPIC-KEY}-SR-NNN` numbering), compliance flags with rationale.
+**The canonical structure is `templates/epic.md`** (adopted 2026-07-14 from exemplar epics KDP-40759 and KDP-40761, at Jeremy's direction — template-first: fix the template, not the instance). In brief:
+
+- **Background (`customfield_14757`)** — the de facto brief: Business Objective, Business Context (quantified evidence), Why Now, Problem, Outcome.
+- **Description** — one-line delivery statement, In Scope / Out of Scope (exclusions say where the work went), Dependencies (per owning team, phased when sequencing matters), Success Criteria (DoD), Success Metrics (baseline → target), Architecture Triage (ARB? / STP? / architecture fit / limitations / new UI).
+- **Requirements (`customfield_14762`)** — numbered requirement groups (`## 1.` … — the citation unit for findings and test plans; the older `{EPIC-KEY}-SR-NNN` item numbering is not used by the exemplars), tables for matrix-shaped content, Key Reference Documentation last.
+
+Pre-template epics may still show the older shape (Epic Intent, Primary Users/Beneficiaries, Registration Context, Confidence, SR-NNN numbering) — read both; write only the template shape.
 
 Adoption/reconstruction use: rebuild a brief from these fields and diff against the brief template — the diff is the finding list (typical gaps: metric targets, stakeholder/approver table, unresolved scope questions).
 
