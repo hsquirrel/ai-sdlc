@@ -9,15 +9,37 @@
 #   .ai-sdlc/runs/                     run-log landing directory (stub README)
 #   RELEASE.md                         manifest: version, contents, extraction notes
 #
-# Usage: .\scripts\package-release.ps1 [-IncludeDeferred] [-SkipAtlBuild] [-Version <label>]
+# Self-sufficient from a fresh clone: verifies Node >= 20, installs dependencies (npm ci),
+# runs the unit suite, and builds the atl bundle before packaging.
+#
+# Usage: .\scripts\package-release.ps1 [-IncludeDeferred] [-SkipAtlBuild] [-SkipTests] [-Version <label>]
+#   -SkipAtlBuild  reuse an existing tools/atl/dist/atl.mjs (skips install, tests, and bundling)
+#   -SkipTests     build the bundle but skip the unit suite
 param(
     [switch]$IncludeDeferred,
     [switch]$SkipAtlBuild,
+    [switch]$SkipTests,
     [string]$Version
 )
 
 $ErrorActionPreference = 'Stop'
 $repo = Split-Path -Parent $PSScriptRoot
+
+function Invoke-Step {
+    param([string]$Name, [scriptblock]$Body)
+    Write-Host ">> $Name"
+    & $Body
+    if ($LASTEXITCODE -ne 0) { throw "$Name failed (exit $LASTEXITCODE)" }
+}
+
+# ---- prerequisites --------------------------------------------------------
+if (-not $SkipAtlBuild) {
+    $node = Get-Command node -ErrorAction SilentlyContinue
+    if (-not $node) { throw 'Node.js is required (>= 20). Install it and re-run.' }
+    $nodeMajor = [int]((node --version).TrimStart('v').Split('.')[0])
+    if ($nodeMajor -lt 20) { throw "Node.js >= 20 required, found $(node --version)." }
+    if (-not (Get-Command npm -ErrorAction SilentlyContinue)) { throw 'npm is required. Install Node.js >= 20 and re-run.' }
+}
 
 # ---- version label -------------------------------------------------------
 $sha = (git -C $repo rev-parse --short HEAD).Trim()
@@ -63,11 +85,19 @@ try {
     $atlSrc = Join-Path $repo 'tools\atl'
     $atlBundle = Join-Path $atlSrc 'dist\atl.mjs'
     if (-not $SkipAtlBuild) {
-        if (-not (Test-Path (Join-Path $atlSrc 'node_modules'))) {
-            throw "tools/atl has no node_modules - run 'npm install' there first, or pass -SkipAtlBuild to reuse an existing dist/atl.mjs"
-        }
         Push-Location $atlSrc
-        try { npm run bundle | Out-Null } finally { Pop-Location }
+        try {
+            # cmd /c: PS 5.1 + ErrorActionPreference Stop treats redirected native stderr
+            # (which jest/esbuild write normal progress to) as a terminating error.
+            if (-not (Test-Path (Join-Path $atlSrc 'node_modules'))) {
+                Invoke-Step 'npm ci (tools/atl)' { cmd /c 'npm ci --no-audit --no-fund 2>&1' | Out-Null }
+            }
+            if (-not $SkipTests) {
+                Invoke-Step 'unit tests (tools/atl)' { cmd /c 'npm test 2>&1' | Select-String -Pattern 'Tests:|FAIL' | ForEach-Object { Write-Host "   $_" } }
+            }
+            Invoke-Step 'bundle atl.mjs' { cmd /c 'npm run bundle 2>&1' | Out-Null }
+        }
+        finally { Pop-Location }
     }
     if (-not (Test-Path $atlBundle)) { throw "Missing $atlBundle" }
     $atlDest = New-Item -ItemType Directory -Force (Join-Path $staging 'tools\atl')
