@@ -17,7 +17,7 @@
 - **Presented:** dry-run payloads recorded below before each executed write
 - **Gate tier:** standing (Jeremy, 2026-07-14: one clearly-named KDP test issue; all writes confined to it; commit-as-you-go)
 - **Decision:** pre-approved under the standing grant
-- **Overrules / conditions:** `link create` executed dry-run only — a live link writes to a second issue, which exceeds the single-issue scope. Flagged in Follow-ups.
+- **Overrules / conditions:** `link create` was initially dry-run only (single-issue scope); Jeremy extended scope same day with a second test issue (KDP-40827) and the live link executed and verified.
 
 ## External Writes
 
@@ -30,7 +30,8 @@ Every write was preceded by a `--dry-run` payload review (recorded in the sessio
 | added comments ×2 (markdown→ADF) | Jira KDP-40826 | comment 538203 + closing comment |
 | added worklog (5m) | Jira KDP-40826 | worklog 124741 |
 | transitions ×3 (Open→Blocked→Open→Closed, resolved by name) | Jira KDP-40826 | final status Closed |
-| link create | — | **dry-run only** (single-issue scope) — payload verified, not executed |
+| link create (Relates) — executed after Jeremy extended scope with a second test issue, 2026-07-14 | Jira KDP-40827 ↔ KDP-40826 | verified from KDP-40826's issuelinks |
+| created + closed second issue (link-test target) | Jira KDP | KDP-40827 (Closed, labeled) |
 | created page (markdown→ADF: headings, list, table, link) | Confluence NDTW under 9962946567 (authorized root) | page 9963241480 "atl CLI write test page" |
 | updated page (version fetch-and-bump) | Confluence page 9963241480 | version 2 |
 
@@ -38,6 +39,6 @@ Agile + Confluence reads also live-verified (no writes): board get 269, sprint l
 
 ## Follow-ups & Improvement Notes
 
-- `link create` live execution still needs a second sanctioned issue — dry-run verified only. Extend scope or accept as-is (payload is the simplest in the CLI).
+- ~~`link create` live execution still needs a second sanctioned issue~~ — resolved 2026-07-14: KDP-40827 created, Relates link executed and verified, issue closed. **Every parity-checklist row is now live-verified.**
 - Live testing caught and fixed two real defects: UTF-8 BOM from PowerShell `Out-File` broke first-line heading parsing (fixed + regression test); `--out` was per-command (now global).
 - KDP-40826 left in place (Closed, clearly labeled) as the standing write-test target for future atl regression checks.
