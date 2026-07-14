@@ -35,7 +35,7 @@ Where Atlassian MCP tools are connected, skills use them. Everywhere else, the `
 ```powershell
 cd tools/atl
 npm install && npm run build
-# .env holds site + email (committed); put an unscoped API token in .env.local (git-ignored)
+# .env holds the site (committed); put your email + an unscoped API token in .env.local (git-ignored)
 node dist/index.js whoami   # auth smoke test
 ```
 

@@ -11,7 +11,7 @@ Built per `docs/plans/2026-07-14-atlassian-cli-build-plan.md`; every command bel
 
 ## Setup (atl)
 
-Node ≥ 20. Either `npm install && npm run build` in `tools/atl/` (run `node dist/index.js …`), or drop the `atl.mjs` bundle anywhere (run `node atl.mjs …`) — env files are found next to the executable or one level up. Credentials: `.env` holds `ATL_SITE`/`ATL_EMAIL` (committed, non-secret), `.env.local` holds `ATL_TOKEN` (git-ignored, **unscoped** API token, expires ≤365 days — rotate). Real env vars beat both files.
+Node ≥ 20. Either `npm install && npm run build` in `tools/atl/` (run `node dist/index.js …`), or drop the `atl.mjs` bundle anywhere (run `node atl.mjs …`) — env files are found next to the executable or one level up. Credentials: `.env` holds `ATL_SITE` (committed, shared), `.env.local` holds `ATL_EMAIL` + `ATL_TOKEN` (git-ignored — personal account and an **unscoped** API token, expires ≤365 days, rotate). Real env vars beat both files.
 
 ## Capability → command map
 

@@ -20,8 +20,8 @@ node dist/index.js whoami
 
 Credentials — precedence: real env vars > `.env.local` > `.env`:
 
-- `.env` (committed): `ATL_SITE`, `ATL_EMAIL` — non-secrets.
-- `.env.local` (git-ignored): `ATL_TOKEN` — an **unscoped** API token from
+- `.env` (committed): `ATL_SITE` — shared, non-secret.
+- `.env.local` (git-ignored): `ATL_EMAIL` (your Atlassian account) and `ATL_TOKEN` — an **unscoped** API token from
   <https://id.atlassian.com/manage-profile/security/api-tokens>. Tokens expire (≤365 days); rotate accordingly.
 
 ## Commands

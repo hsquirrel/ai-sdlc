@@ -106,7 +106,9 @@ try {
     Copy-Item (Join-Path $atlSrc '.env') (Join-Path $atlDest '.env')
     Set-Content -Path (Join-Path $atlDest '.env.local.example') -Encoding utf8 -Value @'
 # Copy to .env.local and fill in. Never commit .env.local.
-# Unscoped API token from https://id.atlassian.com/manage-profile/security/api-tokens (expires <= 365 days)
+# Your Atlassian account email, plus an unscoped API token from
+# https://id.atlassian.com/manage-profile/security/api-tokens (expires <= 365 days)
+ATL_EMAIL=
 ATL_TOKEN=
 '@
 
