@@ -2,7 +2,7 @@
 #
 # Layout inside the zip (extract at the target repo's root):
 #   .github/skills/<skill>/...        active skills (Agent Skills open standard; Copilot reads these)
-#   .github/copilot-instructions.md   generated from CLAUDE.md
+#   .github/copilot-instructions.md   copied from the repo (the single source of agent guidance)
 #   references/                        shared files the skill bodies cite by relative path
 #   templates/                         repo-level templates (run-log etc.)
 #   tools/atl/                         standalone atl.mjs bundle + .env + .env.local.example (never the real .env.local)
@@ -76,10 +76,8 @@ try {
     Copy-Item (Join-Path $repo 'references') (Join-Path $staging 'references') -Recurse
     Copy-Item (Join-Path $repo 'templates') (Join-Path $staging 'templates') -Recurse
 
-    # copilot-instructions.md from CLAUDE.md
-    $claudeMd = Get-Content (Join-Path $repo 'CLAUDE.md') -Raw
-    $banner = "<!-- Generated from CLAUDE.md by scripts/package-release.ps1 ($Version). Edit CLAUDE.md in the ai-sdlc repo, not this file. -->`n`n"
-    Set-Content -Path (Join-Path $staging '.github\copilot-instructions.md') -Value ($banner + $claudeMd) -Encoding utf8 -NoNewline
+    # agent instructions — the repo's checked-in copilot-instructions.md is the single source
+    Copy-Item (Join-Path $repo '.github\copilot-instructions.md') (Join-Path $staging '.github\copilot-instructions.md')
 
     # atl bundle — never ship the real .env.local
     $atlSrc = Join-Path $repo 'tools\atl'
@@ -138,7 +136,7 @@ Deferred skills $deferredNote.
 
 ## Also included
 
-- ``.github/copilot-instructions.md`` — generated from the library's CLAUDE.md
+- ``.github/copilot-instructions.md`` — the library's agent instructions
 - ``references/`` and ``templates/`` — shared files the skills cite (``references/atlassian-access.md`` is the Atlassian adapter contract)
 - ``tools/atl/atl.mjs`` — standalone Atlassian CLI (needs Node >= 20); copy ``.env.local.example`` to ``.env.local`` and add an API token
 - ``.ai-sdlc/runs/`` — run-log landing directory

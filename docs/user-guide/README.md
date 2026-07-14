@@ -18,7 +18,7 @@ Every run that writes externally keeps a live run log (`.ai-sdlc/runs/`), every 
 
 Honesty is a design value here, so, plainly:
 
-- **Claude Code is the only proven surface.** The skills follow the open Agent Skills standard and are written surface-neutral, so GitHub Copilot and Atlassian Rovo distribution is planned — but neither is set up or validated yet. Until then, run skills in Claude Code or pair with someone who has it.
+- **GitHub Copilot is the sole target surface, and it is not yet live-validated.** The skills follow the open Agent Skills standard and are written surface-neutral; `scripts/package-release.ps1` packages them for deployment under `.github/skills/`. All validation to date (tabletop shakedowns plus one live production run) happened on a general-purpose agentic CLI during development — the first live Copilot run is still ahead and is the acceptance test for the distribution.
 - **One live production run exists**: `pipeline-adopter` adopted an in-flight epic (KDP-40426) with item-by-item approved edits. Everything else has been validated by tabletop shakedowns — walking skills against real Jira/Confluence content, strictly read-only — not yet by live team use.
 - **Developer skills are all deferred** pending repository access and the first real delegation/incident. What each will do when activated is in the [Developer guide](roles/developer.md).
 
@@ -76,5 +76,5 @@ Built, in the repo, and marked deferred in their own text. No individual guide p
 
 1. Read your role's guide — ten minutes: [Product Owner](roles/product-owner.md) · [Developer](roles/developer.md) · [Tester](roles/tester.md) · [Scrum Master](roles/scrum-master.md).
 2. Pick your entry point: PO → `product-brief-builder` (new work) or `pipeline-adopter` (existing work); Tester → `test-plan-generator`; SM → `sprint-planning-facilitator`.
-3. Run it in Claude Code on something real but small. The skill asks for what it needs; you approve what it produces.
+3. Run it in your agent surface on something real but small. The skill asks for what it needs; you approve what it produces.
 4. Something wrong or missing? File an issue in this repo. `docs/skill-catalog.md` is the authoritative index; new skills, modes, and rules require a named requester after a live run — the library grows on demand signals, not speculation.

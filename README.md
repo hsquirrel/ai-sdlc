@@ -22,9 +22,9 @@ The one idea that matters: **AI drafts, decomposes, critiques, and packages — 
 
 ## Quick start
 
-### Use the skills (Claude Code — the proven surface)
+### Use the skills (GitHub Copilot — the target surface)
 
-1. Clone the repo and open it in Claude Code.
+1. Package and deploy: run `.\scripts\package-release.ps1` and extract the zip at your repo's root — skills land under `.github/skills/`, where Copilot picks them up, alongside the shared `references/` and `templates/` they cite. (Working inside this repo directly with any Agent Skills-compatible assistant also works.)
 2. Read the [user guide overview](docs/user-guide/README.md), then your role's guide under `docs/user-guide/roles/`.
 3. Invoke a skill (e.g. the PO pipeline: `product-brief-builder` → `backlog-decomposer` → `jira-confluence-writer` → `definition-of-ready-critic`). Each ends at an approval gate — you review before anything is written.
 

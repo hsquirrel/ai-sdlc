@@ -4,8 +4,8 @@ How skills reach Jira and Confluence. Skills cite this file and name *capabiliti
 
 | Environment | Mechanism |
 |-------------|-----------|
-| Claude Code with Atlassian MCP connected (home) | `mcp__claude_ai_Atlassian__*` tools |
-| No MCP available (work) — **the default assumption for new skills** | the `atl` CLI (`tools/atl/`, or the standalone `atl.mjs` bundle) |
+| Agent environment with an Atlassian MCP server connected | the host's Atlassian MCP tools (naming varies by host) |
+| No MCP available — **the default assumption for new skills** | the `atl` CLI (`tools/atl/`, or the standalone `atl.mjs` bundle) |
 
 Built per `docs/plans/2026-07-14-atlassian-cli-build-plan.md`; every command below passed a live check against KDP on 2026-07-14 (run log: `.ai-sdlc/runs/2026-07-14-atl-phase2-write-test.md`).
 

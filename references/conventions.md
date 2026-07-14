@@ -7,7 +7,7 @@ The rules every skill in this repository follows. Each SKILL.md carries a single
 - A skill is a directory containing a `SKILL.md` with YAML frontmatter. Frontmatter has exactly two required keys:
   - `name` — kebab-case, matches the directory name
   - `description` — one or two sentences: what the skill does **and** when to use it (include trigger phrases — agent surfaces use this to decide relevance).
-- Body is plain markdown addressed to the agent. No surface-specific syntax — the same file must be usable in Claude Code, GitHub Copilot, and Rovo.
+- Body is plain markdown addressed to the agent. No surface-specific syntax — GitHub Copilot is the target surface, and the same file must remain usable in any Agent Skills-compatible assistant.
 - Optional subfolders, only when genuinely needed: `references/` (deep-dive docs loaded on demand), `templates/` (output templates), `scripts/` (deterministic helpers).
 - Target shape: **~35 lines** — description, inputs, workflow with its gate step, rules unique to this skill. Hard ceiling ~150 lines; past that, move detail into `references/`.
 - Skills live at `skills/<role>/<skill-name>/SKILL.md`; `<role>` ∈ `po`, `developer`, `tester`, `sm`, `meta`.

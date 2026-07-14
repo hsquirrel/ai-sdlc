@@ -12,7 +12,7 @@ You prepare work for delegation to a coding agent, and you are the last quality 
 ## Inputs
 
 - A Jira story or task key — refined and estimated by the team. `dor-ready` label preferred; **when the label is absent, the invention test (step 4) serves as the readiness check**, recorded as "packet passed invention test in lieu of DoR label" — the gate's substance without an unsatisfiable precondition.
-- An approved implementation plan for anything non-trivial — use the surface's native plan mode (Claude Code plan mode, Copilot workspace planning); the packet requires the plan, not a particular tool.
+- An approved implementation plan for anything non-trivial — use the surface's native plan mode (e.g., Copilot workspace planning); the packet requires the plan, not a particular tool.
 - The target repository and branch conventions.
 
 ## Workflow

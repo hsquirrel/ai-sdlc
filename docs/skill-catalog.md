@@ -4,7 +4,7 @@ The authoritative index of the ai-sdlc library. Restructured 2026-07-12 per the 
 
 ## Definitions
 
-- **Skill** — a versioned instruction module (SKILL.md) a human invokes inside an agent surface (Claude Code, Copilot, Rovo) to run one workflow.
+- **Skill** — a versioned instruction module (SKILL.md) a human invokes inside an agent surface (GitHub Copilot — the target surface; any Agent Skills-compatible assistant works) to run one workflow.
 - **Deferred skill** — built and in the repo, marked `Status: deferred` in its body; it activates only when its named trigger actually occurs (conventions: demand-signal rule).
 
 ## Conventions (summary — `references/conventions.md` is normative)
